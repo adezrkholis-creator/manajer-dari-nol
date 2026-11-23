@@ -1,0 +1,55 @@
+name: Render episode
+
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Nama file episode tanpa .json (mis. episode-06)"
+        required: true
+        default: "episode-05"
+      posting:
+        description: "Langsung posting ke Instagram setelah render?"
+        type: boolean
+        default: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pasang dependensi
+        run: |
+          npm ci
+          pip install edge-tts
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-core fonts-noto-color-emoji > /dev/null
+
+      - name: Render video (CPU)
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+          PYTHON: python3
+        run: node render.js episodes/${{ inputs.episode }}.json --cpu
+
+      - name: Simpan video
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.episode }}
+          path: out/${{ inputs.episode }}/${{ inputs.episode }}.mp4
+          retention-days: 14
+
+      - name: Posting ke Instagram
+        if: ${{ inputs.posting }}
+        env:
+          META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: node posting.js episodes/${{ inputs.episode }}.json

@@ -1,0 +1,125 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 3,
+  "judul": "DAY 3 — Perang Kiper",
+  "subjudul": "DAY 3 · PERANG KIPER",
+  "fps": 30,
+  "ukuran": [1080, 1920],
+  "suara": {
+    "jack":    { "voice": "id-ID-ArdiNeural", "rate": "+10%", "pitch": "-3Hz",  "label": "JACK" },
+    "waskito": { "voice": "id-ID-ArdiNeural", "rate": "-4%", "pitch": "-24Hz", "label": "WASKITO (KETUA)" }
+  },
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": ["2 KIPER DAFTAR.", "CUMA 1 JADI STARTER."],
+  "skuadAwal": 3,
+  "musikHangat": "semua",
+  "ketukan": ["tes_jay", "tes_ando", "tes_radhika", "tes_bagus"],
+  "adegan": [
+    {
+      "id": "hook", "suasana": "pagi", "lead": 0.15, "min": 3.4,
+      "tembak": { "penendang": "jay", "kiper": "ando", "hasil": "tangkap", "lambat": true },
+      "sfx": [[0.0, "peluit"], [0.22, "tendang"], [1.33, "tangkap"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Dua kiper daftar. Cuma satu yang jadi starter.", "tts": "Dua kiper daftar. Cuma satu, yang jadi starter." }
+      ]
+    },
+    {
+      "id": "komen", "suasana": "pagi", "min": 4,
+      "baris": [
+        { "oleh": "jack", "teks": "Kalian komen... kalian jadi pemain." }
+      ],
+      "komen": [
+        { "user": "elmermuhandis_", "waktu": "16 j", "teks": "Daftar - jay - penyerang (cf)", "warna": "#ea580c" },
+        { "user": "sayaando8", "waktu": "20 j", "teks": "Daftar min Ando kiper tembok kokoh Setiap tembakan di tepis", "warna": "#f59e0b" },
+        { "user": "radhika_ananda16", "waktu": "8 j", "teks": "daftar - Radhika - kiper", "warna": "#7c3aed" },
+        { "user": "bagus73503", "waktu": "7 j", "teks": "daftar-bagus-gelandang tengah(cmf)", "warna": "#ca8a04" }
+      ]
+    },
+    {
+      "id": "tes_jay", "suasana": "pagi", "min": 5,
+      "lokasi": "TES · TENDANGAN",
+      "tembak": { "penendang": "jay", "hasil": "gol" },
+      "sfx": [[1.0, "tendang"], [1.5, "jaring"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Jay, penyerang tengah." },
+        { "oleh": "jack", "teks": "Tendangannya... bikin jaring minta pensiun." }
+      ],
+      "pemain": { "nama": "JAY", "posisi": "Penyerang Tengah", "singkat": "CF", "warna": "#ea580c", "tunda": 0.5,
+        "user": "elmermuhandis_", "komen": "Daftar - jay - penyerang (cf)",
+        "stat": [["Tendangan", 85], ["Finishing", 78], ["Kecepatan", 66]] }
+    },
+    {
+      "id": "tes_ando", "suasana": "pagi", "min": 5,
+      "lokasi": "TES · KIPER 1",
+      "tembak": { "penendang": "jay", "kiper": "ando", "hasil": "tangkap" },
+      "sfx": [[1.0, "tendang"], [1.5, "tangkap"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Ando, kiper. Katanya tembok kokoh..." },
+        { "oleh": "jack", "teks": "Dan beneran. Ditangkap bersih." }
+      ],
+      "pemain": { "nama": "ANDO", "posisi": "Kiper", "singkat": "GK", "warna": "#f59e0b", "tunda": 0.5, "cap": "UTAMA",
+        "user": "sayaando8", "komen": "Daftar min Ando kiper tembok kokoh Setiap tembakan di tepis",
+        "stat": [["Refleks", 87], ["Tangkapan", 84], ["Umpan", 55]] }
+    },
+    {
+      "id": "tes_radhika", "suasana": "pagi", "min": 5,
+      "lokasi": "TES · KIPER 2",
+      "tembak": { "penendang": "jay", "kiper": "radhika", "hasil": "tepis" },
+      "sfx": [[1.0, "tendang"], [1.5, "tangkap"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Radhika, kiper juga. Refleksnya cepat." },
+        { "oleh": "jack", "teks": "Ando kiper utama. Radhika... pelapis." }
+      ],
+      "pemain": { "nama": "RADHIKA", "posisi": "Kiper", "singkat": "GK", "warna": "#7c3aed", "tunda": 0.5, "cap": "PELAPIS", "warnaCap": "#7c3aed",
+        "user": "radhika_ananda16", "komen": "daftar - Radhika - kiper",
+        "stat": [["Refleks", 82], ["Lompatan", 79], ["Umpan", 60]] }
+    },
+    {
+      "id": "tes_bagus", "suasana": "pagi", "min": 5, "aktor": "bagus",
+      "lokasi": "TES · UMPAN",
+      "sfx": [[1.5, "tendang"], [4.5, "tendang"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Terakhir: Bagus, gelandang tengah." },
+        { "oleh": "jack", "teks": "Umpannya kalem... kayak bapak-bapak ngopi." }
+      ],
+      "pemain": { "nama": "BAGUS", "posisi": "Gelandang Tengah", "singkat": "CMF", "warna": "#ca8a04", "tunda": 0.5,
+        "user": "bagus73503", "komen": "daftar-bagus-gelandang tengah(cmf)",
+        "stat": [["Umpan", 80], ["Kontrol", 77], ["Stamina", 70]] }
+    },
+    {
+      "id": "skuad", "suasana": "pagi", "min": 5,
+      "sfx": [[0.3, "ding"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Skuad sekarang tujuh. Tinggal empat slot lagi." }
+      ],
+      "papan": [
+        { "pos": "RWF", "nama": "Rizky", "warna": "#dc2626" },
+        { "pos": "CB", "nama": "Miftakh", "warna": "#2563eb" },
+        { "pos": "AMF", "nama": "Dapeng", "warna": "#16a34a" },
+        { "pos": "CF", "nama": "Jay", "warna": "#ea580c", "baru": true },
+        { "pos": "GK", "nama": "Ando", "warna": "#f59e0b", "baru": true },
+        { "pos": "GK · cad.", "nama": "Radhika", "warna": "#7c3aed", "baru": true },
+        { "pos": "CMF", "nama": "Bagus", "warna": "#ca8a04", "baru": true },
+        { "pos": "LB" }, { "pos": "CB" }, { "pos": "RB" }, { "pos": "LWF" },
+        { "pos": "", "kamu": true }
+      ]
+    },
+    {
+      "id": "aturan", "suasana": "pagi", "min": 5,
+      "baris": [
+        { "oleh": "jack", "teks": "Mulai sekarang: wajib follow dulu. Baru komen: daftar, nama, posisi." }
+      ],
+      "kartu": { "jenis": "target", "tunda": 0.3, "judul": "CARA JADI PEMAIN", "sub": "Belum follow = tidak diseleksi",
+        "isi": [["1.", "FOLLOW @ai_bareng_el"], ["2.", "Komen: DAFTAR – nama – posisi"], ["3.", "Tag 1 teman yang jago main"]] }
+    },
+    {
+      "id": "penutup", "suasana": "pagi", "min": 3.5,
+      "baris": [
+        { "oleh": "jack", "teks": "Yang belum follow... nggak masuk seleksi. Sampai Day 4.", "tts": "Yang belum follow, nggak masuk seleksi. Sampai Day empat." }
+      ]
+    }
+  ],
+  "akhir": { "tombol": "FOLLOW + KOMEN: DAFTAR", "baris2": "Tag teman yang cocok jadi bek!", "status": "Skuad 7/11 · 12 hari lagi" },
+  "caption": "2 kiper daftar, cuma 1 yang jadi starter 🧤 DAY 3: selamat datang Jay (CF), Ando (GK utama), Radhika (GK pelapis), dan Bagus (CMF)! Skuad Yonoha 7/11, tinggal 4 slot: bek kiri, bek tengah, bek kanan, sayap kiri. Mau masuk? 1) FOLLOW dulu 2) komen DAFTAR – nama – posisi 3) tag 1 teman yang jago main. Belum follow = nggak diseleksi! #ManajerDariNol #SepakBola #CeritaFiksi"
+}

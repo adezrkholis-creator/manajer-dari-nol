@@ -1,0 +1,101 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 4,
+  "judul": "DAY 4 — Latihan Perdana",
+  "subjudul": "DAY 4 · LATIHAN PERDANA",
+  "fps": 30,
+  "ukuran": [1080, 1920],
+  "suara": {
+    "jack":    { "voice": "id-ID-ArdiNeural", "rate": "+10%", "pitch": "-3Hz",  "label": "JACK" },
+    "waskito": { "voice": "id-ID-ArdiNeural", "rate": "+0%", "pitch": "-24Hz", "label": "WASKITO (KETUA)" }
+  },
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": ["7 PEMAIN. 11 POSISI.", "LATIHAN PERTAMA = KACAU."],
+  "skuadAwal": 7,
+  "musikHangat": "semua",
+  "ketukan": [],
+  "lagu": { "mulai": "pemanasan", "selesai": "masalah", "bpm": 124 },
+  "adegan": [
+    {
+      "id": "hook", "suasana": "pagi", "lead": 0.15, "min": 3.4, "panggung": "masalah", "geser": 2.5,
+      "sfx": [[0.0, "peluit"], [0.9, "tendang"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Latihan pertama. Tujuh pemain... sebelas posisi." }
+      ]
+    },
+    {
+      "id": "pemanasan", "suasana": "subuh", "min": 5,
+      "lokasi": "LATIHAN PERDANA · 06.30",
+      "sfx": [[0.2, "peluit"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Jam setengah tujuh, pemanasan. Bagus... sudah ngos-ngosan di putaran pertama." }
+      ]
+    },
+    {
+      "id": "umpan", "suasana": "pagi", "min": 5.5,
+      "lokasi": "LATIHAN · UMPAN SEGITIGA",
+      "penghitung": { "label": "UMPAN NYAMBUNG", "tiap": 1.0, "mulai": 0.5 },
+      "sfx": [[0.5, "tendang"], [1.5, "tendang"], [2.5, "tendang"], [3.5, "tendang"], [4.5, "tendang"], [5.5, "tendang"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Umpan segitiga: Dapeng, Bagus, Rizky. Ternyata... nyambung." }
+      ]
+    },
+    {
+      "id": "tembak", "suasana": "pagi", "min": 5,
+      "lokasi": "LATIHAN · TEMBAKAN",
+      "tembak": { "penendang": "jay", "kiper": "radhika", "hasil": "tepis" },
+      "sfx": [[1.0, "tendang"], [1.5, "tangkap"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Jay coba tembak Radhika... ditepis! Pelapis rasa utama." }
+      ]
+    },
+    {
+      "id": "masalah", "suasana": "pagi", "min": 5.5, "panggung": "masalah",
+      "lokasi": "GIM MINI · 4 LAWAN 3",
+      "penanda": { "pos": [-13.5, 0.1, 2.6], "teks": "KOSONG!", "mulai": 0.8 },
+      "sfx": [[0.6, "tendang"], [3.2, "tendang"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Tapi pas main... sisi kiri kosong. Miftakh lari sendirian." }
+      ]
+    },
+    {
+      "id": "jadwal", "suasana": "pagi", "min": 6,
+      "sfx": [[2.2, "kertas"]],
+      "baris": [
+        { "oleh": "waskito", "teks": "Jack! Jadwal uji coba sudah keluar." },
+        { "oleh": "waskito", "teks": "Hari kesepuluh... lawan klub sebelah. Yang ambil semua pemain kita." }
+      ],
+      "kartu": { "jenis": "peringatan", "tunda": 2.2, "judul": "LAGA UJI COBA", "sub": "Surat dari Liga Dagelan",
+        "isi": [["Lawan", "Bintang Sebelah FC"], ["Kapan", "Hari ke-10"], ["Catatan", "Mantan pemain kita"]] }
+    },
+    {
+      "id": "skuad", "suasana": "pagi", "min": 5,
+      "sfx": [[0.3, "ding"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Sebelum hari kesepuluh, aku butuh empat pemain lagi. Follow, lalu komen: daftar." }
+      ],
+      "papan": [
+        { "pos": "RWF", "nama": "Rizky", "warna": "#dc2626" },
+        { "pos": "CB", "nama": "Miftakh", "warna": "#2563eb" },
+        { "pos": "AMF", "nama": "Dapeng", "warna": "#16a34a" },
+        { "pos": "CF", "nama": "Jay", "warna": "#ea580c" },
+        { "pos": "GK", "nama": "Ando", "warna": "#f59e0b" },
+        { "pos": "GK · cad.", "nama": "Radhika", "warna": "#7c3aed" },
+        { "pos": "CMF", "nama": "Bagus", "warna": "#ca8a04" },
+        { "pos": "LB" }, { "pos": "CB" }, { "pos": "RB" }, { "pos": "LWF" },
+        { "pos": "", "kamu": true }
+      ]
+    },
+    {
+      "id": "penutup", "suasana": "pagi", "min": 3.5,
+      "baris": [
+        { "oleh": "jack", "teks": "Ayo gabung! Masih ada empat slot." },
+        { "oleh": "jack", "teks": "Dan komen juga: siapa MVP latihan hari ini?" }
+      ]
+    }
+  ],
+  "ticker": { "teks": "DICARI PEMAIN:  BEK KIRI  •  BEK TENGAH  •  BEK KANAN  •  SAYAP KIRI  •  FOLLOW + KOMEN \"DAFTAR – NAMA – POSISI\"  •  ", "dari": "pemanasan", "sampai": "skuad" },
+  "akhir": { "judul": "AYO GABUNG!", "posisi": ["BEK KIRI", "BEK TENGAH", "BEK KANAN", "SAYAP KIRI"], "tombol": "FOLLOW + KOMEN: DAFTAR", "baris2": "Komen juga: siapa MVP latihan?", "status": "Skuad 7/11 · 11 hari lagi" },
+  "caption": "Latihan pertama Yonoha: 7 pemain, 11 posisi... langsung kacau 😂 DAY 4: umpan segitiga nyambung, Radhika nepis tembakan Jay, tapi sisi kiri kosong melompong. Dan hari ke-10 kita lawan Bintang Sebelah FC, klub yang ambil semua pemain lama kita 😤 Butuh 4 pemain: bek kiri, bek tengah, bek kanan, sayap kiri. FOLLOW + komen DAFTAR – nama – posisi. Siapa MVP latihan hari ini? #ManajerDariNol #SepakBola #CeritaFiksi"
+}

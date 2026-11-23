@@ -1,0 +1,101 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 2,
+  "judul": "DAY 2 — Seleksi Pertama",
+  "subjudul": "DAY 2 · SELEKSI PERTAMA",
+  "fps": 30,
+  "ukuran": [1080, 1920],
+  "suara": {
+    "jack":    { "voice": "id-ID-ArdiNeural", "rate": "+6%", "pitch": "-3Hz",  "label": "JACK" },
+    "waskito": { "voice": "id-ID-ArdiNeural", "rate": "-4%", "pitch": "-24Hz", "label": "WASKITO (KETUA)" }
+  },
+  "musikHangat": "semua",
+  "ketukan": ["tes_rizky", "tes_miftakh", "tes_dapeng"],
+  "adegan": [
+    {
+      "id": "pagi", "suasana": "pagi", "lead": 1.6, "min": 7.5,
+      "lokasi": "STADION YONOHA · 07.00",
+      "baris": [
+        { "oleh": "jack", "teks": "Day 2. Semalam HP-ku nggak berhenti bunyi.", "tts": "Day dua. Semalam, HP-ku nggak berhenti bunyi." }
+      ]
+    },
+    {
+      "id": "komen", "suasana": "pagi", "min": 7,
+      "baris": [
+        { "oleh": "jack", "teks": "Lowongan gaji nol... dan ternyata ada yang daftar." },
+        { "oleh": "jack", "teks": "Tiga orang. Hari ini, aku seleksi mereka." }
+      ],
+      "komen": [
+        { "user": "kyy151030", "waktu": "11 j", "teks": "daftar rizky penyerang sayap kanan (rwf)", "warna": "#dc2626" },
+        { "user": "miftakh_al.13", "waktu": "13 j", "teks": "Daftar Miftakh Bek Tengah", "warna": "#2563eb" },
+        { "user": "daffazzh", "waktu": "14 j", "teks": "DAFTAR - DAPENG - GELANDANG SERANG (AMF)", "warna": "#16a34a" }
+      ]
+    },
+    {
+      "id": "tes_rizky", "suasana": "pagi", "min": 7.5,
+      "lokasi": "TES 1 · LARI SAYAP",
+      "baris": [
+        { "oleh": "jack", "teks": "Tes pertama: Rizky, sayap kanan." },
+        { "oleh": "jack", "teks": "Larinya... kayak dikejar tukang tagih utang." }
+      ],
+      "pemain": { "nama": "RIZKY", "posisi": "Penyerang Sayap Kanan", "singkat": "RWF", "warna": "#dc2626",
+        "user": "kyy151030", "komen": "daftar rizky penyerang sayap kanan (rwf)",
+        "stat": [["Kecepatan", 86], ["Dribel", 74], ["Stamina", 63]] }
+    },
+    {
+      "id": "tes_miftakh", "suasana": "pagi", "min": 7.5,
+      "lokasi": "TES 2 · DUEL UDARA",
+      "baris": [
+        { "oleh": "jack", "teks": "Tes kedua: Miftakh, bek tengah." },
+        { "oleh": "jack", "teks": "Bola atas? Semua disundul pulang." }
+      ],
+      "pemain": { "nama": "MIFTAKH", "posisi": "Bek Tengah", "singkat": "CB", "warna": "#2563eb",
+        "user": "miftakh_al.13", "komen": "Daftar Miftakh Bek Tengah",
+        "stat": [["Duel udara", 84], ["Tekel", 77], ["Kecepatan", 58]] }
+    },
+    {
+      "id": "tes_dapeng", "suasana": "pagi", "min": 7.5,
+      "lokasi": "TES 3 · UMPAN TEROBOSAN",
+      "baris": [
+        { "oleh": "jack", "teks": "Tes ketiga: Dapeng, gelandang serang." },
+        { "oleh": "jack", "teks": "Umpannya tembus... di antara kerucut." }
+      ],
+      "pemain": { "nama": "DAPENG", "posisi": "Gelandang Serang", "singkat": "AMF", "warna": "#16a34a",
+        "user": "daffazzh", "komen": "DAFTAR - DAPENG - GELANDANG SERANG (AMF)",
+        "stat": [["Umpan", 83], ["Visi", 79], ["Fisik", 61]] }
+    },
+    {
+      "id": "lolos", "suasana": "pagi", "min": 6.5,
+      "lokasi": "HASIL SELEKSI",
+      "baris": [
+        { "oleh": "jack", "teks": "Tiga-tiganya lolos. Selamat datang di Yonoha." },
+        { "oleh": "jack", "teks": "Gaji nol... tapi niatnya penuh." }
+      ],
+      "kartu": { "jenis": "sukses", "tunda": 0.6, "judul": "SKUAD 3 / 11", "sub": "8 posisi masih kosong",
+        "isi": [["RWF", "Rizky"], ["CB", "Miftakh"], ["AMF", "Dapeng"], ["Kiper", "— kosong —"]] }
+    },
+    {
+      "id": "kiper", "suasana": "pagi", "min": 6,
+      "baris": [
+        { "oleh": "waskito", "teks": "Bagus, Jack. Tapi... siapa yang jaga gawang?" },
+        { "oleh": "jack", "teks": "...Oh iya.", "tts": "Oh. Iya." }
+      ]
+    },
+    {
+      "id": "cta", "suasana": "pagi", "min": 6,
+      "baris": [
+        { "oleh": "jack", "teks": "Masih butuh delapan pemain. Paling dicari: kiper. Komen: daftar, nama, posisi." }
+      ]
+    },
+    {
+      "id": "penutup", "suasana": "pagi", "min": 4,
+      "baris": [
+        { "oleh": "jack", "teks": "Tiga belas hari lagi. Yang lolos... masuk Day 3.", "tts": "Tiga belas hari lagi. Yang lolos, masuk Day tiga." }
+      ]
+    }
+  ],
+  "ajakan": "DICARI KIPER! KOMEN: DAFTAR + NAMA + POSISI",
+  "contohKomen": "DAFTAR – Budi – Kiper",
+  "akhir": { "tombol": "KOMEN: DAFTAR", "baris2": "Yang lolos masuk DAY 3", "status": "Skuad 3/11 · 13 hari lagi" },
+  "caption": "DAY 2: ternyata ada yang mau daftar dengan gaji Rp 0 🥹 Selamat datang Rizky (RWF), Miftakh (bek tengah), dan Dapeng (AMF)! Skuad Yonoha sekarang 3/11... tapi kita belum punya KIPER 😭 Mau gabung? Komen: DAFTAR – nama – posisi. Yang lolos masuk DAY 3! #ManajerDariNol #SepakBola #CeritaFiksi"
+}

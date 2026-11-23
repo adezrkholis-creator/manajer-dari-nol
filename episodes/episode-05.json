@@ -1,0 +1,97 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 5,
+  "judul": "DAY 5 — Mata-Mata",
+  "subjudul": "DAY 5 · MATA-MATA",
+  "fps": 30,
+  "ukuran": [1080, 1920],
+  "suara": {
+    "jack":    { "voice": "id-ID-ArdiNeural", "rate": "+10%", "pitch": "-3Hz",  "label": "JACK" },
+    "darman":  { "voice": "id-ID-ArdiNeural", "rate": "+6%", "pitch": "-14Hz", "label": "COACH DARMAN (BINTANG SEBELAH)" }
+  },
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": ["KETAHUAN NGINTIP RIVAL.", "YANG CURI 9 PEMAIN KITA."],
+  "skuadAwal": 7,
+  "musikHangat": "banding",
+  "ketukan": ["intai", "lawan"],
+  "adegan": [
+    {
+      "id": "hook", "suasana": "pagi", "lead": 0.05, "min": 4.6, "panggung": "ketahuanHook", "beku": 2.25,
+      "mundur": "5 MENIT SEBELUMNYA...",
+      "sfx": [[0.0, "peluit"], [2.25, "gores"]],
+      "baris": [
+        { "oleh": "darman", "teks": "HEI! MANAJER TIKUS!", "tts": "Hei! Manajer tikus!" },
+        { "oleh": "jack", "teks": "Ya... aku ketahuan. Tapi mundur sebentar." }
+      ]
+    },
+    {
+      "id": "teropong1", "suasana": "pagi", "min": 4, "panggung": "teropong", "teropong": true,
+      "baris": [
+        { "oleh": "jack", "teks": "Mereka ambil semua pemain kita. Jadi... aku intip latihan mereka." }
+      ]
+    },
+    {
+      "id": "intai", "suasana": "pagi", "min": 5,
+      "lokasi": "LAPANGAN BINTANG SEBELAH · 07.00",
+      "baris": [
+        { "oleh": "jack", "teks": "Bintang Sebelah FC. Lapangannya rapi... rumputnya rumput beneran." }
+      ]
+    },
+    {
+      "id": "lawan", "suasana": "pagi", "min": 5.5, "panggung": "teropong", "teropong": true,
+      "baris": [
+        { "oleh": "jack", "teks": "Delapan belas pemain. Sembilan di antaranya... mantan pemain kita." }
+      ],
+      "kartu": { "jenis": "peringatan", "tunda": 0.4, "judul": "BINTANG SEBELAH FC", "sub": "Lawan uji coba · 5 hari lagi",
+        "isi": [["Pemain", "18 orang"], ["Kas klub", "Rp 450 juta"], ["Mantan Yonoha", "9 orang"]] }
+    },
+    {
+      "id": "ketahuan", "suasana": "pagi", "min": 5.5,
+      "sfx": [[0.2, "peluit"]],
+      "baris": [
+        { "oleh": "darman", "teks": "Hei! Manajer tikus! Ngintip, ya?" },
+        { "oleh": "jack", "teks": "...Lagi cari kucing hilang, Pak.", "tts": "Lagi cari kucing hilang, Pak." }
+      ]
+    },
+    {
+      "id": "banding", "suasana": "pagi", "min": 6,
+      "sfx": [[0.3, "ding"]],
+      "baris": [
+        { "oleh": "jack", "teks": "Di atas kertas, kita kalah semua. Kecuali satu: semangat." }
+      ],
+      "banding": [
+        ["Pemain", "7", "18", 0.39, 1],
+        ["Kas", "Rp 4,7 jt", "Rp 450 jt", 0.06, 1],
+        ["Lapangan", "Becek", "Rumput asli", 0.3, 1],
+        ["Semangat", "100", "60", 1, 0.6]
+      ]
+    },
+    {
+      "id": "skuad", "suasana": "pagi", "min": 5,
+      "baris": [
+        { "oleh": "jack", "teks": "Uji coba tinggal lima hari. Kita masih butuh empat pemain." }
+      ],
+      "papan": [
+        { "pos": "RWF", "nama": "Rizky", "warna": "#dc2626" },
+        { "pos": "CB", "nama": "Miftakh", "warna": "#2563eb" },
+        { "pos": "AMF", "nama": "Dapeng", "warna": "#16a34a" },
+        { "pos": "CF", "nama": "Jay", "warna": "#ea580c" },
+        { "pos": "GK", "nama": "Ando", "warna": "#f59e0b" },
+        { "pos": "GK · cad.", "nama": "Radhika", "warna": "#7c3aed" },
+        { "pos": "CMF", "nama": "Bagus", "warna": "#ca8a04" },
+        { "pos": "LB" }, { "pos": "CB" }, { "pos": "RB" }, { "pos": "LWF" },
+        { "pos": "", "kamu": true }
+      ]
+    },
+    {
+      "id": "penutup", "suasana": "pagi", "min": 4,
+      "baris": [
+        { "oleh": "jack", "teks": "Follow, komen daftar... dan tag temanmu yang mau bantu kita balas dendam." }
+      ]
+    }
+  ],
+  "ticker": { "teks": "DICARI PEMAIN:  BEK KIRI  •  BEK TENGAH  •  BEK KANAN  •  SAYAP KIRI  •  FOLLOW @ai_bareng_el + KOMEN \"DAFTAR – NAMA – POSISI\"  •  ", "dari": "intai", "sampai": "skuad" },
+  "akhir": { "judul": "AYO GABUNG!", "posisi": ["BEK KIRI", "BEK TENGAH", "BEK KANAN", "SAYAP KIRI"], "tombol": "FOLLOW + KOMEN: DAFTAR", "baris2": "Tag teman yang mau balas dendam!", "status": "Skuad 7/11 · uji coba 5 hari lagi" },
+  "caption": "Mereka ambil semua pemain kita... jadi aku intip latihan mereka 🕵️ DAY 5: Bintang Sebelah FC punya 18 pemain, kas Rp 450 juta, dan 9 di antaranya MANTAN pemain Yonoha 😤 Di atas kertas kita kalah semua, kecuali semangat. Uji coba tinggal 5 hari, butuh 4 pemain: bek kiri, bek tengah, bek kanan, sayap kiri. FOLLOW @ai_bareng_el + komen DAFTAR – nama – posisi, lalu tag teman yang mau bantu balas dendam! Baru nonton? Mulai dari DAY 1 👆 #ManajerDariNol #SepakBola #CeritaFiksi"
+}

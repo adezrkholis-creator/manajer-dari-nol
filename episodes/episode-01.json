@@ -1,0 +1,94 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 1,
+  "judul": "DAY 1 — Klub Tanpa Pemain",
+  "dunia": {
+    "manajer": "Jack",
+    "klub": "Yonoha Sarang Tikus FC",
+    "kota": "Makar",
+    "liga": "Liga Dagelan Bubur Ayam Pak Darto Divisi 5",
+    "ketua": "Waskito"
+  },
+  "fps": 30,
+  "ukuran": [1080, 1920],
+  "suara": {
+    "jack":    { "voice": "id-ID-ArdiNeural", "rate": "+6%",  "pitch": "-3Hz",  "label": "JACK" },
+    "waskito": { "voice": "id-ID-ArdiNeural", "rate": "-4%", "pitch": "-24Hz", "label": "WASKITO (KETUA)" }
+  },
+  "adegan": [
+    {
+      "id": "buka", "suasana": "malam", "lead": 1.4, "min": 7.5,
+      "lokasi": "TERMINAL MAKAR · 21.40",
+      "baris": [
+        { "oleh": "jack", "teks": "Namaku Jack. Malam ini aku tiba di Makar... untuk pekerjaan baru." }
+      ]
+    },
+    {
+      "id": "gerbang", "suasana": "malam", "min": 5,
+      "lokasi": "STADION YONOHA · 22.05",
+      "baris": [
+        { "oleh": "jack", "teks": "Manajer Yonoha Sarang Tikus FC. Klub termiskin di Liga Dagelan.",
+          "tts": "Manajer Yonoha Sarang Tikus F C. Klub termiskin, di Liga Dagelan." }
+      ]
+    },
+    {
+      "id": "kantor", "suasana": "dalam", "min": 6,
+      "lokasi": "KANTOR KETUA WASKITO",
+      "baris": [
+        { "oleh": "waskito", "teks": "Selamat datang, Jack. Ini kuncinya." },
+        { "oleh": "waskito", "teks": "Oh iya... semua pemain kemarin pindah ke klub sebelah." }
+      ]
+    },
+    {
+      "id": "ruang", "suasana": "dalam", "min": 5,
+      "lokasi": "RUANG GANTI",
+      "baris": [
+        { "oleh": "jack", "teks": "Semua. Loker kosong. Nama mereka sudah dicoret." }
+      ],
+      "kartu": { "jenis": "peringatan", "tunda": 2.4, "judul": "SKUAD 0 / 11", "sub": "Tidak ada satu pun pemain",
+        "isi": [["Pemain", "0 orang"], ["Kas klub", "Rp 4.750.000"]] }
+    },
+    {
+      "id": "surat", "suasana": "dalam", "min": 6,
+      "baris": [
+        { "oleh": "jack", "teks": "Lalu surat liga datang. Empat belas hari, sebelas pemain. Atau klub dicoret." }
+      ]
+    },
+    {
+      "id": "tribun", "suasana": "subuh", "min": 6,
+      "lokasi": "SUBUH · HARI PERTAMA",
+      "baris": [
+        { "oleh": "jack", "teks": "Aku nggak punya pemain. Nggak punya uang. Cuma punya... dia." },
+        { "oleh": "jack", "teks": "Jadi... aku cari pemain dari kalian." }
+      ]
+    },
+    {
+      "id": "rekrut", "suasana": "subuh", "min": 6,
+      "baris": [
+        { "oleh": "jack", "teks": "Gajinya nol. Bonusnya bubur ayam... kalau kas masih ada." },
+        { "oleh": "jack", "teks": "Syaratnya cuma satu: niat." }
+      ],
+      "poster": {
+        "judul": "DICARI!", "sub": "11 PEMAIN", "klub": "YONOHA SARANG TIKUS FC",
+        "isi": [["Gaji", "Rp 0"], ["Bonus", "Bubur ayam tiap latihan*"], ["Syarat", "Niat + sepatu (boleh pinjam)"], ["Posisi", "Semua kosong"]],
+        "catatan": "*kalau kas cukup"
+      }
+    },
+    {
+      "id": "cta", "suasana": "pagi", "min": 5,
+      "baris": [
+        { "oleh": "jack", "teks": "Mau jadi pemain Yonoha? Komen: daftar, nama, dan posisimu." }
+      ]
+    },
+    {
+      "id": "penutup", "suasana": "pagi", "min": 4,
+      "baris": [
+        { "oleh": "jack", "teks": "Besok aku seleksi. Yang lolos... masuk skuad di Day 2.", "tts": "Besok aku seleksi. Yang lolos, masuk skuad di Day dua." }
+      ]
+    }
+  ],
+  "ajakan": "KOMEN: DAFTAR + NAMA + POSISI",
+  "contohKomen": "DAFTAR – Budi – Kiper",
+  "akhir": { "tombol": "KOMEN: DAFTAR", "baris2": "Yang lolos seleksi masuk DAY 2" },
+  "caption": "DAY 1: aku resmi jadi manajer Yonoha Sarang Tikus FC... dan pemainnya NOL 😭 Liga kasih waktu 14 hari buat cari 11 pemain. Gaji Rp 0, bonus bubur ayam (kalau kas cukup). Mau jadi pemain? Komen: DAFTAR – nama – posisi (contoh: DAFTAR – Budi – Kiper). Besok aku seleksi, yang lolos masuk skuad di DAY 2! #ManajerDariNol #SepakBola #CeritaFiksi"
+}
