@@ -1,0 +1,170 @@
+{
+  "day": 6,
+  "judul": "Sembilan Pendaftar Lolos Seleksi",
+  "ringkas": "Seleksi sembilan pemain baru ke Yonoha, butuh desain jersey.",
+  "jawab_sebelumnya": "Menerima pendaftar baru untuk mengisi slot kosong di tim.",
+  "pemain_lolos": [
+    {
+      "user": "bagasandikaprasetyo",
+      "nama": "Siso",
+      "posisi": "RB",
+      "nomor": "siso",
+      "alasan": "Mengisi posisi bek kanan yang kosong."
+    },
+    {
+      "user": "ax_last_line",
+      "nama": "Putz",
+      "posisi": "LWF",
+      "nomor": "putz",
+      "alasan": "Mengisi posisi sayap kiri yang kosong."
+    },
+    {
+      "user": "1dongg_06_",
+      "nama": "Dongg",
+      "posisi": "LB",
+      "nomor": "",
+      "alasan": "Mengisi posisi bek kiri yang kosong."
+    },
+    {
+      "user": "iiamelzy",
+      "nama": "Iiamelzy",
+      "posisi": "CB",
+      "nomor": "",
+      "alasan": "Mengisi posisi bek tengah yang kosong."
+    },
+    {
+      "user": "nadzar_30",
+      "nama": "Nadzar",
+      "posisi": "LWF",
+      "nomor": "",
+      "alasan": "Mengisi posisi sayap kiri, memperkuat serangan."
+    },
+    {
+      "user": "recallllllllllllll",
+      "nama": "Adel",
+      "posisi": "CMF",
+      "nomor": "Adel",
+      "alasan": "Cadangan untuk lini tengah."
+    },
+    {
+      "user": "sotopenyet22",
+      "nama": "Zacky",
+      "posisi": "AMF",
+      "nomor": "zacky",
+      "alasan": "Cadangan untuk serangan tengah."
+    },
+    {
+      "user": "andi_muh.tegar",
+      "nama": "Tegar",
+      "posisi": "LWF",
+      "nomor": "sayap kiri",
+      "alasan": "Mengisi posisi sayap kiri yang kosong."
+    },
+    {
+      "user": "m.r.r21_",
+      "nama": "Revan",
+      "posisi": "GK",
+      "nomor": "M Revan R",
+      "alasan": "Cadangan untuk posisi kiper."
+    }
+  ],
+  "beat": [
+    {
+      "jenis": "cold_open",
+      "teks_layar": [
+        "SELEKSI PEMAIN BARU.",
+        "9 DITERIMA, LENGKAPI SKUAD INTI."
+      ],
+      "narasi": "Aku akhirnya punya tim inti! Sembilan pemain baru siap beraksi."
+    },
+    {
+      "jenis": "komentar",
+      "users": [
+        "bagasandikaprasetyo",
+        "ax_last_line",
+        "1dongg_06_",
+        "iiamelzy"
+      ],
+      "narasi": "Mereka akhirnya bisa bergabung dengan Yonoha. Tim kita semakin solid."
+    },
+    {
+      "jenis": "seleksi",
+      "pemain": "ax_last_line",
+      "tes": "tembak",
+      "stat": [
+        [
+          "Kecepatan",
+          85
+        ],
+        [
+          "Akurasi",
+          80
+        ],
+        [
+          "Ketahanan",
+          75
+        ]
+      ],
+      "cap": "UTAMA",
+      "narasi": "Putz menunjukkan kecepatan dan akurasi yang luar biasa sebagai sayap kiri."
+    },
+    {
+      "jenis": "lolos",
+      "narasi": "Inilah sembilan pemain baru yang berhasil lolos seleksi hari ini."
+    },
+    {
+      "jenis": "jersey",
+      "opsi": [
+        {
+          "huruf": "A",
+          "nama": "Klasik",
+          "utama": "#FFFFFF",
+          "aksen": "#FF0000",
+          "celana": "#000000",
+          "pola": "garis"
+        },
+        {
+          "huruf": "B",
+          "nama": "Modern",
+          "utama": "#0000FF",
+          "aksen": "#FFFF00",
+          "celana": "#FFFFFF",
+          "pola": "selempang"
+        },
+        {
+          "huruf": "C",
+          "nama": "Retro",
+          "utama": "#00FF00",
+          "aksen": "#0000FF",
+          "celana": "#FF0000",
+          "pola": "setengah"
+        }
+      ],
+      "narasi": "Desain jersey ini penting untuk uji coba mendatang. Komen pilihanmu: A, B, atau C!"
+    },
+    {
+      "jenis": "bersambung",
+      "teaser": "Siapa yang bayar jersey kita?",
+      "narasi": "Semua sudah siap, tapi... siapa yang bayar jersey kita?"
+    }
+  ],
+  "nama_ultras": null,
+  "voting_baru": null,
+  "benang_terbuka": [
+    "Yonoha belum punya seragam: pemain latihan pakai baju sendiri-sendiri.",
+    "Siapa yang akan membayar jersey baru kita?",
+    "Yonoha belum punya suporter. Penonton bisa gabung ULTRAS Yonoha (komen ULTRAS); nama kelompok ultras belum ada."
+  ],
+  "rencana_dekat": [
+    "Episode voting seragam: tampilkan 3 desain jersey (A/B/C), ajak komen A/B/C atau usul desain sendiri.",
+    "Episode berikutnya: umumkan pemenang ('Kalian memilih ...'), usul terbaik jadi jersey tandang + sebut username pengusul. Cliffhanger: Waskito 'siapa yang bayar?' -> sponsor aneh."
+  ],
+  "riwayat": "Sembilan pendaftar baru lolos seleksi, tim inti hampir lengkap.",
+  "caption": "Sembilan pemain baru bergabung dengan Yonoha FC! Skuad kita hampir lengkap untuk uji coba melawan Bintang Sebelah FC. Tapi kita masih butuh jersey baru. Komen pilihan desain kamu: A, B, atau C! #ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": [
+    "SELEKSI PEMAIN BARU.",
+    "9 DITERIMA, LENGKAPI SKUAD INTI."
+  ],
+  "peringatan": [],
+  "model": "gpt-4o"
+}

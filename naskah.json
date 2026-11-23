@@ -1,0 +1,395 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 6,
+  "judul": "DAY 6 — Sembilan Pendaftar Lolos Seleksi",
+  "subjudul": "DAY 6 · SEMBILAN PENDAFTAR LOLOS SELEKSI",
+  "fps": 30,
+  "ukuran": [
+    1080,
+    1920
+  ],
+  "suara": {
+    "jack": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+10%",
+      "pitch": "-3Hz",
+      "label": "JACK"
+    },
+    "waskito": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+0%",
+      "pitch": "-24Hz",
+      "label": "WASKITO (KETUA)"
+    },
+    "darman": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+6%",
+      "pitch": "-14Hz",
+      "label": "COACH DARMAN (BINTANG SEBELAH)"
+    }
+  },
+  "otomatis": true,
+  "sumber_rencana": "cerita/rencana/day-06.json",
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": [
+    "SELEKSI PEMAIN BARU.",
+    "9 DITERIMA, LENGKAPI SKUAD INTI."
+  ],
+  "skuadAwal": 7,
+  "skuadMaks": 30,
+  "musikHangat": "semua",
+  "ketukan": [
+    "b3",
+    "b4"
+  ],
+  "seragam": null,
+  "pemain_data": {
+    "p_ax_last_line": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "cap": "#111827"
+    }
+  },
+  "adegan": [
+    {
+      "id": "b1",
+      "suasana": "pagi",
+      "min": 3.6,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Aku akhirnya punya tim inti! Sembilan pemain baru siap beraksi."
+        }
+      ],
+      "panggung": "umum",
+      "dramatis": true,
+      "lokasi3d": "lapangan",
+      "tokoh": [
+        "jack"
+      ],
+      "lead": 0.1,
+      "sfx": [
+        [
+          0,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b2",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Mereka akhirnya bisa bergabung dengan Yonoha. Tim kita semakin solid."
+        }
+      ],
+      "panggung": "komen",
+      "komen": [
+        {
+          "user": "bagasandikaprasetyo",
+          "waktu": "baru",
+          "teks": "Gua bang daftar bek kanan siso @dediii.i",
+          "warna": "#0891b2"
+        },
+        {
+          "user": "ax_last_line",
+          "waktu": "baru",
+          "teks": "Saya bang Sayap kiri putz no 13",
+          "warna": "#4f46e5"
+        },
+        {
+          "user": "1dongg_06_",
+          "waktu": "baru",
+          "teks": "Daftar bek kiri @h1l4l_45 join",
+          "warna": "#ca8a04"
+        },
+        {
+          "user": "iiamelzy",
+          "waktu": "baru",
+          "teks": "daftar bang cb",
+          "warna": "#2563eb"
+        }
+      ],
+      "sfx": [
+        [
+          0.6,
+          "ding"
+        ],
+        [
+          1.05,
+          "ding"
+        ],
+        [
+          1.5,
+          "ding"
+        ],
+        [
+          1.9500000000000002,
+          "ding"
+        ]
+      ],
+      "tambahSkuad": 3,
+      "dihitung": [
+        "bagasandikaprasetyo",
+        "1dongg_06_",
+        "iiamelzy"
+      ]
+    },
+    {
+      "id": "b3",
+      "suasana": "pagi",
+      "min": 5.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Putz menunjukkan kecepatan dan akurasi yang luar biasa sebagai sayap kiri."
+        }
+      ],
+      "lokasi": "TES · TENDANGAN",
+      "aktor": "p_ax_last_line",
+      "tembak": {
+        "penendang": "p_ax_last_line",
+        "hasil": "gol"
+      },
+      "sfx": [
+        [
+          1,
+          "tendang"
+        ],
+        [
+          1.5,
+          "jaring"
+        ]
+      ],
+      "pemain": {
+        "nama": "PUTZ",
+        "posisi": "Sayap Kiri",
+        "singkat": "LWF",
+        "warna": "#4f46e5",
+        "tunda": 0.5,
+        "cap": "LOLOS",
+        "hitung": true,
+        "user": "ax_last_line",
+        "komen": "Saya bang Sayap kiri putz no 13",
+        "stat": [
+          [
+            "Kecepatan",
+            85
+          ],
+          [
+            "Akurasi",
+            80
+          ],
+          [
+            "Ketahanan",
+            75
+          ]
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "suasana": "pagi",
+      "min": 7.15,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Inilah sembilan pemain baru yang berhasil lolos seleksi hari ini."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "lokasi": "HASIL SELEKSI",
+      "lolosList": [
+        {
+          "nama": "SISO",
+          "user": "bagasandikaprasetyo",
+          "pos": "RB",
+          "inti": true,
+          "warna": "#0891b2"
+        },
+        {
+          "nama": "PUTZ",
+          "user": "ax_last_line",
+          "pos": "LWF",
+          "inti": true,
+          "warna": "#4f46e5"
+        },
+        {
+          "nama": "DONGG",
+          "user": "1dongg_06_",
+          "pos": "LB",
+          "inti": true,
+          "warna": "#ca8a04"
+        },
+        {
+          "nama": "IIAMELZY",
+          "user": "iiamelzy",
+          "pos": "CB",
+          "inti": true,
+          "warna": "#2563eb"
+        },
+        {
+          "nama": "NADZAR",
+          "user": "nadzar_30",
+          "pos": "LWF",
+          "inti": false,
+          "warna": "#2563eb"
+        },
+        {
+          "nama": "ADEL",
+          "user": "recallllllllllllll",
+          "pos": "CMF",
+          "inti": false,
+          "warna": "#16a34a"
+        },
+        {
+          "nama": "ZACKY",
+          "user": "sotopenyet22",
+          "pos": "AMF",
+          "inti": false,
+          "warna": "#ea580c"
+        },
+        {
+          "nama": "TEGAR",
+          "user": "andi_muh.tegar",
+          "pos": "LWF",
+          "inti": false,
+          "warna": "#059669"
+        },
+        {
+          "nama": "REVAN",
+          "user": "m.r.r21_",
+          "pos": "GK",
+          "inti": false,
+          "warna": "#16a34a"
+        }
+      ],
+      "sfx": [
+        [
+          0.7,
+          "ding"
+        ],
+        [
+          0.95,
+          "ding"
+        ],
+        [
+          1.2,
+          "ding"
+        ],
+        [
+          1.45,
+          "ding"
+        ],
+        [
+          1.7,
+          "ding"
+        ],
+        [
+          1.95,
+          "ding"
+        ],
+        [
+          2.2,
+          "ding"
+        ],
+        [
+          2.45,
+          "ding"
+        ],
+        [
+          2.7,
+          "ding"
+        ]
+      ],
+      "tambahSkuad": 5,
+      "dihitung": [
+        "nadzar_30",
+        "recallllllllllllll",
+        "sotopenyet22",
+        "andi_muh.tegar",
+        "m.r.r21_"
+      ]
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 6.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Desain jersey ini penting untuk uji coba mendatang. Komen pilihanmu: A, B, atau C!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "jersey": [
+        {
+          "huruf": "A",
+          "nama": "Klasik",
+          "utama": "#FFFFFF",
+          "aksen": "#FF0000",
+          "celana": "#000000",
+          "pola": "garis"
+        },
+        {
+          "huruf": "B",
+          "nama": "Modern",
+          "utama": "#0000FF",
+          "aksen": "#FFFF00",
+          "celana": "#FFFFFF",
+          "pola": "selempang"
+        },
+        {
+          "huruf": "C",
+          "nama": "Retro",
+          "utama": "#00FF00",
+          "aksen": "#0000FF",
+          "celana": "#FF0000",
+          "pola": "setengah"
+        }
+      ],
+      "sfx": [
+        [
+          0.5,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "penutup",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Semua sudah siap, tapi... siapa yang bayar jersey kita?"
+        }
+      ],
+      "teaser": "Siapa yang bayar jersey kita?"
+    }
+  ],
+  "akhir": {
+    "judul": "GABUNG ULTRAS!",
+    "posisi": [
+      "KOMEN \"ULTRAS\""
+    ],
+    "tombol": "KOMEN: A, B atau C",
+    "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
+    "status": "Skuad 16/30 · uji coba 4 hari lagi"
+  },
+  "caption": "Sembilan pemain baru bergabung dengan Yonoha FC! Skuad kita hampir lengkap untuk uji coba melawan Bintang Sebelah FC. Tapi kita masih butuh jersey baru. Komen pilihan desain kamu: A, B, atau C! #ManajerDariNol #SepakBola #CeritaFiksi",
+  "ticker": {
+    "teks": "SKUAD 16/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
+    "dari": "b2",
+    "sampai": "b5"
+  }
+}
