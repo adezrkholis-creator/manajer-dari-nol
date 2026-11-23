@@ -1,0 +1,19 @@
+name: Cek token posting
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Cek token & akun Instagram (tidak memposting)
+        env:
+          META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: node posting.js episodes/episode-05.json --cek
