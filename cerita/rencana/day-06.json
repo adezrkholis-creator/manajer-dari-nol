@@ -1,0 +1,112 @@
+{
+  "day": 6,
+  "judul": "Seragam Baru, Siap Uji Coba!",
+  "ringkas": "Jack mengumumkan desain seragam baru dan Yonoha bersiap untuk uji coba.",
+  "jawab_sebelumnya": "Jack kembali ke Yonoha setelah ketahuan ngintip, dan tim harus punya seragam sebelum uji coba.",
+  "pemain_lolos": [
+    {
+      "nama": "Dong",
+      "user": "1dongg_06_",
+      "posisi": "LB",
+      "nomor": "3",
+      "alasan": "Tampil solid dan konsisten selama latihan."
+    }
+  ],
+  "beat": [
+    {
+      "jenis": "cold_open",
+      "teks_layar": [
+        "JACK KEMBALI DARI NGINTIP",
+        "SERAGAM HARUS SIAP!"
+      ],
+      "narasi": "Panik, Jack harus cepat selesaikan seragam sebelum uji coba."
+    },
+    {
+      "jenis": "ngobrol",
+      "lokasi": "lapangan",
+      "dialog": [
+        {
+          "oleh": "jack",
+          "teks": "Oke tim, kita butuh seragam sebelum hari ke-10!"
+        },
+        {
+          "oleh": "waskito",
+          "teks": "Ada tiga desain nih, kalian pilih ya!"
+        }
+      ]
+    },
+    {
+      "jenis": "jersey",
+      "opsi": [
+        {
+          "huruf": "A",
+          "nama": "Merah Garis Biru",
+          "utama": "#FF0000",
+          "aksen": "#0000FF",
+          "celana": "#FFFFFF",
+          "pola": "garis"
+        },
+        {
+          "huruf": "B",
+          "nama": "Hijau Selempang Hitam",
+          "utama": "#00FF00",
+          "aksen": "#000000",
+          "celana": "#FFFFFF",
+          "pola": "selempang"
+        },
+        {
+          "huruf": "C",
+          "nama": "Biru Polos Kuning",
+          "utama": "#0000FF",
+          "aksen": "#FFFF00",
+          "celana": "#FFFFFF",
+          "pola": "polos"
+        }
+      ]
+    },
+    {
+      "jenis": "seleksi",
+      "pemain": "1dongg_06_",
+      "tes": "umpan",
+      "stat": [
+        [
+          "Kekuatan",
+          85
+        ],
+        [
+          "Kecepatan",
+          78
+        ],
+        [
+          "Akurasi",
+          82
+        ]
+      ],
+      "cap": "LOLOS"
+    },
+    {
+      "jenis": "papan_skuad"
+    },
+    {
+      "jenis": "bersambung",
+      "teaser": "Sponsor misterius tiba-tiba muncul?",
+      "narasi": "Yonoha siap, tapi siapa yang bayar seragam...?"
+    }
+  ],
+  "voting_baru": null,
+  "benang_terbuka": [
+    "Uji coba lawan Bintang Sebelah FC tinggal 4 hari.",
+    "Siapa sponsor misterius yang akan bantu seragam?"
+  ],
+  "rencana_dekat": [
+    "Episode berikutnya: umumkan pemenang desain seragam, sponsor misterius muncul.",
+    "Uji coba semakin dekat, latihan intensif lanjut."
+  ],
+  "riwayat": "Jack mengumumkan desain seragam baru dan Dong lolos seleksi sebagai bek kiri.",
+  "caption": "Jack kembali dengan misi besar: seragam harus siap sebelum uji coba! Selamat bergabung untuk Dong sebagai bek kiri. Komen A, B, atau C untuk pilih desain seragam! #ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": [
+    "JACK KEMBALI DARI NGINTIP",
+    "SERAGAM HARUS SIAP!"
+  ],
+  "model": "gpt-4o"
+}

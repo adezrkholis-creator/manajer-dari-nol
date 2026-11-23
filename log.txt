@@ -1,0 +1,12 @@
+Percobaan 1: LOLOS validasi
+
+DAY 6 — Seragam Baru, Siap Uji Coba!
+Jack mengumumkan desain seragam baru dan Yonoha bersiap untuk uji coba.
+Lolos: Dong LB
+  1. [cold_open] Panik, Jack harus cepat selesaikan seragam sebelum uji coba.
+  2. [ngobrol] jack: Oke tim, kita butuh seragam sebelum hari ke-10! / waskito: Ada tiga desain nih, kalian pilih ya!
+  3. [jersey] 
+  4. [seleksi] 
+  5. [papan_skuad] 
+  6. [bersambung] Yonoha siap, tapi siapa yang bayar seragam...?
+Rencana: /home/runner/work/manajer-dari-nol/manajer-dari-nol/cerita/rencana/day-06.json
