@@ -22,6 +22,9 @@ concurrency:
 jobs:
   produksi:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash   # bash -eo pipefail: langkah gagal walau output di-tee
     timeout-minutes: 90
     env:
       META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
