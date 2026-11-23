@@ -1160,6 +1160,33 @@ function votingKartu(v, u) {
   g2.textAlign = 'center'; g2.fillStyle = '#fde68a'; g2.font = '900 ' + S(34) + 'px ' + FONT; g2.fillText('KOMEN HURUF PILIHANMU!', S(540), y + h - S(24));
   g2.restore();
 }
+function lolosKartu(list, u) {
+  const s = pop(u - 0.2, 0.4); if (s <= 0) return;
+  const n = list.length, rowH = n > 6 ? S(92) : S(112), x = S(60), y = S(210), w = S(960), h = S(150) + n * rowH;
+  g2.save(); g2.translate(S(540), y + h / 2); g2.scale(Math.min(1, s), Math.min(1, s)); g2.translate(-S(540), -(y + h / 2));
+  g2.shadowColor = 'rgba(0,0,0,.45)'; g2.shadowBlur = S(30); rr(x, y, w, h, S(34)); g2.fillStyle = 'rgba(17,24,39,.95)'; g2.fill(); g2.shadowColor = 'transparent';
+  rr(x, y, w, S(110), S(34)); g2.fillStyle = '#16a34a'; g2.fill(); g2.fillRect(x, y + S(70), w, S(40));
+  g2.textAlign = 'center'; g2.fillStyle = '#fff'; g2.font = '900 ' + S(54) + 'px ' + FONT; g2.fillText('✅ LOLOS SELEKSI: ' + n, S(540), y + S(76));
+  list.forEach(function (c, i) {
+    const p = pop(u - 0.7 - i * 0.25, 0.3); if (p <= 0) return;
+    const ry = y + S(130) + i * rowH, mid = ry + rowH / 2;
+    g2.save(); g2.globalAlpha = Math.min(1, p); g2.translate((1 - Math.min(1, p)) * S(60), 0);
+    if (i) { g2.fillStyle = 'rgba(255,255,255,.08)'; g2.fillRect(x + S(30), ry, w - S(60), S(2)); }
+    g2.fillStyle = c.warna; g2.beginPath(); g2.arc(x + S(80), mid, rowH * 0.36, 0, Math.PI * 2); g2.fill();
+    g2.fillStyle = '#fff'; g2.textAlign = 'center'; g2.font = '900 ' + S(n > 6 ? 30 : 36) + 'px ' + FONT; g2.fillText(String(c.nama || '?')[0], x + S(80), mid + S(12));
+    g2.textAlign = 'left'; g2.fillStyle = '#f9fafb'; g2.font = '900 ' + S(n > 6 ? 36 : 42) + 'px ' + FONT;
+    let nm = c.nama; while (g2.measureText(nm).width > S(380) && nm.length > 3) nm = nm.slice(0, -2) + '…';
+    g2.fillText(nm, x + S(140), mid - S(2));
+    g2.fillStyle = '#9ca3af'; g2.font = '700 ' + S(24) + 'px ' + FONT; let us = '@' + c.user; while (g2.measureText(us).width > S(380) && us.length > 4) us = us.slice(0, -2) + '…';
+    g2.fillText(us, x + S(140), mid + S(n > 6 ? 28 : 34));
+    g2.textAlign = 'center'; rr(x + S(560), mid - S(26), S(120), S(52), S(14)); g2.fillStyle = 'rgba(255,255,255,.12)'; g2.fill();
+    g2.fillStyle = '#fde047'; g2.font = '900 ' + S(30) + 'px ' + FONT; g2.fillText(c.pos, x + S(620), mid + S(11));
+    rr(x + S(700), mid - S(26), S(220), S(52), S(26)); g2.fillStyle = c.inti ? '#16a34a' : '#7c3aed'; g2.fill();
+    g2.fillStyle = '#fff'; g2.font = '900 ' + S(26) + 'px ' + FONT; g2.fillText(c.inti ? 'INTI' : 'CADANGAN', x + S(810), mid + S(10));
+    g2.restore();
+  });
+  g2.restore();
+}
 function ultrasKartu(v, u) {
   const s = pop(u - 0.2, 0.4); if (s <= 0) return;
   const list = (v.anggota || []).slice(0, 8), kol = list.length > 4 ? 2 : 1, brs = Math.ceil(list.length / kol);
@@ -1305,6 +1332,7 @@ window.renderAt = function (t, quality) {
   if (def.jersey) jerseyPilihan(def.jersey, u);
   if (def.voting) votingKartu(def.voting, u);
   if (def.ultras) ultrasKartu(def.ultras, u);
+  if (def.lolosList) lolosKartu(def.lolosList, u);
   if (sc.id === 'surat') letter(u);
   if (def.pilihan) notebook(def.pilihan, u, t);
   if (def.poster) posterLowongan(def.poster, u);

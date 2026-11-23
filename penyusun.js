@@ -120,6 +120,16 @@ for (const b of R.beat) {
     a.sfx = [[0.3, 'ding']]; a.min = 5;
   } else if (b.jenis === 'jersey') {
     Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', jersey: (b.opsi || []).slice(0, 3), min: 6.5, sfx: [[0.5, 'ding']] });
+  } else if (b.jenis === 'lolos') {
+    const diSeleksi = new Set(R.beat.filter(x => x.jenis === 'seleksi').map(x => String(x.pemain || '').replace(/^@/, '').toLowerCase()));
+    const sudahDihitung = new Set(adegan.flatMap(x => x.dihitung || []));
+    const daftar = lolos.slice(0, 10);
+    Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', lokasi: 'HASIL SELEKSI', min: 4 + daftar.length * 0.35,
+      lolosList: daftar.map(p => ({ nama: String(p.nama || p.user).toUpperCase(), user: p.user, pos: p.posisi, inti: p.inti, warna: WARNA[hash(p.user) % WARNA.length] })),
+      sfx: daftar.map((_, i) => [0.7 + i * 0.25, 'ding']) });
+    const hit = daftar.map(p => p.user.toLowerCase()).filter(u => !diSeleksi.has(u) && !sudahDihitung.has(u));
+    if (hit.length) { a.tambahSkuad = hit.length; a.dihitung = hit; }
+    ketukan.push(a.id);
   } else if (b.jenis === 'ultras') {
     const users = [...new Set((b.users || []).map(u => String(u).replace(/^@/, '')))].slice(0, 8);
     const lama = new Set(ULTRAS.anggota.map(x => x.toLowerCase()));
@@ -181,6 +191,7 @@ adegan.forEach((a, i) => {
     voting: String((b && b.pertanyaan) || 'Kalian pilih yang mana?'),
     papan_skuad: `Skuad sekarang ${skuadAkhir.length}. ` + (slotAkhir.length ? `Tinggal ${slotAkhir.length} slot lagi.` : 'Sebelas pemain, lengkap!'),
     komentar: 'Kalian komen... kalian jadi pemain.',
+    lolos: `${lolos.length} pemain baru resmi gabung Yonoha!`,
     ultras: 'Tribun ini nggak sepi lagi. Selamat datang, ultras!',
     info: String((b && b.judul) || ''),
     latihan: 'Latihan dulu, biar nggak malu-maluin.',

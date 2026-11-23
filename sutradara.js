@@ -25,7 +25,7 @@ const STATUS = baca('cerita/status.json');
 const BAHAN = arg('--bahan') ? baca(arg('--bahan')) : { komentar: [] };
 const DAY = STATUS.day_terakhir + 1;
 const SKUAD_MAKS = STATUS.skuad_maks || 30;            // skuad boleh tumbuh sampai 30 (11 inti + cadangan)
-const MAKS_LOLOS = Math.max(0, Math.min(4, SKUAD_MAKS - STATUS.skuad.length)); // pemain baru per episode
+const MAKS_LOLOS = Math.max(0, Math.min(10, SKUAD_MAKS - STATUS.skuad.length)); // pemain baru per episode (keputusan user: 10)
 const POS_SAH = ['GK', 'CB', 'LB', 'RB', 'DMF', 'CMF', 'AMF', 'LWF', 'RWF', 'CF'];
 if (!STATUS.ultras) STATUS.ultras = { nama: null, anggota: [] };
 
@@ -40,6 +40,7 @@ const JENIS = {
   seleksi: 'Tes satu pemain dari komentar. "pemain": username, "tes": lari|sundul|umpan|tembak|kiper, "stat": 3 pasang [label, angka 50-95], "cap": LOLOS|CADANGAN|UTAMA.',
   ngobrol: 'Percakapan. "lokasi": lapangan|kantor|ruang_ganti|tribun|lapangan_rival, "dialog": [{oleh: jack|waskito|darman, teks}].',
   info: 'Kartu info di layar. "judul", "isi": maks 4 pasang [label, nilai], "warna": merah|hijau|ungu.',
+  lolos: 'Pengumuman daftar pemain yang lolos (otomatis dari pemain_lolos, sampai 10 nama). WAJIB dipakai kalau pemain_lolos lebih dari 2. "narasi" singkat yang seru.',
   papan_skuad: 'Papan skuad terbaru (otomatis dari status + pemain_lolos) dengan slot KOSONG dan "KAMU?".',
   jersey: 'Pamer 3 desain jersey. "opsi": [{huruf A/B/C, nama, utama #hex, aksen #hex, celana #hex, pola: polos|garis|setengah|selempang}]. Desain original.',
   latihan: 'Montase latihan tim. "aktivitas": pemanasan|umpan|tembak|gim.',
@@ -91,7 +92,7 @@ SYARAT KERAS:
 - SETIAP beat wajib punya "narasi" (Jack bicara sebagai "aku", orang pertama — JANGAN "Jack harus...") atau "dialog".
 - beat 5-8 buah. beat pertama "cold_open", beat terakhir "bersambung". Wajib TEPAT SATU ajakan memilih: beat "voting" ATAU beat "jersey" (jersey sudah termasuk voting — jangan dobel).
 - HOOK: cold_open = momen PALING dramatis/lucu episode ini (konflik, kejutan, teriakan), BUKAN ringkasan datar. hook_teks 2 baris pendek yang bikin penasaran, contoh bagus: ["KETAHUAN NGINTIP RIVAL.", "YANG CURI 9 PEMAIN KITA."], ["2 KIPER DAFTAR.", "CUMA 1 JADI STARTER."]. Contoh buruk: ["Jack kembali ke Yonoha", "Ada misi baru"].
-- Setiap pemain_lolos WAJIB tampil di beat "seleksi" (pemain = username-nya) atau beat "komentar" (users memuat username-nya).
+- Setiap pemain_lolos WAJIB tampil di beat "seleksi" (pemain = username-nya), beat "komentar" (users memuat username-nya), atau beat "lolos" (semua pemain_lolos otomatis tampil). Kalau pemain_lolos > 2, pakai beat "lolos" + boleh 1-2 beat "seleksi" untuk yang paling menarik.
 - bersambung: narasi diakhiri ketegangan/pertanyaan ("...?" atau "..."), BUKAN kalimat menenangkan. teaser = kejutan yang belum terjawab.
 - caption: hook + sebut nama pemain baru + ajakan komen yang jelas (mis. "Komen A, B, atau C!") + hashtag.
 - Total kata semua "narasi" + "dialog" maksimal 110 kata (video ±45 detik).
@@ -113,7 +114,11 @@ function periksa(r) {
   if (pilih !== 1) e.push(`harus tepat 1 beat voting ATAU jersey (sekarang ${pilih})`);
   const tampil = new Set();
   for (const b of beat) { if (b.pemain) tampil.add(String(b.pemain).replace(/^@/, '').toLowerCase()); for (const u of b.users || []) tampil.add(String(u).replace(/^@/, '').toLowerCase()); }
-  for (const p of r.pemain_lolos || []) { const u = String(p.user || '').replace(/^@/, '').toLowerCase(); if (!tampil.has(u)) e.push(`pemain_lolos @${u} tidak tampil di beat seleksi/komentar`); }
+  const adaLolos = beat.some(b => b.jenis === 'lolos');
+  if ((r.pemain_lolos || []).length > 2 && !adaLolos) e.push('pemain_lolos lebih dari 2: wajib ada beat "lolos"');
+  if (beat.filter(b => b.jenis === 'lolos').length > 1) e.push('beat lolos maksimal 1');
+  if (adaLolos && !(r.pemain_lolos || []).length) e.push('beat lolos tanpa pemain_lolos');
+  if (!adaLolos) for (const p of r.pemain_lolos || []) { const u = String(p.user || '').replace(/^@/, '').toLowerCase(); if (!tampil.has(u)) e.push(`pemain_lolos @${u} tidak tampil di beat seleksi/komentar/lolos`); }
   const akhir = beat[beat.length - 1] || {};
   if (akhir.jenis === 'bersambung' && !/(\?|\.\.\.|…)\s*$/.test(String(akhir.narasi || '').trim())) e.push('narasi bersambung harus diakhiri "?" atau "..." (menggantung)');
   if (r.caption && r.caption.length < 140) e.push('caption terlalu pendek: sebut pemain baru + ajakan komen yang jelas');
