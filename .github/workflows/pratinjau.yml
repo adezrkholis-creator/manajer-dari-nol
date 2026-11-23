@@ -1,0 +1,60 @@
+name: Pratinjau gambar
+
+on:
+  workflow_dispatch:
+    inputs:
+      episode:
+        description: "Nama file episode tanpa .json"
+        required: true
+        default: "episode-05"
+      detik:
+        description: "Detik yang diambil, pisahkan koma"
+        default: "1,12,28,40"
+
+permissions:
+  contents: write
+
+jobs:
+  pratinjau:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pasang dependensi
+        run: |
+          npm ci
+          pip install edge-tts
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-core fonts-noto-color-emoji > /dev/null
+      - name: Render gambar diam
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+          PYTHON: python3
+        run: node render.js episodes/${{ inputs.episode }}.json --cpu --still ${{ inputs.detik }}
+      - name: Gabungkan jadi satu gambar
+        run: |
+          FF=$(node -e "console.log(require('ffmpeg-static'))")
+          cd out/${{ inputs.episode }}
+          ls still-*.jpg | sort -V > /tmp/daftar.txt
+          N=$(wc -l < /tmp/daftar.txt)
+          ARGS=""; F=""; i=0
+          for f in $(cat /tmp/daftar.txt); do ARGS="$ARGS -i $f"; F="$F[$i]scale=360:640[s$i];"; i=$((i+1)); done
+          IN=""; for j in $(seq 0 $((N-1))); do IN="$IN[s$j]"; done
+          $FF -y -loglevel error $ARGS -filter_complex "${F}${IN}hstack=$N" -frames:v 1 /tmp/pratinjau.jpg
+      - name: Simpan ke branch pratinjau
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git fetch origin pratinjau || true
+          git switch --orphan pratinjau-baru
+          git rm -rf . -q || true
+          cp /tmp/pratinjau.jpg ${{ inputs.episode }}.jpg
+          git add ${{ inputs.episode }}.jpg
+          git commit -q -m "Pratinjau ${{ inputs.episode }}"
+          git push -f origin pratinjau-baru:pratinjau
