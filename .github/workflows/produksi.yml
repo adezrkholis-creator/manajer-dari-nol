@@ -97,7 +97,7 @@ jobs:
           for f in $(ls still-*.jpg | sort -V); do A="$A -i $f"; F="$F[$i]scale=360:640[s$i];"; i=$((i+1)); done
           IN=""; for j in $(seq 0 $((i-1))); do IN="$IN[s$j]"; done
           $FF -y -loglevel error $A -filter_complex "${F}${IN}hstack=$i" -frames:v 1 /tmp/pratinjau.jpg && cd -
-          mkdir -p /tmp/draf && cp ${{ steps.rencana.outputs.file }} ${{ steps.bahan.outputs.file }} episodes/$EP.json /tmp/pratinjau.jpg /tmp/draf/
+          mkdir -p /tmp/draf && cp ${{ steps.rencana.outputs.file }} /tmp/draf/rencana.json && cp ${{ steps.bahan.outputs.file }} /tmp/draf/bahan.json && cp episodes/$EP.json /tmp/draf/naskah.json && cp /tmp/pratinjau.jpg /tmp/draf/
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git switch --orphan draf-baru && git rm -rf . -q || true
