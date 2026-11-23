@@ -51,7 +51,7 @@ async function graph(p, q) {
     const r = await fetch(BASE + '/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: MODEL, temperature: 0.1, response_format: { type: 'json_object' }, messages: [
         { role: 'system', content: 'Kamu memberi label komentar penonton serial sepak bola fiktif. Jawab JSON {"hasil":[...]} saja.' },
-        { role: 'user', content: `Untuk tiap komentar keluarkan {"id","label":"DAFTAR|VOTE|USUL|SARAN|PERTANYAAN|DUKUNGAN|SPAM|LAIN","nama","posisi":"GK|CB|LB|RB|DMF|CMF|AMF|LWF|RWF|CF|kosong","nomor","sebut_pemain_asli":true/false}. DAFTAR = ingin jadi pemain. VOTE = cuma memilih huruf A/B/C. USUL = usul desain/nama/ide. Bek kiri=LB, bek kanan=RB, bek tengah=CB, sayap kiri=LWF, sayap kanan=RWF, gelandang tengah=CMF, gelandang serang=AMF, penyerang=CF, kiper=GK.\n\n${daftar}` }] }) });
+        { role: 'user', content: `Untuk tiap komentar keluarkan {"id","label":"DAFTAR|ULTRAS|VOTE|USUL|SARAN|PERTANYAAN|DUKUNGAN|SPAM|LAIN","nama","posisi":"GK|CB|LB|RB|DMF|CMF|AMF|LWF|RWF|CF|kosong","nomor","sebut_pemain_asli":true/false}. DAFTAR = ingin jadi pemain. ULTRAS = ingin jadi suporter/ultras/fans/penonton tribun Yonoha. VOTE = cuma memilih huruf A/B/C. USUL = usul desain/nama/ide. Bek kiri=LB, bek kanan=RB, bek tengah=CB, sayap kiri=LWF, sayap kanan=RWF, gelandang tengah=CMF, gelandang serang=AMF, penyerang=CF, kiper=GK.\n\n${daftar}` }] }) });
     const j = await r.json(); const txt = String(j.choices?.[0]?.message?.content || '{}');
     try { label = (JSON.parse(txt.match(/\{[\s\S]*\}/)[0]).hasil) || []; } catch (e) { label = []; }
   }
@@ -61,6 +61,6 @@ async function graph(p, q) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, JSON.stringify({ dibuat: new Date().toISOString(), day: DAY, hasil_voting: hasil, komentar }, null, 2));
   const n = l => komentar.filter(k => k.label === l).length;
-  console.log(`Bahan DAY ${DAY}: ${komentar.length} komentar (DAFTAR ${n('DAFTAR')}, VOTE ${n('VOTE')}, USUL ${n('USUL')}). Voting: ${hasil ? JSON.stringify(hasil.suara) + ' -> ' + hasil.pemenang : '-'}`);
+  console.log(`Bahan DAY ${DAY}: ${komentar.length} komentar (DAFTAR ${n('DAFTAR')}, ULTRAS ${n('ULTRAS')}, VOTE ${n('VOTE')}, USUL ${n('USUL')}). Voting: ${hasil ? JSON.stringify(hasil.suara) + ' -> ' + hasil.pemenang : '-'}`);
   console.log('BAHAN=' + path.relative(ROOT, out).replace(/\\/g, '/'));
 })().catch(e => { console.error('GAGAL: ' + e.message); process.exit(1); });

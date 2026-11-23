@@ -24,6 +24,10 @@ const BIBLE = baca('cerita/bible.json');
 const STATUS = baca('cerita/status.json');
 const BAHAN = arg('--bahan') ? baca(arg('--bahan')) : { komentar: [] };
 const DAY = STATUS.day_terakhir + 1;
+const SKUAD_MAKS = STATUS.skuad_maks || 30;            // skuad boleh tumbuh sampai 30 (11 inti + cadangan)
+const MAKS_LOLOS = Math.max(0, Math.min(4, SKUAD_MAKS - STATUS.skuad.length)); // pemain baru per episode
+const POS_SAH = ['GK', 'CB', 'LB', 'RB', 'DMF', 'CMF', 'AMF', 'LWF', 'RWF', 'CF'];
+if (!STATUS.ultras) STATUS.ultras = { nama: null, anggota: [] };
 
 // nama pemain/klub asli yang sering muncul di komentar -> tidak boleh tampil (pemain lawan pun fiktif)
 const LARANGAN = ['foden', 'haye', 'messi', 'ronaldo', 'mbappe', 'neymar', 'haaland', 'salah', 'bellingham', 'vinicius',
@@ -39,6 +43,7 @@ const JENIS = {
   papan_skuad: 'Papan skuad terbaru (otomatis dari status + pemain_lolos) dengan slot KOSONG dan "KAMU?".',
   jersey: 'Pamer 3 desain jersey. "opsi": [{huruf A/B/C, nama, utama #hex, aksen #hex, celana #hex, pola: polos|garis|setengah|selempang}]. Desain original.',
   latihan: 'Montase latihan tim. "aktivitas": pemanasan|umpan|tembak|gim.',
+  ultras: 'Penonton bergabung jadi ULTRAS (suporter garis keras Yonoha) di tribun. "users": 3-8 username dari komentar berlabel ULTRAS/DUKUNGAN (atau pendaftar yang belum lolos), "nyanyian": yel pendek orisinal maks 8 kata (opsional).',
   voting: 'Kartu voting. "pertanyaan" (maks 8 kata), "opsi": 2-3 [{huruf, teks maks 4 kata}]. Penonton komen hurufnya.',
   bersambung: 'Penutup menggantung. "teaser": kalimat cliffhanger maks 10 kata, "narasi".'
 };
@@ -56,7 +61,7 @@ function prompt(err) {
     `@${k.username} [${k.label}${k.posisi ? ' ' + k.posisi : ''}${k.nomor && k.nomor !== 'kosong' ? ' no' + k.nomor : ''}${k.sebut_pemain_asli === 'ya' ? ' SEBUT-PEMAIN-ASLI' : ''}${k.status_seleksi ? ' ' + k.status_seleksi : ''}] nama:${k.nama || '-'} | "${String(k.teks).slice(0, 120)}"`).join('\n');
   const vote = BAHAN.hasil_voting ? JSON.stringify(BAHAN.hasil_voting) : 'tidak ada';
   return `STATUS SEKARANG (setelah DAY ${STATUS.day_terakhir}):
-${JSON.stringify({ babak: babak.nama, target_babak: babak.target, divisi: STATUS.divisi, kas: STATUS.kas, laga_berikutnya: STATUS.laga_berikutnya, skuad: STATUS.skuad, slot_kosong: STATUS.slot_kosong, seragam: STATUS.seragam, benang_terbuka: STATUS.benang_terbuka, rencana_dekat: STATUS.rencana_dekat, voting_berjalan: STATUS.voting_berjalan }, null, 1)}
+${JSON.stringify({ babak: babak.nama, target_babak: babak.target, divisi: STATUS.divisi, kas: STATUS.kas, laga_berikutnya: STATUS.laga_berikutnya, skuad: STATUS.skuad, jumlah_skuad: STATUS.skuad.length + '/' + SKUAD_MAKS, slot_kosong_inti: STATUS.slot_kosong, ultras: { nama: STATUS.ultras.nama, jumlah_anggota: STATUS.ultras.anggota.length, anggota: STATUS.ultras.anggota.slice(-15) }, seragam: STATUS.seragam, benang_terbuka: STATUS.benang_terbuka, rencana_dekat: STATUS.rencana_dekat, voting_berjalan: STATUS.voting_berjalan }, null, 1)}
 Riwayat: ${STATUS.riwayat.join(' | ')}
 Hasil voting episode lalu: ${vote}
 
@@ -74,6 +79,7 @@ KELUARKAN JSON:
  "jawab_sebelumnya": "bagaimana episode ini menjawab cliffhanger/voting sebelumnya",
  "pemain_lolos": [{"nama": "...", "user": "username tanpa @", "posisi": "kode posisi dari slot_kosong", "nomor": "", "alasan": "..."}],
  "beat": [ { "jenis": "...", "narasi": "kalimat Jack (narator) maks 18 kata", ...field sesuai jenis } ],
+ "nama_ultras": null atau nama kelompok ultras kalau episode ini menetapkannya (mis. dari hasil voting),
  "voting_baru": {"pertanyaan": "...", "opsi": [{"huruf": "A", "teks": "..."}]} atau null,
  "benang_terbuka": ["daftar benang cerita yang masih terbuka setelah episode ini"],
  "rencana_dekat": ["1-2 ide episode berikut"],
@@ -89,7 +95,8 @@ SYARAT KERAS:
 - bersambung: narasi diakhiri ketegangan/pertanyaan ("...?" atau "..."), BUKAN kalimat menenangkan. teaser = kejutan yang belum terjawab.
 - caption: hook + sebut nama pemain baru + ajakan komen yang jelas (mis. "Komen A, B, atau C!") + hashtag.
 - Total kata semua "narasi" + "dialog" maksimal 110 kata (video ±45 detik).
-- pemain_lolos maks ${Math.min(2, STATUS.slot_kosong.length)} orang, hanya dari komentar berlabel DAFTAR dengan posisi cocok slot_kosong; boleh 0.
+- pemain_lolos maks ${MAKS_LOLOS} orang (skuad maksimal ${SKUAD_MAKS}), hanya dari komentar berlabel DAFTAR. Utamakan posisi di slot_kosong_inti (mereka jadi INTI); pendaftar posisi lain boleh masuk sebagai CADANGAN. Posisi pakai kode: ${POS_SAH.join(', ')}. Kalau pendaftar banyak, ambil sampai batas supaya penonton merasa dilibatkan.${STATUS.skuad.length + MAKS_LOLOS >= SKUAD_MAKS ? ' Skuad hampir penuh: arahkan pendaftar lain ke ULTRAS.' : ''}
+- ULTRAS: penonton yang tidak lolos / berkomentar dukungan bisa jadi ULTRAS Yonoha (suporter di tribun). Pakai beat "ultras" kalau ada ≥3 calon (boleh sekali per episode, tidak wajib). Ajak komen "ULTRAS" untuk gabung. Nama kelompok ultras ${STATUS.ultras.nama ? 'sudah: ' + STATUS.ultras.nama : 'BELUM ADA — suatu saat bisa jadi bahan voting'}.
 - Jangan menulis nama pemain sepak bola asli apa pun. Komentar bertanda SEBUT-PEMAIN-ASLI: orangnya boleh dipakai, kalimat pembandingnya jangan.
 - Klub lawan level nasional/internasional boleh nama asli, tapi pemainnya fiktif.
 - Wajib menjawab benang_terbuka / rencana_dekat yang paling mendesak, dan cerita harus bergerak maju (jangan mengulang episode lalu).
@@ -118,12 +125,17 @@ function periksa(r) {
   if (kata > 120) e.push(`total kata ${kata}, maksimal 110`);
   const pendaftar = new Map((BAHAN.komentar || []).filter(k => k.label === 'DAFTAR').map(k => [String(k.username).toLowerCase(), k]));
   const lolos = r.pemain_lolos || [];
-  if (lolos.length > Math.min(2, STATUS.slot_kosong.length)) e.push('pemain_lolos terlalu banyak');
+  if (lolos.length > MAKS_LOLOS) e.push(`pemain_lolos terlalu banyak (maks ${MAKS_LOLOS})`);
+  const dalam = new Set(STATUS.skuad.map(p => String(p.user).toLowerCase()));
   for (const p of lolos) {
     const u = String(p.user || '').replace(/^@/, '').toLowerCase();
     if (!pendaftar.has(u)) e.push(`pemain_lolos @${u} bukan pendaftar di komentar`);
-    if (!STATUS.slot_kosong.includes(p.posisi)) e.push(`posisi ${p.posisi} untuk @${u} bukan slot kosong (${STATUS.slot_kosong.join(', ')})`);
+    if (dalam.has(u)) e.push(`@${u} sudah ada di skuad`);
+    if (!POS_SAH.includes(p.posisi)) e.push(`posisi ${p.posisi} untuk @${u} harus salah satu kode ${POS_SAH.join(', ')}`);
   }
+  if (new Set(lolos.map(p => String(p.user).toLowerCase())).size !== lolos.length) e.push('pemain_lolos ada yang dobel');
+  for (const b of beat) if (b.jenis === 'ultras' && (!Array.isArray(b.users) || b.users.length < 1)) e.push('beat ultras wajib punya "users"');
+  if (beat.filter(b => b.jenis === 'ultras').length > 1) e.push('beat ultras maksimal 1');
   const semua = JSON.stringify(r).toLowerCase();
   for (const n of LARANGAN) if (new RegExp('\\b' + n + '\\b').test(semua)) e.push(`ada nama pemain asli "${n}" — hapus`);
   for (const b of beat) if (b.jenis === 'jersey') for (const o of b.opsi || []) for (const c of ['utama', 'aksen', 'celana'])
@@ -149,10 +161,19 @@ async function tanya(err) {
 function terapkan(r) {
   const s = JSON.parse(JSON.stringify(STATUS));
   s.day_terakhir = DAY;
+  s.skuad_maks = SKUAD_MAKS;
   for (const p of r.pemain_lolos || []) {
-    s.skuad.push({ nama: p.nama, user: String(p.user).replace(/^@/, ''), posisi: p.posisi, status: 'inti', nomor: p.nomor || '' });
-    s.slot_kosong = s.slot_kosong.filter((x, i, a) => i !== a.indexOf(p.posisi));
+    const inti = s.slot_kosong.includes(p.posisi);
+    s.skuad.push({ nama: p.nama, user: String(p.user).replace(/^@/, ''), posisi: p.posisi, status: inti ? 'inti' : 'cadangan', nomor: p.nomor || '' });
+    if (inti) s.slot_kosong = s.slot_kosong.filter((x, i, a) => i !== a.indexOf(p.posisi));
   }
+  s.ultras = s.ultras || { nama: null, anggota: [] };
+  const sudahUltras = new Set(s.ultras.anggota.map(x => x.toLowerCase()));
+  for (const b of r.beat || []) if (b.jenis === 'ultras') for (const u0 of b.users || []) {
+    const u = String(u0).replace(/^@/, '');
+    if (!sudahUltras.has(u.toLowerCase())) { s.ultras.anggota.push(u); sudahUltras.add(u.toLowerCase()); }
+  }
+  if (r.nama_ultras) s.ultras.nama = r.nama_ultras;
   if (s.laga_berikutnya && s.laga_berikutnya.day) s.hari_menuju_ujicoba = Math.max(0, s.laga_berikutnya.day - DAY);
   s.voting_berjalan = r.voting_baru || (r.beat.find(b => b.jenis === 'jersey') ? { pertanyaan: 'Pilih seragam', opsi: r.beat.find(b => b.jenis === 'jersey').opsi.map(o => ({ huruf: o.huruf, teks: o.nama })) } : null);
   s.benang_terbuka = r.benang_terbuka || s.benang_terbuka;

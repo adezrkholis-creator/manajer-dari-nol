@@ -751,7 +751,7 @@ function badgeTop(skuad) {
   g2.globalAlpha = 0.95;
   if (skuad != null) {
     rr(S(400), S(56), S(280), S(52), S(26)); g2.fillStyle = '#eab308'; g2.fill();
-    g2.font = '900 ' + S(30) + 'px ' + FONT; g2.textAlign = 'center'; g2.fillStyle = '#111827'; g2.fillText('SKUAD ' + skuad + '/11', S(540), S(93));
+    g2.font = '900 ' + S(30) + 'px ' + FONT; g2.textAlign = 'center'; g2.fillStyle = '#111827'; g2.fillText('SKUAD ' + skuad + '/' + (skuad < 11 ? 11 : (EP.skuadMaks || 11)), S(540), S(93));
   }
   g2.font = '800 ' + S(28) + 'px ' + FONT; g2.textAlign = 'left'; g2.fillStyle = '#e5e7eb'; g2.fillText('MANAJER DARI NOL', S(48), S(92));
   g2.fillStyle = '#eab308'; g2.beginPath(); g2.arc(S(30), S(82), S(8), 0, Math.PI * 2); g2.fill();
@@ -1054,7 +1054,7 @@ function papanSkuad(list, u) {
   rr(x, y, w, h, S(34)); g2.fillStyle = 'rgba(17,24,39,.95)'; g2.fill(); g2.shadowColor = 'transparent';
   g2.textAlign = 'left'; g2.fillStyle = '#f9fafb'; g2.font = '900 ' + S(44) + 'px ' + FONT; g2.fillText('SKUAD YONOHA', x + S(36), y + S(70));
   const filled = list.filter(function (c) { return c.nama; }).length;
-  g2.textAlign = 'right'; g2.fillStyle = '#eab308'; g2.fillText(filled + ' / 11', x + w - S(36), y + S(70));
+  g2.textAlign = 'right'; g2.fillStyle = '#eab308'; g2.fillText(CUR_DEF.papanJudul || (filled + ' / 11'), x + w - S(36), y + S(70));
   list.forEach(function (c, i) {
     const cx = x + S(25) + (i % 3) * (cw + gx), cy = y + S(100) + Math.floor(i / 3) * (ch + gy);
     let a = 1; if (c.baru) a = clamp((u - 0.6 - i * 0.12) / 0.25); if (c.kamu) a = 0.75 + 0.25 * Math.sin(u * 6);
@@ -1158,6 +1158,41 @@ function votingKartu(v, u) {
     g2.globalAlpha = 1;
   });
   g2.textAlign = 'center'; g2.fillStyle = '#fde68a'; g2.font = '900 ' + S(34) + 'px ' + FONT; g2.fillText('KOMEN HURUF PILIHANMU!', S(540), y + h - S(24));
+  g2.restore();
+}
+function ultrasKartu(v, u) {
+  const s = pop(u - 0.2, 0.4); if (s <= 0) return;
+  const list = (v.anggota || []).slice(0, 8), kol = list.length > 4 ? 2 : 1, brs = Math.ceil(list.length / kol);
+  const x = S(60), y = S(230), w = S(960), h = S(300) + brs * S(104) + (v.nyanyian ? S(90) : 0);
+  g2.save(); g2.translate(S(540), y + h / 2); g2.scale(Math.min(1, s), Math.min(1, s)); g2.translate(-S(540), -(y + h / 2));
+  g2.shadowColor = 'rgba(0,0,0,.5)'; g2.shadowBlur = S(30); rr(x, y, w, h, S(34)); g2.fillStyle = 'rgba(17,17,17,.95)'; g2.fill(); g2.shadowColor = 'transparent';
+  // spanduk merah-hitam bergaris
+  g2.save(); rr(x, y, w, S(150), S(34)); g2.clip();
+  for (let i = -2; i < 14; i++) { g2.fillStyle = i % 2 ? '#111' : '#b91c1c'; g2.beginPath(); g2.moveTo(x + i * S(90), y); g2.lineTo(x + i * S(90) + S(90), y); g2.lineTo(x + i * S(90) + S(40), y + S(150)); g2.lineTo(x + i * S(90) - S(50), y + S(150)); g2.fill(); }
+  g2.restore();
+  const goyang = Math.sin(u * 7) * S(4);
+  strokeText('🔥 ' + (v.nama || 'ULTRAS YONOHA'), S(540), y + S(78) + goyang, '900 ' + S(v.nama && v.nama.length > 16 ? 50 : 62) + 'px ' + FONT, '#fde047', '#000', S(10));
+  g2.textAlign = 'center'; g2.fillStyle = '#fff'; g2.font = '800 ' + S(30) + 'px ' + FONT; g2.fillText('SUPORTER GARIS KERAS YONOHA FC', S(540), y + S(130));
+  const masuk = list.filter(function (_, i) { return u > 0.8 + i * 0.3; }).length;
+  const total = Math.max(0, (v.total || list.length) - list.length + masuk);
+  g2.fillStyle = '#fca5a5'; g2.font = '900 ' + S(36) + 'px ' + FONT; g2.fillText('ANGGOTA: ' + total, S(540), y + S(210));
+  const cw = (w - S(80) - (kol - 1) * S(20)) / kol;
+  list.forEach(function (c, i) {
+    const p = pop(u - 0.8 - i * 0.3, 0.3); if (p <= 0) return;
+    const cx = x + S(40) + (i % kol) * (cw + S(20)), cy = y + S(250) + Math.floor(i / kol) * S(104);
+    g2.save(); g2.globalAlpha = Math.min(1, p); g2.translate(cx + cw / 2, cy + S(44)); g2.scale(Math.min(1.08, p), Math.min(1.08, p)); g2.translate(-(cx + cw / 2), -(cy + S(44)));
+    rr(cx, cy, cw, S(88), S(44)); g2.fillStyle = 'rgba(255,255,255,.09)'; g2.fill();
+    g2.fillStyle = c.warna || '#dc2626'; g2.beginPath(); g2.arc(cx + S(44), cy + S(44), S(32), 0, Math.PI * 2); g2.fill();
+    g2.fillStyle = '#fff'; g2.textAlign = 'center'; g2.font = '900 ' + S(32) + 'px ' + FONT; g2.fillText(String(c.user || '?')[0].toUpperCase(), cx + S(44), cy + S(56));
+    g2.textAlign = 'left'; g2.font = '800 ' + S(kol > 1 ? 28 : 34) + 'px ' + FONT; let nm = '@' + c.user;
+    while (g2.measureText(nm).width > cw - S(100) && nm.length > 4) nm = nm.slice(0, -2) + '…';
+    g2.fillText(nm, cx + S(88), cy + S(56));
+    g2.restore();
+  });
+  if (v.nyanyian) {
+    const a = clamp((u - 0.9 - list.length * 0.3) / 0.4);
+    g2.globalAlpha = a; strokeText('♪ ' + v.nyanyian.toUpperCase() + ' ♪', S(540), y + h - S(40), 'italic 900 ' + S(36) + 'px ' + FONT, '#fde047', '#000', S(8)); g2.globalAlpha = 1;
+  }
   g2.restore();
 }
 function bersambungAtas(teaser, t) {
@@ -1269,6 +1304,7 @@ window.renderAt = function (t, quality) {
   if (def.kartu) card(def.kartu, u);
   if (def.jersey) jerseyPilihan(def.jersey, u);
   if (def.voting) votingKartu(def.voting, u);
+  if (def.ultras) ultrasKartu(def.ultras, u);
   if (sc.id === 'surat') letter(u);
   if (def.pilihan) notebook(def.pilihan, u, t);
   if (def.poster) posterLowongan(def.poster, u);
@@ -1281,7 +1317,9 @@ window.renderAt = function (t, quality) {
   if (EP.skuadAwal != null) {
     skuad = EP.skuadAwal;
     TL.adegan.forEach(function (a) {
-      const d = EP.adegan.find(function (x) { return x.id === a.id; }); if (!d.pemain || d.pemain.hitung === false) return;
+      const d = EP.adegan.find(function (x) { return x.id === a.id; });
+      if (d.tambahSkuad) { const st0 = a.mulai + Math.min(2.5, (a.selesai - a.mulai) * 0.6); if (t >= st0) skuad += d.tambahSkuad; return; }
+      if (!d.pemain || d.pemain.hitung === false) return;
       const ls = TL.baris.filter(function (b) { return b.adegan === a.id; });
       const st = ls[1] ? ls[1].selesai + 0.1 : a.selesai - 1.5; if (t >= st) skuad++;
     });

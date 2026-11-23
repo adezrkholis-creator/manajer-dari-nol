@@ -15,11 +15,14 @@
     { "nama": "Bagus", "user": "bagus73503", "posisi": "CMF", "status": "inti" }
   ],
   "slot_kosong": ["LB", "CB", "RB", "LWF"],
+  "skuad_maks": 30,
+  "ultras": { "nama": null, "anggota": [] },
   "seragam": null,
   "seragam_tandang": null,
   "benang_terbuka": [
     "DAY 5 berakhir: Jack ketahuan Coach Darman saat mengintip; uji coba lawan Bintang Sebelah FC (berisi 9 mantan pemain Yonoha) tinggal 5 hari.",
-    "4 slot belum terisi; banyak pendaftar baru di komentar (bek kiri, bek tengah, sayap kiri, kiper).",
+    "4 slot belum terisi; banyak pendaftar baru di komentar (bek kiri, bek tengah, sayap kiri, kiper). Skuad boleh sampai 30 (sisanya cadangan).",
+    "Yonoha belum punya suporter. Penonton bisa gabung ULTRAS Yonoha (komen ULTRAS); nama kelompok ultras belum ada.",
     "Yonoha BELUM PUNYA SERAGAM: pemain latihan pakai baju sendiri-sendiri. Harus ada sebelum uji coba DAY 10. Desain dipilih penonton lewat voting komentar (A/B/C atau usul sendiri)."
   ],
   "rencana_dekat": [

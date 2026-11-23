@@ -48,8 +48,12 @@ function lookBaru(user, posisi) {
 
 // ---------- pemain ----------
 const lolos = (R.pemain_lolos || []).map(p => ({ ...p, user: String(p.user).replace(/^@/, '') }));
-const skuadAkhir = STATUS.skuad.concat(lolos.map(p => ({ nama: p.nama, user: p.user, posisi: p.posisi, status: 'inti', baru: true })));
-const slotAkhir = STATUS.slot_kosong.slice(); lolos.forEach(p => { const i = slotAkhir.indexOf(p.posisi); if (i >= 0) slotAkhir.splice(i, 1); });
+const SKUAD_MAKS = STATUS.skuad_maks || 30;
+const slotAkhir = STATUS.slot_kosong.slice();
+lolos.forEach(p => { const i = slotAkhir.indexOf(p.posisi); p.inti = i >= 0; if (i >= 0) slotAkhir.splice(i, 1); });
+const skuadAkhir = STATUS.skuad.concat(lolos.map(p => ({ nama: p.nama, user: p.user, posisi: p.posisi, status: p.inti ? 'inti' : 'cadangan', baru: true })));
+const target = n => (n < 11 ? 11 : SKUAD_MAKS);
+const ULTRAS = STATUS.ultras || { nama: null, anggota: [] };
 const pemainData = {};
 function pastikan(user, posisi) {
   const k = kunci(user);
@@ -84,6 +88,11 @@ for (const b of R.beat) {
     a.panggung = 'komen';
     a.komen = users.map(u => { const k = komenDari(u) || {}; return { user: u, waktu: 'baru', teks: bersih(k.teks || 'daftar'), warna: WARNA[hash(u) % WARNA.length] }; });
     a.sfx = a.komen.map((_, i) => [0.6 + i * 0.45, 'ding']);
+    // pemain lolos yang hanya muncul di kartu komentar (tanpa beat seleksi) -> tambah penghitung skuad di sini
+    const diSeleksi = new Set(R.beat.filter(x => x.jenis === 'seleksi').map(x => String(x.pemain || '').replace(/^@/, '').toLowerCase()));
+    const sudahDihitung = new Set(adegan.flatMap(x => x.dihitung || []));
+    const hit = users.filter(u => lolos.some(p => p.user.toLowerCase() === u.toLowerCase()) && !diSeleksi.has(u.toLowerCase()) && !sudahDihitung.has(u.toLowerCase()));
+    if (hit.length) { a.tambahSkuad = hit.length; a.dihitung = hit.map(u => u.toLowerCase()); }
   } else if (b.jenis === 'seleksi') {
     const u = String(b.pemain || '').replace(/^@/, ''), k = komenDari(u) || {}, p = lolos.find(x => x.user.toLowerCase() === u.toLowerCase());
     const pos = (p && p.posisi) || k.posisi || 'CMF', aktor = pastikan(u, pos), tes = b.tes || 'umpan', warna = WARNA[hash(u) % WARNA.length];
@@ -92,19 +101,33 @@ for (const b of R.beat) {
     if (tes === 'tembak') { a.tembak = { penendang: aktor, hasil: 'gol' }; a.sfx = [[1.0, 'tendang'], [1.5, 'jaring']]; }
     else if (tes === 'kiper') { pastikan('elmermuhandis_', 'CF'); a.tembak = { penendang: 'jay', kiper: aktor, hasil: 'tangkap' }; a.sfx = [[1.0, 'tendang'], [1.5, 'tangkap']]; }
     else { a.tes = tes; if (tes === 'umpan') a.sfx = [[1.5, 'tendang'], [4.5, 'tendang']]; }
-    a.pemain = { nama: String((p && p.nama) || k.nama || u).toUpperCase(), posisi: POSISI[pos] || pos, singkat: pos.slice(0, 3), warna, tunda: 0.5, cap: b.cap || (p ? 'LOLOS' : 'CADANGAN'),
-      warnaCap: b.cap === 'CADANGAN' || !p ? '#7c3aed' : undefined, hitung: !!p, user: u, komen: bersih(k.teks || ''), stat: (b.stat || [['Teknik', 75], ['Fisik', 70], ['Semangat', 90]]).slice(0, 3) };
+    a.pemain = { nama: String((p && p.nama) || k.nama || u).toUpperCase(), posisi: POSISI[pos] || pos, singkat: pos.slice(0, 3), warna, tunda: 0.5, cap: p ? (p.inti ? 'LOLOS' : 'CADANGAN') : (b.cap || 'CADANGAN'),
+      warnaCap: !p || !p.inti ? '#7c3aed' : undefined, hitung: !!p, user: u, komen: bersih(k.teks || ''), stat: (b.stat || [['Teknik', 75], ['Fisik', 70], ['Semangat', 90]]).slice(0, 3) };
     ketukan.push(a.id);
   } else if (b.jenis === 'info') {
     Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', kartu: { jenis: { merah: 'peringatan', hijau: 'sukses', ungu: 'target' }[b.warna] || 'target', tunda: 0.3, judul: String(b.judul || '').toUpperCase().slice(0, 22), sub: b.sub || '', isi: (b.isi || []).slice(0, 4) } });
   } else if (b.jenis === 'papan_skuad') {
     a.panggung = 'skuad';
     a.barisan = skuadAkhir.map(p => pastikan(p.user, p.posisi));
-    a.papan = skuadAkhir.slice(0, 11).map(p => ({ pos: p.posisi + (p.status === 'cadangan' ? ' · cad.' : ''), nama: p.nama, warna: WARNA[hash(p.user) % WARNA.length], baru: !!p.baru }))
-      .concat(slotAkhir.map(s => ({ pos: s }))).slice(0, 11).concat([{ pos: '', kamu: true }]);
+    const urut = skuadAkhir.filter(p => p.status !== 'cadangan').concat(skuadAkhir.filter(p => p.status === 'cadangan'));
+    const sel0 = p => ({ pos: p.posisi + (p.status === 'cadangan' ? ' · cad.' : ''), nama: p.nama, warna: WARNA[hash(p.user) % WARNA.length], baru: !!p.baru });
+    const inti = urut.filter(p => p.status !== 'cadangan').map(sel0).concat(slotAkhir.map(s => ({ pos: s })));
+    const cad = urut.filter(p => p.status === 'cadangan').map(sel0);
+    let sel = inti.concat(cad);
+    if (sel.length > 11) { const muat = Math.max(0, 10 - inti.length); const sisa = cad.length - muat; sel = inti.slice(0, 10).concat(cad.slice(0, muat), [{ pos: 'CADANGAN', nama: `+${sisa} lagi`, warna: '#7c3aed' }]); }
+    a.papan = sel.concat([{ pos: '', kamu: true }]);
+    a.papanJudul = `${skuadAkhir.length} / ${target(skuadAkhir.length)}`;
     a.sfx = [[0.3, 'ding']]; a.min = 5;
   } else if (b.jenis === 'jersey') {
     Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', jersey: (b.opsi || []).slice(0, 3), min: 6.5, sfx: [[0.5, 'ding']] });
+  } else if (b.jenis === 'ultras') {
+    const users = [...new Set((b.users || []).map(u => String(u).replace(/^@/, '')))].slice(0, 8);
+    const lama = new Set(ULTRAS.anggota.map(x => x.toLowerCase()));
+    const total = ULTRAS.anggota.length + users.filter(u => !lama.has(u.toLowerCase())).length;
+    Object.assign(a, { panggung: 'umum', lokasi3d: 'tribun', lokasi: 'TRIBUN · ULTRAS', min: 5.5,
+      ultras: { nama: String(R.nama_ultras || ULTRAS.nama || 'ULTRAS YONOHA').toUpperCase(), anggota: users.map(u => ({ user: u, warna: WARNA[hash(u) % WARNA.length] })), total, nyanyian: bersih(b.nyanyian || '') },
+      sfx: users.map((_, i) => [0.8 + i * 0.3, 'ding']) });
+    ketukan.push(a.id);
   } else if (b.jenis === 'voting') {
     Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', voting: { pertanyaan: b.pertanyaan, opsi: (b.opsi || []).slice(0, 3) }, min: 5.5, sfx: [[0.3, 'ding']] });
   } else if (b.jenis === 'latihan') {
@@ -131,17 +154,22 @@ const ep = {
   seri: 'Manajer dari Nol', episode: DAY, judul: `DAY ${DAY} — ${R.judul}`, subjudul: `DAY ${DAY} · ${String(R.judul).toUpperCase()}`,
   fps: 30, ukuran: [1080, 1920], suara: SUARA, otomatis: true, sumber_rencana: `cerita/rencana/day-${String(DAY).padStart(2, '0')}.json`,
   hookCepat: true, tanpaJudul: true, hookTeks: (R.hook_teks || []).map(s => bersih(s).toUpperCase()).slice(0, 2),
-  skuadAwal: STATUS.skuad.length, musikHangat: 'semua', ketukan,
+  skuadAwal: STATUS.skuad.length, skuadMaks: SKUAD_MAKS, musikHangat: 'semua', ketukan,
   seragam: STATUS.seragam || null, pemain_data: pemainData, adegan,
   akhir: {
-    judul: slotAkhir.length ? 'AYO GABUNG!' : null, posisi: slotAkhir.map(s => (POSISI[s] || s).toUpperCase()),
+    judul: slotAkhir.length ? 'AYO GABUNG!' : 'GABUNG ULTRAS!', posisi: slotAkhir.length ? slotAkhir.map(s => (POSISI[s] || s).toUpperCase()) : ['KOMEN "ULTRAS"'],
     tombol: vote ? `KOMEN: ${hurufVote}` : 'FOLLOW + KOMEN: DAFTAR',
     baris2: 'Follow @ai_bareng_el biar nggak ketinggalan',
-    status: `Skuad ${skuadAkhir.length}/11` + (hari != null ? ` · uji coba ${hari} hari lagi` : '')
+    status: `Skuad ${skuadAkhir.length}/${target(skuadAkhir.length)}` +(hari != null ? ` · uji coba ${hari} hari lagi` : '')
   },
   caption: R.caption
 };
-if (slotAkhir.length) ep.ticker = { teks: `DICARI PEMAIN:  ${slotAkhir.map(s => (POSISI[s] || s).toUpperCase()).join('  •  ')}  •  FOLLOW @ai_bareng_el + KOMEN "DAFTAR – NAMA – POSISI"  •  `, dari: adegan[1] ? adegan[1].id : adegan[0].id, sampai: adegan[adegan.length - 2].id };
+{
+  const cari = slotAkhir.length ? `DICARI PEMAIN:  ${slotAkhir.map(s => (POSISI[s] || s).toUpperCase()).join('  •  ')}  •  FOLLOW @ai_bareng_el + KOMEN "DAFTAR – NAMA – POSISI"  •  `
+    : skuadAkhir.length < SKUAD_MAKS ? `SKUAD ${skuadAkhir.length}/${SKUAD_MAKS}  •  MASIH BUKA CADANGAN: KOMEN "DAFTAR – NAMA – POSISI"  •  ` : '';
+  const ultras = `GABUNG ULTRAS ${String(ULTRAS.nama || 'YONOHA').toUpperCase()}: KOMEN "ULTRAS"  •  `;
+  ep.ticker = { teks: cari + ultras, dari: adegan[1] ? adegan[1].id : adegan[0].id, sampai: adegan[adegan.length - 2].id };
+}
 
 // pemeriksaan akhir
 const ids = adegan.map(a => a.id); const kembar = ids.filter((x, i) => ids.indexOf(x) !== i);
@@ -153,6 +181,7 @@ adegan.forEach((a, i) => {
     voting: String((b && b.pertanyaan) || 'Kalian pilih yang mana?'),
     papan_skuad: `Skuad sekarang ${skuadAkhir.length}. ` + (slotAkhir.length ? `Tinggal ${slotAkhir.length} slot lagi.` : 'Sebelas pemain, lengkap!'),
     komentar: 'Kalian komen... kalian jadi pemain.',
+    ultras: 'Tribun ini nggak sepi lagi. Selamat datang, ultras!',
     info: String((b && b.judul) || ''),
     latihan: 'Latihan dulu, biar nggak malu-maluin.',
     cold_open: 'Ini bukan hari biasa di Yonoha.',
