@@ -84,7 +84,11 @@ KELUARKAN JSON:
  "hook_teks": ["baris 1", "baris 2"]
 }
 SYARAT KERAS:
-- beat 5-8 buah. beat pertama "cold_open", beat terakhir "bersambung". Wajib ada 1 beat "voting" ATAU "jersey" (yang mengajak penonton memilih).
+- beat 5-8 buah. beat pertama "cold_open", beat terakhir "bersambung". Wajib TEPAT SATU ajakan memilih: beat "voting" ATAU beat "jersey" (jersey sudah termasuk voting — jangan dobel).
+- HOOK: cold_open = momen PALING dramatis/lucu episode ini (konflik, kejutan, teriakan), BUKAN ringkasan datar. hook_teks 2 baris pendek yang bikin penasaran, contoh bagus: ["KETAHUAN NGINTIP RIVAL.", "YANG CURI 9 PEMAIN KITA."], ["2 KIPER DAFTAR.", "CUMA 1 JADI STARTER."]. Contoh buruk: ["Jack kembali ke Yonoha", "Ada misi baru"].
+- Setiap pemain_lolos WAJIB tampil di beat "seleksi" (pemain = username-nya) atau beat "komentar" (users memuat username-nya).
+- bersambung: narasi diakhiri ketegangan/pertanyaan ("...?" atau "..."), BUKAN kalimat menenangkan. teaser = kejutan yang belum terjawab.
+- caption: hook + sebut nama pemain baru + ajakan komen yang jelas (mis. "Komen A, B, atau C!") + hashtag.
 - Total kata semua "narasi" + "dialog" maksimal 110 kata (video ±45 detik).
 - pemain_lolos maks ${Math.min(2, STATUS.slot_kosong.length)} orang, hanya dari komentar berlabel DAFTAR dengan posisi cocok slot_kosong; boleh 0.
 - Jangan menulis nama pemain sepak bola asli apa pun. Komentar bertanda SEBUT-PEMAIN-ASLI: orangnya boleh dipakai, kalimat pembandingnya jangan.
@@ -99,7 +103,14 @@ function periksa(r) {
   if (beat.length < 5 || beat.length > 8) e.push(`jumlah beat ${beat.length}, harus 5-8`);
   if (beat[0] && beat[0].jenis !== 'cold_open') e.push('beat pertama harus cold_open');
   if (beat.length && beat[beat.length - 1].jenis !== 'bersambung') e.push('beat terakhir harus bersambung');
-  if (!beat.some(b => b.jenis === 'voting' || b.jenis === 'jersey')) e.push('wajib ada beat voting atau jersey');
+  const pilih = beat.filter(b => b.jenis === 'voting' || b.jenis === 'jersey').length;
+  if (pilih !== 1) e.push(`harus tepat 1 beat voting ATAU jersey (sekarang ${pilih})`);
+  const tampil = new Set();
+  for (const b of beat) { if (b.pemain) tampil.add(String(b.pemain).replace(/^@/, '').toLowerCase()); for (const u of b.users || []) tampil.add(String(u).replace(/^@/, '').toLowerCase()); }
+  for (const p of r.pemain_lolos || []) { const u = String(p.user || '').replace(/^@/, '').toLowerCase(); if (!tampil.has(u)) e.push(`pemain_lolos @${u} tidak tampil di beat seleksi/komentar`); }
+  const akhir = beat[beat.length - 1] || {};
+  if (akhir.jenis === 'bersambung' && !/(\?|\.\.\.|…)\s*$/.test(String(akhir.narasi || '').trim())) e.push('narasi bersambung harus diakhiri "?" atau "..." (menggantung)');
+  if (r.caption && r.caption.length < 140) e.push('caption terlalu pendek: sebut pemain baru + ajakan komen yang jelas');
   for (const b of beat) if (!JENIS[b.jenis]) e.push(`jenis beat tidak dikenal: ${b.jenis}`);
   const kata = beat.reduce((n, b) => n + String(b.narasi || '').split(/\s+/).filter(Boolean).length +
     (b.dialog || []).reduce((m, d) => m + String(d.teks || '').split(/\s+/).filter(Boolean).length, 0), 0);
