@@ -1,0 +1,41 @@
+name: Uji Sutradara AI
+
+on:
+  workflow_dispatch:
+    inputs:
+      bahan:
+        description: "File bahan komentar (di cerita/bahan/)"
+        default: "cerita/bahan/day-06.json"
+      model:
+        description: "Model AI di flaz.id"
+        default: "gpt-4o"
+
+permissions:
+  contents: write
+
+jobs:
+  sutradara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Susun rencana episode
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: https://ai.flaz.id/v1
+          LLM_MODEL: ${{ inputs.model }}
+        run: node sutradara.js --bahan ${{ inputs.bahan }} | tee /tmp/log.txt
+      - name: Simpan hasil ke branch pratinjau-rencana
+        run: |
+          mkdir -p /tmp/hasil && cp cerita/rencana/*.json /tmp/hasil/ && cp /tmp/log.txt /tmp/hasil/log.txt
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git switch --orphan hasil-rencana
+          git rm -rf . -q || true
+          cp /tmp/hasil/* .
+          git add .
+          git commit -q -m "Rencana Sutradara (${{ inputs.model }})"
+          git push -f origin hasil-rencana:pratinjau-rencana

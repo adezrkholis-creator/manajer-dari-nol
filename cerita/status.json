@@ -1,0 +1,37 @@
+{
+  "day_terakhir": 5,
+  "babak": 1,
+  "divisi": "Divisi 5",
+  "kas": 4750000,
+  "hari_menuju_ujicoba": 5,
+  "laga_berikutnya": { "lawan": "Bintang Sebelah FC", "jenis": "uji coba", "day": 10 },
+  "skuad": [
+    { "nama": "Rizky", "user": "kyy151030", "posisi": "RWF", "status": "inti" },
+    { "nama": "Miftakh", "user": "miftakh_al.13", "posisi": "CB", "status": "inti" },
+    { "nama": "Dapeng", "user": "daffazzh", "posisi": "AMF", "status": "inti" },
+    { "nama": "Jay", "user": "elmermuhandis_", "posisi": "CF", "status": "inti" },
+    { "nama": "Ando", "user": "sayaando8", "posisi": "GK", "status": "inti" },
+    { "nama": "Radhika", "user": "radhika_ananda16", "posisi": "GK", "status": "cadangan" },
+    { "nama": "Bagus", "user": "bagus73503", "posisi": "CMF", "status": "inti" }
+  ],
+  "slot_kosong": ["LB", "CB", "RB", "LWF"],
+  "seragam": null,
+  "seragam_tandang": null,
+  "benang_terbuka": [
+    "DAY 5 berakhir: Jack ketahuan Coach Darman saat mengintip; uji coba lawan Bintang Sebelah FC (berisi 9 mantan pemain Yonoha) tinggal 5 hari.",
+    "4 slot belum terisi; banyak pendaftar baru di komentar (bek kiri, bek tengah, sayap kiri, kiper).",
+    "Yonoha BELUM PUNYA SERAGAM: pemain latihan pakai baju sendiri-sendiri. Harus ada sebelum uji coba DAY 10. Desain dipilih penonton lewat voting komentar (A/B/C atau usul sendiri)."
+  ],
+  "rencana_dekat": [
+    "Episode voting seragam: tampilkan 3 desain jersey (A/B/C), ajak komen A/B/C atau usul desain sendiri.",
+    "Episode berikutnya: umumkan pemenang ('Kalian memilih ...'), usul terbaik jadi jersey tandang + sebut username pengusul. Cliffhanger: Waskito 'siapa yang bayar?' -> sponsor aneh."
+  ],
+  "voting_berjalan": null,
+  "riwayat": [
+    "DAY 1: Jack tiba, klub tanpa pemain, lowongan dibuka.",
+    "DAY 2: Rizky, Miftakh, Dapeng lolos seleksi. Butuh kiper.",
+    "DAY 3: Jay, Ando (GK utama), Radhika (GK pelapis), Bagus lolos. Skuad 7/11. Wajib follow untuk daftar.",
+    "DAY 4: Latihan perdana, sisi kiri kosong. Waskito: uji coba hari ke-10 lawan Bintang Sebelah FC.",
+    "DAY 5: Jack mengintip latihan Bintang Sebelah (18 pemain, kas Rp 450 juta, 9 mantan Yonoha), ketahuan Coach Darman."
+  ]
+}
