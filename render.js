@@ -61,7 +61,10 @@ function makeVoices() {
     if (!cached || process.argv.includes('--suara-ulang')) {
       if (v.voice) {
         const raw = path.join(OUT, 'audio', `raw-${n}.mp3`);
-        run(PYTHON, ['-m', 'edge_tts', '--voice', v.voice, `--rate=${v.rate || '+0%'}`, `--pitch=${v.pitch || '+0Hz'}`, '--text', text, '--write-media', raw]);
+        for (let coba = 1; ; coba++) {
+          try { run(PYTHON, ['-m', 'edge_tts', '--voice', v.voice, `--rate=${v.rate || '+0%'}`, `--pitch=${v.pitch || '+0Hz'}`, '--text', text, '--write-media', raw]); break; }
+          catch (e) { if (coba >= 4) throw e; console.log(`  suara gagal (coba ${coba}), ulang...`); Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, coba * 3000); }
+        }
         run(FFMPEG, ['-y', '-loglevel', 'error', '-i', raw, '-af', 'aresample=44100,silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,highpass=f=70,acompressor=threshold=0.12:ratio=2.5:attack=8:release=120,loudnorm=I=-15:TP=-1.5', '-ac', '1', fin]);
       } else {
         const raw = path.join(OUT, 'audio', `raw-${n}.wav`);

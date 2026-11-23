@@ -309,6 +309,56 @@ const PL = {
 };
 PL.ando.scale.setScalar(1.06);
 let CUR_DEF = {};
+// pemain dinamis dari data episode (penonton baru) + warna seragam klub
+function pasangPemain() {
+  const data = EP.pemain_data || {};
+  Object.keys(data).forEach(function (k) {
+    const look = Object.assign({}, data[k]);
+    if (EP.seragam && !look.bebas) { look.shirt = look.kiper ? (EP.seragam.kiper || '#111827') : EP.seragam.utama; look.stripe = EP.seragam.aksen; look.pants = EP.seragam.celana; look.sleeve = null; }
+    if (PL[k]) world.remove(PL[k]);
+    PL[k] = makePerson(look); if (look.skala) PL[k].scale.setScalar(look.skala); world.add(PL[k]);
+  });
+}
+function stageUmum(u, k, talking, T) {
+  const d = CUR_DEF, lok = d.lokasi3d || 'lapangan', tokoh = d.tokoh || ['jack'], ada = function (n) { return tokoh.indexOf(n) >= 0; };
+  const drama = !!d.dramatis, z = drama ? 1 - Math.pow(1 - clamp(u / 0.55), 3) : ease(k), sh = drama ? Math.max(0, 1 - u / 1.2) * 0.06 : 0;
+  const mood = function (n) { return drama && talking === n ? 'point' : (talking === n ? 'shrug' : 'idle'); };
+  const pemain = (d.pemain_tampil || []).filter(function (n) { return PL[n]; });
+  let base = [0, 0, 4], camA, camB, look;
+  if (lok === 'kantor') {
+    lampOffice.intensity = 16; base = [OX, 0, 0];
+    WASKITO.visible = ada('waskito'); WASKITO.position.set(OX, 0, -2.25); WASKITO.rotation.y = 0; pose(WASKITO, u, mood('waskito'), talking === 'waskito');
+    JACK.position.set(OX + 0.9, 0, 0.6); JACK.rotation.y = Math.PI + 0.5; pose(JACK, u, mood('jack'), talking === 'jack');
+    camA = [OX + 3.6, 2.4, 6.6]; camB = [OX + 2.2, 2.2, 4.4]; look = [OX + 0.3, 1.9, -1.0];
+  } else if (lok === 'ruang_ganti') {
+    lampLocker.intensity = 15 * flicker(T, 19); drip.visible = true; drip.position.y = 4.1 - ((u * 1.6) % 1) * 3.9;
+    JACK.position.set(LX, 0, 0.6); JACK.rotation.y = ada('waskito') ? 0.6 : 0; pose(JACK, u, mood('jack'), talking === 'jack');
+    WASKITO.visible = ada('waskito'); WASKITO.position.set(LX + 1.6, 0, 0.9); WASKITO.rotation.y = -0.9; pose(WASKITO, u, mood('waskito'), talking === 'waskito');
+    pemain.forEach(function (n, i) { const P = PL[n]; P.visible = true; P.position.set(LX - 4 + i * 1.3, -0.105, -2.7); P.rotation.y = 0; pose(P, u + i, 'sit', false); });
+    camA = [LX + 0.8, 2.2, 8.5]; camB = [LX + 0.5, 2.0, 6.6]; look = [LX + 0.5, 2.0, 0];
+  } else if (lok === 'tribun') {
+    dust.visible = true; updateDust(T);
+    JACK.position.set(1.5, -0.155, -16.3); pose(JACK, u, 'sit', talking === 'jack');
+    RAT.visible = true; RAT.position.set(2.25, 0.575, -16.35); RAT.rotation.y = -Math.PI / 2; RAT.scale.setScalar(0.75);
+    camA = [4.2, 1.4, -8.2]; camB = [2.6, 1.2, -12.0]; look = [1.7, 1.2, -16.3];
+  } else if (lok === 'lapangan_rival') {
+    stageRival(u, !drama);
+    DARMAN.visible = ada('darman'); DARMAN.position.set(0.6, 0, RZ - 8.4); DARMAN.rotation.y = Math.PI - 0.2; pose(DARMAN, u, ada('darman') && talking === 'darman' ? 'point' : 'idle', talking === 'darman');
+    JACK.position.set(0.1, 0, RZ - 13.6); JACK.rotation.y = 0.25; pose(JACK, u, mood('jack'), talking === 'jack');
+    camA = [19, 2.4, RZ - 11.2]; camB = [16, 2.3, RZ - 11.0]; look = [0.3, 2.6, RZ - 11];
+    if (drama) { camB = [2.6, 2.25, RZ - 13.1]; }
+  } else {
+    JACK.position.set(0, 0, 4); JACK.rotation.y = (ada('waskito') || ada('darman')) ? 0.6 : 0; pose(JACK, u, mood('jack'), talking === 'jack');
+    const lawan = ada('waskito') ? WASKITO : ada('darman') ? DARMAN : null;
+    if (lawan) { lawan.visible = true; lawan.position.set(1.7, 0, 4.4); lawan.rotation.y = -0.9; const nm = lawan === WASKITO ? 'waskito' : 'darman'; pose(lawan, u, mood(nm), talking === nm); }
+    pemain.forEach(function (n, i) { const P = PL[n]; P.visible = true; P.position.set(-2.4 + i * 1.3, 0, 1.6); P.rotation.y = 0; pose(P, u + i, 'idle', false); });
+    const cx = lawan ? 0.8 : 0;
+    camA = drama ? [cx + 0.4, 2.3, 17] : [cx + 0.3, 2.1, 11]; camB = drama ? [cx + 0.2, 2.0, 8.4] : [cx + 0.1, 2.0, 9.6]; look = [cx, lawan ? 2.0 : 2.1, 4.2];
+  }
+  camera.position.lerpVectors(v3(camA), v3(camB), z);
+  camera.position.x += Math.sin(u * 53) * sh; camera.position.y += Math.cos(u * 61) * sh;
+  camera.lookAt(v3(look));
+}
 const suratW = new THREE.Group(); WASKITO.userData.armR.add(suratW);
 boxM(0.04, 0.34, 0.26, '#f8fafc', 0, -0.92, 0.12, suratW);
 const SEVEN = ['rizky', 'miftakh', 'dapeng', 'jay', 'ando', 'radhika', 'bagus'];
@@ -474,6 +524,7 @@ function stage(id, u, dur, talking, mode, T) {
   JACK.rotation.set(0, 0, 0); JACK.userData.head.rotation.set(0, 0, 0);
   suasana(mode);
 
+  if (CUR_DEF.panggung === 'umum') { stageUmum(u, k, talking, T); return; }
   if (id === 'buka') {
     rain.visible = true; updateRain(T);
     lampBus.intensity = 14 * flicker(T, 3);
@@ -539,23 +590,23 @@ function stage(id, u, dur, talking, mode, T) {
     phone.visible = true;
     JACK.position.set(0, 0, 2); JACK.rotation.y = 0.25; pose(JACK, u, 'phone', false);
     cam([12, 15, 28], [2.0, 1.75, 8.2], [0, 0.5, 0], [0, 1.95, 2], k);
-  } else if (id === 'komen') {
+  } else if (id === 'komen' || CUR_DEF.panggung === 'komen') {
     phone.visible = true;
     JACK.position.set(1.5, -0.155, -16.3); pose(JACK, u, 'sit', talking === 'jack');
     const a = JACK.userData; a.armR.rotation.x = -1.95; a.armR.rotation.z = -0.4; a.head.rotation.x = 0.3; a.head.rotation.y = 0;
     RAT.visible = true; RAT.position.set(2.2, 0.575, -16.35); RAT.rotation.y = Math.PI; RAT.scale.setScalar(0.75);
     RAT.userData.body.position.y = 0.24 + Math.abs(Math.sin(T * 3)) * 0.015;
     cam([4.2, 1.9, -8.0], [3.4, 1.8, -9.6], [1.7, 2.4, -16.3], [1.7, 2.3, -16.3], k);
-  } else if (id === 'tes_rizky') {
-    const P = PL.rizky; P.visible = true; BALL.visible = true;
+  } else if (id === 'tes_rizky' || CUR_DEF.tes === 'lari') {
+    const P = PL[CUR_DEF.aktor || 'rizky']; P.visible = true; BALL.visible = true;
     const rk = clamp((u - 0.4) / 4.6), x = lerp(-15, 13, rk);
     P.position.set(x, 0, 10.3); P.rotation.y = Math.PI / 2;
     if (rk < 1) pose(P, u * 1.8, 'walk', false); else { P.rotation.y = 0.2; pose(P, u, 'cheer', false); }
     BALL.position.set(rk < 1 ? x + 0.75 + Math.sin(u * 11) * 0.12 : 13.9, 0.22, 10.45); BALL.rotation.z = -Math.min(u, 5) * 12;
     JACK.position.set(5, 0, 4); JACK.rotation.y = Math.atan2(x - 5, 10.3 - 4); pose(JACK, u, 'idle', false);
     camera.position.set(x - 3.2, 1.9, 17.5); camera.lookAt(x + 1.2, 2.4, 10.3);
-  } else if (id === 'tes_miftakh') {
-    const P = PL.miftakh; P.visible = true; BALL.visible = true;
+  } else if (id === 'tes_miftakh' || CUR_DEF.tes === 'sundul') {
+    const P = PL[CUR_DEF.aktor || 'miftakh']; P.visible = true; BALL.visible = true;
     P.position.set(6, 0, 3); P.rotation.y = Math.PI / 2 - 0.35; pose(P, u, 'idle', false);
     const c0 = Math.max(0, u - 0.5), c = c0 % 2.6;
     const Hd = [6.25, 2.55, 3.05], St = [17, 0.25, 7.5], En = [-3, 0.25, -5];
@@ -633,12 +684,13 @@ function stage(id, u, dur, talking, mode, T) {
     cam([0.6, 2.3, 15], [0.3, 2.2, 13], [0.2, 3.3, 3.5], [0.2, 3.2, 3.5], k);
   } else if (CUR_DEF.tembak) {
     shotScene(u, k, CUR_DEF.tembak);
-  } else if (id === 'skuad') {
-    const names = ['rizky', 'miftakh', 'dapeng', 'jay', 'ando', 'radhika', 'bagus'];
-    names.forEach(function (n, i) { const P = PL[n]; P.visible = true; P.position.set(-3.6 + i * 1.2, 0, 3.3 + (i % 2) * 0.5); P.rotation.y = 0; pose(P, u + i, u > 1.2 ? 'cheer' : 'idle', false); });
-    JACK.position.set(-4.6, 0, 5.2); JACK.rotation.y = 0.6; pose(JACK, u, 'point', talking === 'jack');
-    cam([0, 2.4, 19], [-0.2, 2.3, 17], [-0.3, 3.4, 3.8], [-0.3, 3.3, 3.8], k);
-  } else if (id === 'tes_dapeng' || id === 'tes_bagus') {
+  } else if (id === 'skuad' || CUR_DEF.panggung === 'skuad') {
+    const names = (CUR_DEF.barisan || ['rizky', 'miftakh', 'dapeng', 'jay', 'ando', 'radhika', 'bagus']).filter(function (n) { return PL[n]; });
+    const n = names.length, step = n > 7 ? 7.6 / (n - 1) : 1.2, x0 = -((n - 1) * step) / 2 - 0.2, zc = 19 + Math.max(0, n - 7) * 1.4;
+    names.forEach(function (nm, i) { const P = PL[nm]; P.visible = true; P.position.set(x0 + i * step, 0, 3.3 + (i % 2) * 0.5); P.rotation.y = 0; pose(P, u + i, u > 1.2 ? 'cheer' : 'idle', false); });
+    JACK.position.set(x0 - 1.0, 0, 5.2); JACK.rotation.y = 0.6; pose(JACK, u, 'point', talking === 'jack');
+    cam([0, 2.4, zc], [-0.2, 2.3, zc - 2], [-0.3, 3.4, 3.8], [-0.3, 3.3, 3.8], k);
+  } else if (id === 'tes_dapeng' || id === 'tes_bagus' || CUR_DEF.tes === 'umpan') {
     const P = PL[CUR_DEF.aktor || 'dapeng']; P.visible = true; BALL.visible = true; CONES.visible = true;
     P.position.set(3, 0, 0); P.rotation.y = Math.PI / 2; pose(P, u, 'idle', false);
     const c0 = Math.max(0, u - 0.6), c = c0 % 3.0;
@@ -1051,11 +1103,79 @@ function cta(text, t) {
   });
   g2.restore();
 }
+function gambarJersey(cx, cy, s, o) {
+  // kaos sederhana (orisinal) + celana
+  g2.save(); g2.translate(cx, cy); g2.scale(s, s);
+  const kaos = new Path2D('M-70,-120 L-25,-135 Q0,-115 25,-135 L70,-120 L120,-70 L95,-35 L70,-55 L70,95 L-70,95 L-70,-55 L-95,-35 L-120,-70 Z');
+  g2.fillStyle = o.utama; g2.fill(kaos);
+  g2.save(); g2.clip(kaos); g2.fillStyle = o.aksen;
+  if (o.pola === 'garis') for (let x = -60; x < 80; x += 36) g2.fillRect(x, -140, 16, 240);
+  else if (o.pola === 'setengah') g2.fillRect(0, -140, 130, 240);
+  else if (o.pola === 'selempang') { g2.beginPath(); g2.moveTo(-90, -130); g2.lineTo(-50, -130); g2.lineTo(90, 100); g2.lineTo(50, 100); g2.closePath(); g2.fill(); }
+  g2.fillRect(-120, -80, 50, 14); g2.fillRect(70, -80, 50, 14);
+  g2.restore();
+  g2.beginPath(); g2.moveTo(-25, -135); g2.quadraticCurveTo(0, -105, 25, -135); g2.lineWidth = 10; g2.strokeStyle = o.aksen; g2.stroke();
+  g2.lineWidth = 4; g2.strokeStyle = 'rgba(0,0,0,.35)'; g2.stroke(kaos);
+  g2.fillStyle = o.aksen; g2.font = '900 64px ' + FONT; g2.textAlign = 'center'; g2.fillText('11', 0, 30);
+  g2.fillStyle = o.celana; g2.beginPath(); g2.moveTo(-68, 105); g2.lineTo(68, 105); g2.lineTo(74, 175); g2.lineTo(8, 175); g2.lineTo(0, 140); g2.lineTo(-8, 175); g2.lineTo(-74, 175); g2.closePath(); g2.fill();
+  g2.restore();
+}
+function jerseyPilihan(opsi, u) {
+  const s0 = ease((u - 0.1) / 0.4); if (s0 <= 0) return;
+  g2.globalAlpha = s0; rr(S(30), S(210), S(1020), S(820), S(34)); g2.fillStyle = 'rgba(17,24,39,.93)'; g2.fill();
+  strokeText('PILIH SERAGAM KITA!', S(540), S(290), '900 ' + S(58) + 'px ' + FONT, '#eab308', '', 0);
+  (opsi || []).slice(0, 3).forEach(function (o, i) {
+    const p = pop(u - 0.5 - i * 0.35, 0.35); if (p <= 0) return;
+    const cx = S(195 + i * 345), cy = S(560);
+    g2.save(); g2.globalAlpha = s0 * Math.min(1, p); g2.translate(cx, cy); g2.scale(Math.min(1.08, p), Math.min(1.08, p)); g2.translate(-cx, -cy);
+    rr(cx - S(160), S(330), S(320), S(560), S(26)); g2.fillStyle = 'rgba(255,255,255,.06)'; g2.fill();
+    gambarJersey(cx, cy, S(1.05), o);
+    g2.fillStyle = ['#f59e0b', '#3b82f6', '#10b981'][i]; g2.beginPath(); g2.arc(cx, S(790), S(46), 0, Math.PI * 2); g2.fill();
+    g2.fillStyle = '#fff'; g2.font = '900 ' + S(56) + 'px ' + FONT; g2.textAlign = 'center'; g2.fillText(o.huruf || 'ABC'[i], cx, S(810));
+    g2.font = '800 ' + S(26) + 'px ' + FONT; g2.fillStyle = '#e5e7eb';
+    wrap(o.nama || '', S(290), g2.font).slice(0, 2).forEach(function (l, j) { g2.fillText(l, cx, S(872) + j * S(32)); });
+    g2.restore();
+  });
+  g2.globalAlpha = s0; strokeText('KOMEN A, B, ATAU C!', S(540), S(990), '900 ' + S(44) + 'px ' + FONT, '#ffffff', '', 0);
+  g2.globalAlpha = 1;
+}
+function votingKartu(v, u) {
+  const s = pop(u - 0.2, 0.4); if (s <= 0) return;
+  const opsi = (v.opsi || []).slice(0, 3), x = S(60), y = S(240), w = S(960), h = S(210) + opsi.length * S(150);
+  g2.save(); g2.translate(S(540), y + h / 2); g2.scale(Math.min(1, s), Math.min(1, s)); g2.translate(-S(540), -(y + h / 2));
+  g2.shadowColor = 'rgba(0,0,0,.45)'; g2.shadowBlur = S(30); rr(x, y, w, h, S(34)); g2.fillStyle = 'rgba(17,24,39,.95)'; g2.fill(); g2.shadowColor = 'transparent';
+  rr(x, y, w, S(130), S(34)); g2.fillStyle = '#eab308'; g2.fill(); g2.fillRect(x, y + S(90), w, S(40));
+  g2.fillStyle = '#111827'; g2.textAlign = 'center'; g2.font = '900 ' + S(30) + 'px ' + FONT; g2.fillText('VOTING', S(540), y + S(48));
+  g2.font = '900 ' + S(46) + 'px ' + FONT; wrap(v.pertanyaan || '', S(880), g2.font).slice(0, 1).forEach(function (l) { g2.fillText(l, S(540), y + S(104)); });
+  opsi.forEach(function (o, i) {
+    const a = clamp((u - 0.6 - i * 0.3) / 0.3); if (a <= 0) return;
+    const ry = y + S(160) + i * S(150), pul = 1 + Math.sin(u * 5 + i) * 0.03;
+    g2.globalAlpha = a; rr(x + S(36), ry, w - S(72), S(126), S(26)); g2.fillStyle = 'rgba(255,255,255,.08)'; g2.fill();
+    g2.save(); g2.translate(x + S(110), ry + S(63)); g2.scale(pul, pul);
+    g2.fillStyle = ['#f59e0b', '#3b82f6', '#10b981'][i]; g2.beginPath(); g2.arc(0, 0, S(48), 0, Math.PI * 2); g2.fill();
+    g2.fillStyle = '#fff'; g2.font = '900 ' + S(56) + 'px ' + FONT; g2.textAlign = 'center'; g2.fillText(o.huruf || 'ABC'[i], 0, S(20)); g2.restore();
+    g2.textAlign = 'left'; g2.fillStyle = '#f9fafb'; g2.font = '800 ' + S(44) + 'px ' + FONT; g2.fillText(o.teks || '', x + S(190), ry + S(78));
+    g2.globalAlpha = 1;
+  });
+  g2.textAlign = 'center'; g2.fillStyle = '#fde68a'; g2.font = '900 ' + S(34) + 'px ' + FONT; g2.fillText('KOMEN HURUF PILIHANMU!', S(540), y + h - S(24));
+  g2.restore();
+}
+function bersambungAtas(teaser, t) {
+  const n = Math.floor(clamp((t - 0.1) / 0.6) * 14), txt = 'BERSAMBUNG...'.slice(0, n);
+  strokeText(txt, S(540), S(300), '900 ' + S(104) + 'px ' + FONT, '#eab308', '#000', S(14));
+  const a = clamp((t - 0.8) / 0.4); if (a <= 0 || !teaser) return;
+  g2.globalAlpha = a; g2.font = '800 ' + S(42) + 'px ' + FONT;
+  wrap(teaser, S(900), g2.font).slice(0, 2).forEach(function (l, i) { strokeText(l, S(540), S(390) + i * S(54), '800 ' + S(42) + 'px ' + FONT, '#ffffff', '#000', S(8)); });
+  g2.globalAlpha = 1;
+}
 function endCard(t) {
   const a = Math.min(1, t / 0.5);
   g2.globalAlpha = a * 0.62; g2.fillStyle = '#0b0f19'; g2.fillRect(0, 0, W, H); g2.globalAlpha = a;
-  const cx = S(540), cy = S(640), AK = EP.akhir || {};
-  if (AK.judul) {
+  const cx = S(540), cy = S(640), AK = Object.assign({}, EP.akhir || {});
+  if (CUR_DEF && CUR_DEF.teaser) {
+    bersambungAtas(CUR_DEF.teaser, t);
+    g2.save(); g2.translate(cx, S(700)); g2.scale(0.7, 0.7); g2.translate(-cx, -cy); AK.judul = 'x';
+  } else if (AK.judul) {
     const ps = pop(t - 0.1, 0.35);
     g2.save(); g2.translate(cx, S(300)); g2.scale(ps, ps); strokeText(AK.judul, 0, 0, '900 ' + S(120) + 'px ' + FONT, '#eab308', '#000', S(14)); g2.restore();
     (AK.posisi || []).forEach(function (p, i) {
@@ -1109,6 +1229,7 @@ window.setup = function (ep, timeline, size) {
   EP = ep; TL = timeline; W = size[0]; H = size[1];
   out.width = W; out.height = H; renderer.setSize(W, H, false); renderer.setPixelRatio(1);
   camera.aspect = W / H; camera.updateProjectionMatrix();
+  pasangPemain();
   return { ok: true, durasi: TL.durasi };
 };
 window.renderAt = function (t, quality) {
@@ -1128,7 +1249,7 @@ window.renderAt = function (t, quality) {
   g2.drawImage(renderer.domElement, 0, 0, W, H);
   g2.filter = 'none';
   if (def.beku != null && u >= def.beku && u < def.beku + 0.12) { g2.fillStyle = 'rgba(255,255,255,' + (0.7 * (1 - (u - def.beku) / 0.12)) + ')'; g2.fillRect(0, 0, W, H); }
-  if (def.beku != null && u < 0.15) { g2.fillStyle = 'rgba(239,68,68,' + (0.45 * (1 - u / 0.15)) + ')'; g2.fillRect(0, 0, W, H); }
+  if ((def.beku != null || def.dramatis) && u < 0.15) { g2.fillStyle = 'rgba(239,68,68,' + (0.45 * (1 - u / 0.15)) + ')'; g2.fillRect(0, 0, W, H); }
   grade(mode);
   if (def.teropong) teropong(u);
   if (def.banding) banding(def.banding, u);
@@ -1146,6 +1267,8 @@ window.renderAt = function (t, quality) {
   if (def.komen) komenList(def.komen, u);
   if (def.pemain) kartuPemain(def.pemain, u, LINES[1] ? LINES[1].selesai + 0.1 - sc.mulai : dur - 1.5);
   if (def.kartu) card(def.kartu, u);
+  if (def.jersey) jerseyPilihan(def.jersey, u);
+  if (def.voting) votingKartu(def.voting, u);
   if (sc.id === 'surat') letter(u);
   if (def.pilihan) notebook(def.pilihan, u, t);
   if (def.poster) posterLowongan(def.poster, u);
@@ -1158,7 +1281,7 @@ window.renderAt = function (t, quality) {
   if (EP.skuadAwal != null) {
     skuad = EP.skuadAwal;
     TL.adegan.forEach(function (a) {
-      const d = EP.adegan.find(function (x) { return x.id === a.id; }); if (!d.pemain) return;
+      const d = EP.adegan.find(function (x) { return x.id === a.id; }); if (!d.pemain || d.pemain.hitung === false) return;
       const ls = TL.baris.filter(function (b) { return b.adegan === a.id; });
       const st = ls[1] ? ls[1].selesai + 0.1 : a.selesai - 1.5; if (t >= st) skuad++;
     });

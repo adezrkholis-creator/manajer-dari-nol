@@ -18,7 +18,7 @@ if (fs.existsSync(envFile)) for (const l of fs.readFileSync(envFile, 'utf8').spl
 const KEY = process.env.OPENAI_API_KEY;
 const BASE = (process.env.OPENAI_BASE_URL || 'https://ai.flaz.id/v1').replace(/\/+$/, '');
 const MODEL = process.env.LLM_MODEL || 'gpt-4o';
-if (!KEY) { console.error('OPENAI_API_KEY belum ada (env / video/.env).'); process.exit(1); }
+if (!KEY && !args.includes('--terapkan-dari')) { console.error('OPENAI_API_KEY belum ada (env / video/.env).'); process.exit(1); }
 
 const BIBLE = baca('cerita/bible.json');
 const STATUS = baca('cerita/status.json');
@@ -39,8 +39,6 @@ const JENIS = {
   papan_skuad: 'Papan skuad terbaru (otomatis dari status + pemain_lolos) dengan slot KOSONG dan "KAMU?".',
   jersey: 'Pamer 3 desain jersey. "opsi": [{huruf A/B/C, nama, utama #hex, aksen #hex, celana #hex, pola: polos|garis|setengah|selempang}]. Desain original.',
   latihan: 'Montase latihan tim. "aktivitas": pemanasan|umpan|tembak|gim.',
-  pertandingan: 'Potongan laga. "lawan", "momen": [{menit, kejadian: gol|penyelamatan|kartu|peluang, tim: yonoha|lawan, pemain}], "skor_akhir" atau "menggantung": true.',
-  klasemen: 'Papan klasemen divisi. "baris": [[klub, main, poin]] maks 6.',
   voting: 'Kartu voting. "pertanyaan" (maks 8 kata), "opsi": 2-3 [{huruf, teks maks 4 kata}]. Penonton komen hurufnya.',
   bersambung: 'Penutup menggantung. "teaser": kalimat cliffhanger maks 10 kata, "narasi".'
 };
@@ -84,6 +82,7 @@ KELUARKAN JSON:
  "hook_teks": ["baris 1", "baris 2"]
 }
 SYARAT KERAS:
+- SETIAP beat wajib punya "narasi" (Jack bicara sebagai "aku", orang pertama — JANGAN "Jack harus...") atau "dialog".
 - beat 5-8 buah. beat pertama "cold_open", beat terakhir "bersambung". Wajib TEPAT SATU ajakan memilih: beat "voting" ATAU beat "jersey" (jersey sudah termasuk voting — jangan dobel).
 - HOOK: cold_open = momen PALING dramatis/lucu episode ini (konflik, kejutan, teriakan), BUKAN ringkasan datar. hook_teks 2 baris pendek yang bikin penasaran, contoh bagus: ["KETAHUAN NGINTIP RIVAL.", "YANG CURI 9 PEMAIN KITA."], ["2 KIPER DAFTAR.", "CUMA 1 JADI STARTER."]. Contoh buruk: ["Jack kembali ke Yonoha", "Ada misi baru"].
 - Setiap pemain_lolos WAJIB tampil di beat "seleksi" (pemain = username-nya) atau beat "komentar" (users memuat username-nya).
@@ -112,6 +111,8 @@ function periksa(r) {
   if (akhir.jenis === 'bersambung' && !/(\?|\.\.\.|…)\s*$/.test(String(akhir.narasi || '').trim())) e.push('narasi bersambung harus diakhiri "?" atau "..." (menggantung)');
   if (r.caption && r.caption.length < 140) e.push('caption terlalu pendek: sebut pemain baru + ajakan komen yang jelas');
   for (const b of beat) if (!JENIS[b.jenis]) e.push(`jenis beat tidak dikenal: ${b.jenis}`);
+  beat.forEach((b, i) => { if (!String(b.narasi || '').trim() && !(b.dialog || []).length) e.push(`beat ${i + 1} (${b.jenis}) tanpa narasi/dialog`); });
+  beat.forEach((b, i) => { if (/\bJack\s+(harus|langsung|merasa|sedang|akan|kembali|panik)\b/i.test(String(b.narasi || ''))) e.push(`beat ${i + 1}: narasi harus orang pertama ("aku"), bukan "Jack ..."`); });
   const kata = beat.reduce((n, b) => n + String(b.narasi || '').split(/\s+/).filter(Boolean).length +
     (b.dialog || []).reduce((m, d) => m + String(d.teks || '').split(/\s+/).filter(Boolean).length, 0), 0);
   if (kata > 120) e.push(`total kata ${kata}, maksimal 110`);
@@ -161,6 +162,11 @@ function terapkan(r) {
 }
 
 (async () => {
+  if (arg('--terapkan-dari')) { // perbarui status dari rencana yang sudah tayang, tanpa AI
+    const r0 = baca(arg('--terapkan-dari'));
+    fs.writeFileSync(path.join(ROOT, 'cerita', 'status.json'), JSON.stringify(terapkan(r0), null, 2));
+    console.log(`status.json diperbarui untuk DAY ${r0.day}.`); return;
+  }
   let err = null, r = null;
   for (let coba = 1; coba <= 3; coba++) {
     r = await tanya(err);
@@ -177,5 +183,6 @@ function terapkan(r) {
   console.log(`\nDAY ${DAY} — ${r.judul}\n${r.ringkas}\nLolos: ${(r.pemain_lolos || []).map(p => p.nama + ' ' + p.posisi).join(', ') || '-'}`);
   r.beat.forEach((b, i) => console.log(`  ${i + 1}. [${b.jenis}] ${b.narasi || (b.dialog || []).map(d => d.oleh + ': ' + d.teks).join(' / ')}`));
   console.log('Rencana: ' + out);
+  console.log('RENCANA=' + path.relative(ROOT, out).replace(/\\/g, '/'));
   if (args.includes('--terapkan')) { fs.writeFileSync(path.join(ROOT, 'cerita', 'status.json'), JSON.stringify(terapkan(r), null, 2)); console.log('status.json diperbarui.'); }
 })().catch(e => { console.error('GAGAL: ' + e.message); process.exit(1); });

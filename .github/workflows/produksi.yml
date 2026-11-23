@@ -1,0 +1,104 @@
+name: Produksi harian
+
+# Otomatis 2x sehari: 15.30 & 18.30 WIB (08.30 & 11.30 UTC) -> tayang ±16.00 & ±19.00 WIB
+on:
+  schedule:
+    - cron: "30 8 * * *"
+    - cron: "30 11 * * *"
+  workflow_dispatch:
+    inputs:
+      posting:
+        description: "Posting ke Instagram?"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: produksi
+  cancel-in-progress: false
+
+jobs:
+  produksi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_BASE_URL: https://ai.flaz.id/v1
+      LLM_MODEL: gpt-4o
+      CHROME_PATH: /usr/bin/google-chrome
+      PYTHON: python3
+      POSTING: ${{ github.event_name == 'schedule' || inputs.posting }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pasang dependensi
+        run: |
+          npm ci
+          pip install edge-tts
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-core fonts-noto-color-emoji > /dev/null
+
+      - name: 1. Bahan (komentar IG + voting)
+        id: bahan
+        run: node bahan.js | tee /tmp/bahan.txt && echo "file=$(grep '^BAHAN=' /tmp/bahan.txt | cut -d= -f2)" >> $GITHUB_OUTPUT
+
+      - name: 2. Sutradara (rencana episode)
+        id: rencana
+        run: node sutradara.js --bahan ${{ steps.bahan.outputs.file }} | tee /tmp/rencana.txt && echo "file=$(grep '^RENCANA=' /tmp/rencana.txt | cut -d= -f2)" >> $GITHUB_OUTPUT
+
+      - name: 3. Penyusun (naskah video)
+        id: naskah
+        run: |
+          node penyusun.js ${{ steps.rencana.outputs.file }} --bahan ${{ steps.bahan.outputs.file }}
+          DAY=$(node -e "console.log(String(require('./${{ steps.rencana.outputs.file }}').day).padStart(2,'0'))")
+          echo "ep=episode-$DAY" >> $GITHUB_OUTPUT
+
+      - name: 4. Render (CPU)
+        run: node render.js episodes/${{ steps.naskah.outputs.ep }}.json --cpu
+
+      - name: Simpan video
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.naskah.outputs.ep }}
+          path: out/${{ steps.naskah.outputs.ep }}/${{ steps.naskah.outputs.ep }}.mp4
+          retention-days: 14
+
+      - name: 5. Posting ke Instagram
+        if: env.POSTING == 'true'
+        run: node posting.js episodes/${{ steps.naskah.outputs.ep }}.json
+
+      - name: 6. Perbarui status cerita & simpan ke repo
+        if: env.POSTING == 'true'
+        run: |
+          node sutradara.js --terapkan-dari ${{ steps.rencana.outputs.file }}
+          cp out/${{ steps.naskah.outputs.ep }}/posting.json cerita/rencana/${{ steps.naskah.outputs.ep }}-posting.json || true
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add cerita episodes
+          git commit -m "Tayang ${{ steps.naskah.outputs.ep }} (otomatis)"
+          git push
+
+      - name: Simpan draf + pratinjau (tanpa posting)
+        if: env.POSTING != 'true'
+        run: |
+          EP=${{ steps.naskah.outputs.ep }}
+          node render.js episodes/$EP.json --cpu --still 0.4,4,9,14,19,24,29 > /dev/null
+          FF=$(node -e "console.log(require('ffmpeg-static'))")
+          cd out/$EP && A=""; F=""; i=0
+          for f in $(ls still-*.jpg | sort -V); do A="$A -i $f"; F="$F[$i]scale=360:640[s$i];"; i=$((i+1)); done
+          IN=""; for j in $(seq 0 $((i-1))); do IN="$IN[s$j]"; done
+          $FF -y -loglevel error $A -filter_complex "${F}${IN}hstack=$i" -frames:v 1 /tmp/pratinjau.jpg && cd -
+          mkdir -p /tmp/draf && cp ${{ steps.rencana.outputs.file }} ${{ steps.bahan.outputs.file }} episodes/$EP.json /tmp/pratinjau.jpg /tmp/draf/
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git switch --orphan draf-baru && git rm -rf . -q || true
+          cp /tmp/draf/* . && git add -A && git commit -q -m "Draf $EP" && git push -f origin draf-baru:draf

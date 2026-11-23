@@ -1,0 +1,165 @@
+// PENYUSUN — mengubah rencana Sutradara (cerita/rencana/day-NN.json) menjadi naskah render (episodes/episode-NN.json).
+// Pakai:  node penyusun.js cerita/rencana/day-06.json --bahan cerita/bahan/day-06.json
+// Status yang dipakai = cerita/status.json SEBELUM rencana diterapkan (jalankan penyusun sebelum sutradara --terapkan,
+// atau beri --status <file status lama>).
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = __dirname;
+const args = process.argv.slice(2);
+const arg = k => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : null; };
+const baca = f => JSON.parse(fs.readFileSync(path.resolve(ROOT, f), 'utf8'));
+
+const R = baca(args.find(a => a.endsWith('.json') && !a.includes('bahan') && !a.includes('status')));
+const STATUS = baca(arg('--status') || 'cerita/status.json');
+const BAHAN = arg('--bahan') ? baca(arg('--bahan')) : { komentar: [] };
+const DAY = R.day;
+
+// ---------- data dasar ----------
+const BASE = { kyy151030: 'rizky', 'miftakh_al.13': 'miftakh', daffazzh: 'dapeng', elmermuhandis_: 'jay', sayaando8: 'ando', radhika_ananda16: 'radhika', bagus73503: 'bagus' };
+const BASE_LOOK = {
+  rizky: { skin: '#c58b5c', shirt: '#dc2626', stripe: '#f8fafc', pants: '#111827', hair: '#1b1b1b', shoes: '#f3f4f6' },
+  miftakh: { skin: '#b97a4f', shirt: '#2563eb', stripe: '#1e3a8a', pants: '#1f2937', hair: '#1b1b1b', shoes: '#111', skala: 1.07 },
+  dapeng: { skin: '#e0ac80', shirt: '#16a34a', stripe: '#fde047', pants: '#1f2937', hair: '#3b2a20', shoes: '#f97316' },
+  jay: { skin: '#c58b5c', shirt: '#f8fafc', stripe: '#ea580c', pants: '#111827', hair: '#1b1b1b', shoes: '#ea580c' },
+  ando: { skin: '#b97a4f', shirt: '#f59e0b', stripe: '#111827', pants: '#111827', hair: '#1b1b1b', gloves: '#f8fafc', shoes: '#111', kiper: true, skala: 1.06 },
+  radhika: { skin: '#e0ac80', shirt: '#7c3aed', stripe: '#c4b5fd', pants: '#1f2937', hair: '#2b1d14', gloves: '#22c55e', shoes: '#f3f4f6', kiper: true },
+  bagus: { skin: '#d9a273', shirt: '#facc15', stripe: '#1f2937', pants: '#1f2937', hair: '#3b2a20', shoes: '#111', belly: 0.25 }
+};
+const POSISI = { GK: 'Kiper', CB: 'Bek Tengah', LB: 'Bek Kiri', RB: 'Bek Kanan', DMF: 'Gelandang Bertahan', CMF: 'Gelandang Tengah', AMF: 'Gelandang Serang', LWF: 'Sayap Kiri', RWF: 'Sayap Kanan', CF: 'Penyerang Tengah', BEK: 'Bek', GELANDANG: 'Gelandang', SAYAP: 'Sayap' };
+const WARNA = ['#dc2626', '#2563eb', '#16a34a', '#ea580c', '#7c3aed', '#ca8a04', '#0891b2', '#db2777', '#4f46e5', '#059669'];
+const LARANGAN = /\b(setara|mirip|kayak|kaya|seperti|ala)\s+[\w.]+(\s+[\w.]+)?/gi;
+const ANGKA = ['nol', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan', 'sepuluh', 'sebelas', 'dua belas', 'tiga belas', 'empat belas', 'lima belas', 'enam belas', 'tujuh belas', 'delapan belas', 'sembilan belas', 'dua puluh'];
+
+const hash = s => { let x = 5381; for (const ch of String(s)) x = ((x * 33) ^ ch.charCodeAt(0)) >>> 0; return x; };
+const kunci = u => BASE[String(u).replace(/^@/, '').toLowerCase()] || ('p_' + String(u).toLowerCase().replace(/[^a-z0-9]/g, '_'));
+const bersih = t => String(t || '').replace(LARANGAN, '').replace(/\s{2,}/g, ' ').trim();
+const ucap = t => String(t || '').replace(/\bDay\s+(\d+)/gi, (m, n) => 'Day ' + (ANGKA[+n] || n)).replace(/@/g, '').replace(/\bFC\b/g, 'F C');
+const komenDari = u => (BAHAN.komentar || []).find(k => String(k.username).toLowerCase() === String(u).replace(/^@/, '').toLowerCase());
+
+function lookBaru(user, posisi) {
+  const h = hash(user), skin = ['#d9a273', '#c58b5c', '#e0ac80', '#b97a4f', '#f1c7a0'][h % 5];
+  const look = { skin, shirt: WARNA[(h >> 3) % WARNA.length], stripe: ['#f8fafc', '#111827', '#fde047'][(h >> 5) % 3], pants: ['#111827', '#1f2937', '#374151', '#1e3a8a'][(h >> 7) % 4],
+    hair: ['#1b1b1b', '#3b2a20', '#2b1d14'][(h >> 9) % 3], shoes: ['#111', '#f3f4f6', '#f97316', '#2563eb'][(h >> 11) % 4] };
+  if (posisi === 'GK') { look.gloves = '#f8fafc'; look.kiper = true; }
+  if ((h >> 13) % 4 === 0) look.cap = ['#111827', '#dc2626', '#2563eb'][(h >> 15) % 3];
+  return look;
+}
+
+// ---------- pemain ----------
+const lolos = (R.pemain_lolos || []).map(p => ({ ...p, user: String(p.user).replace(/^@/, '') }));
+const skuadAkhir = STATUS.skuad.concat(lolos.map(p => ({ nama: p.nama, user: p.user, posisi: p.posisi, status: 'inti', baru: true })));
+const slotAkhir = STATUS.slot_kosong.slice(); lolos.forEach(p => { const i = slotAkhir.indexOf(p.posisi); if (i >= 0) slotAkhir.splice(i, 1); });
+const pemainData = {};
+function pastikan(user, posisi) {
+  const k = kunci(user);
+  if (!pemainData[k]) pemainData[k] = BASE_LOOK[k] ? { ...BASE_LOOK[k] } : lookBaru(user, posisi);
+  return k;
+}
+if (STATUS.seragam) skuadAkhir.forEach(p => pastikan(p.user, p.posisi));
+
+// ---------- beat -> adegan ----------
+const SUARA = { jack: { voice: 'id-ID-ArdiNeural', rate: '+10%', pitch: '-3Hz', label: 'JACK' }, waskito: { voice: 'id-ID-ArdiNeural', rate: '+0%', pitch: '-24Hz', label: 'WASKITO (KETUA)' }, darman: { voice: 'id-ID-ArdiNeural', rate: '+6%', pitch: '-14Hz', label: 'COACH DARMAN (BINTANG SEBELAH)' } };
+const LOK = { lapangan: 'lapangan', kantor: 'kantor', ruang_ganti: 'ruang_ganti', tribun: 'tribun', lapangan_rival: 'lapangan_rival' };
+const NAMA_LOK = { kantor: 'KANTOR KETUA', ruang_ganti: 'RUANG GANTI', tribun: 'TRIBUN', lapangan_rival: 'LAPANGAN BINTANG SEBELAH', lapangan: 'STADION YONOHA' };
+function baris(b) {
+  const out = [];
+  if (b.narasi) out.push({ oleh: 'jack', teks: b.narasi });
+  for (const d of b.dialog || []) out.push({ oleh: SUARA[d.oleh] ? d.oleh : 'jack', teks: d.teks });
+  return out.filter(x => String(x.teks || '').trim()).map(x => { const t = bersih(x.teks), s = ucap(t); return s !== t ? { ...x, teks: t, tts: s } : { ...x, teks: t }; });
+}
+const adegan = [], ketukan = [];
+let id = 0;
+for (const b of R.beat) {
+  id++;
+  const a = { id: 'b' + id, suasana: 'pagi', min: 4.5, baris: baris(b) };
+  const tokoh = ['jack'].concat((b.dialog || []).map(d => d.oleh).filter(o => o !== 'jack'));
+  if (b.jenis === 'cold_open') {
+    Object.assign(a, { panggung: 'umum', dramatis: true, lokasi3d: LOK[b.lokasi] || (tokoh.includes('darman') ? 'lapangan_rival' : 'lapangan'), tokoh, lead: 0.1, min: 3.6, sfx: [[0, 'peluit']] });
+  } else if (b.jenis === 'ngobrol') {
+    const l = LOK[b.lokasi] || 'lapangan';
+    Object.assign(a, { panggung: 'umum', lokasi3d: l, tokoh, suasana: l === 'kantor' || l === 'ruang_ganti' ? 'dalam' : 'pagi', lokasi: NAMA_LOK[l] });
+  } else if (b.jenis === 'komentar') {
+    const users = (b.users || []).map(u => String(u).replace(/^@/, '')).slice(0, 4);
+    a.panggung = 'komen';
+    a.komen = users.map(u => { const k = komenDari(u) || {}; return { user: u, waktu: 'baru', teks: bersih(k.teks || 'daftar'), warna: WARNA[hash(u) % WARNA.length] }; });
+    a.sfx = a.komen.map((_, i) => [0.6 + i * 0.45, 'ding']);
+  } else if (b.jenis === 'seleksi') {
+    const u = String(b.pemain || '').replace(/^@/, ''), k = komenDari(u) || {}, p = lolos.find(x => x.user.toLowerCase() === u.toLowerCase());
+    const pos = (p && p.posisi) || k.posisi || 'CMF', aktor = pastikan(u, pos), tes = b.tes || 'umpan', warna = WARNA[hash(u) % WARNA.length];
+    if (!a.baris.length) a.baris = [{ oleh: 'jack', teks: `Tes: ${(p && p.nama) || k.nama || u}, ${POSISI[pos] || pos}.` }];
+    Object.assign(a, { lokasi: 'TES · ' + ({ lari: 'LARI SAYAP', sundul: 'DUEL UDARA', umpan: 'UMPAN', tembak: 'TENDANGAN', kiper: 'KIPER' }[tes] || 'SELEKSI'), aktor, min: 5.5 });
+    if (tes === 'tembak') { a.tembak = { penendang: aktor, hasil: 'gol' }; a.sfx = [[1.0, 'tendang'], [1.5, 'jaring']]; }
+    else if (tes === 'kiper') { pastikan('elmermuhandis_', 'CF'); a.tembak = { penendang: 'jay', kiper: aktor, hasil: 'tangkap' }; a.sfx = [[1.0, 'tendang'], [1.5, 'tangkap']]; }
+    else { a.tes = tes; if (tes === 'umpan') a.sfx = [[1.5, 'tendang'], [4.5, 'tendang']]; }
+    a.pemain = { nama: String((p && p.nama) || k.nama || u).toUpperCase(), posisi: POSISI[pos] || pos, singkat: pos.slice(0, 3), warna, tunda: 0.5, cap: b.cap || (p ? 'LOLOS' : 'CADANGAN'),
+      warnaCap: b.cap === 'CADANGAN' || !p ? '#7c3aed' : undefined, hitung: !!p, user: u, komen: bersih(k.teks || ''), stat: (b.stat || [['Teknik', 75], ['Fisik', 70], ['Semangat', 90]]).slice(0, 3) };
+    ketukan.push(a.id);
+  } else if (b.jenis === 'info') {
+    Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', kartu: { jenis: { merah: 'peringatan', hijau: 'sukses', ungu: 'target' }[b.warna] || 'target', tunda: 0.3, judul: String(b.judul || '').toUpperCase().slice(0, 22), sub: b.sub || '', isi: (b.isi || []).slice(0, 4) } });
+  } else if (b.jenis === 'papan_skuad') {
+    a.panggung = 'skuad';
+    a.barisan = skuadAkhir.map(p => pastikan(p.user, p.posisi));
+    a.papan = skuadAkhir.slice(0, 11).map(p => ({ pos: p.posisi + (p.status === 'cadangan' ? ' · cad.' : ''), nama: p.nama, warna: WARNA[hash(p.user) % WARNA.length], baru: !!p.baru }))
+      .concat(slotAkhir.map(s => ({ pos: s }))).slice(0, 11).concat([{ pos: '', kamu: true }]);
+    a.sfx = [[0.3, 'ding']]; a.min = 5;
+  } else if (b.jenis === 'jersey') {
+    Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', jersey: (b.opsi || []).slice(0, 3), min: 6.5, sfx: [[0.5, 'ding']] });
+  } else if (b.jenis === 'voting') {
+    Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', voting: { pertanyaan: b.pertanyaan, opsi: (b.opsi || []).slice(0, 3) }, min: 5.5, sfx: [[0.3, 'ding']] });
+  } else if (b.jenis === 'latihan') {
+    const akt = b.aktivitas || 'pemanasan';
+    if (akt === 'pemanasan') Object.assign(a, { id: 'pemanasan', lokasi: 'LATIHAN · PEMANASAN', sfx: [[0.2, 'peluit']] });
+    else if (akt === 'umpan') Object.assign(a, { id: 'umpan', lokasi: 'LATIHAN · UMPAN', penghitung: { label: 'UMPAN NYAMBUNG', tiap: 1.0, mulai: 0.5 }, sfx: [[0.5, 'tendang'], [1.5, 'tendang'], [2.5, 'tendang'], [3.5, 'tendang']] });
+    else if (akt === 'tembak') Object.assign(a, { lokasi: 'LATIHAN · TEMBAKAN', tembak: { penendang: 'jay', kiper: 'radhika', hasil: 'tepis' }, sfx: [[1.0, 'tendang'], [1.5, 'tangkap']] });
+    else Object.assign(a, { panggung: 'masalah', lokasi: 'LATIHAN · GIM MINI', sfx: [[0.6, 'tendang']] });
+    ketukan.push(a.id);
+  } else if (b.jenis === 'bersambung') {
+    Object.assign(a, { id: 'penutup', teaser: bersih(b.teaser || ''), min: 4.5 });
+  } else {
+    Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan' }); // jenis lain (pertandingan/klasemen) belum ada bloknya
+  }
+  adegan.push(a);
+}
+
+// ---------- rakit episode ----------
+const n = (k, d) => k.replace(/^(.)/, c => c.toUpperCase());
+const vote = R.beat.find(b => b.jenis === 'voting' || b.jenis === 'jersey');
+const hurufVote = vote ? (vote.opsi || []).map(o => o.huruf).join(', ').replace(/, ([^,]*)$/, ' atau $1') : '';
+const hari = STATUS.laga_berikutnya && STATUS.laga_berikutnya.day ? Math.max(0, STATUS.laga_berikutnya.day - DAY) : null;
+const ep = {
+  seri: 'Manajer dari Nol', episode: DAY, judul: `DAY ${DAY} — ${R.judul}`, subjudul: `DAY ${DAY} · ${String(R.judul).toUpperCase()}`,
+  fps: 30, ukuran: [1080, 1920], suara: SUARA, otomatis: true, sumber_rencana: `cerita/rencana/day-${String(DAY).padStart(2, '0')}.json`,
+  hookCepat: true, tanpaJudul: true, hookTeks: (R.hook_teks || []).map(s => bersih(s).toUpperCase()).slice(0, 2),
+  skuadAwal: STATUS.skuad.length, musikHangat: 'semua', ketukan,
+  seragam: STATUS.seragam || null, pemain_data: pemainData, adegan,
+  akhir: {
+    judul: slotAkhir.length ? 'AYO GABUNG!' : null, posisi: slotAkhir.map(s => (POSISI[s] || s).toUpperCase()),
+    tombol: vote ? `KOMEN: ${hurufVote}` : 'FOLLOW + KOMEN: DAFTAR',
+    baris2: 'Follow @ai_bareng_el biar nggak ketinggalan',
+    status: `Skuad ${skuadAkhir.length}/11` + (hari != null ? ` · uji coba ${hari} hari lagi` : '')
+  },
+  caption: R.caption
+};
+if (slotAkhir.length) ep.ticker = { teks: `DICARI PEMAIN:  ${slotAkhir.map(s => (POSISI[s] || s).toUpperCase()).join('  •  ')}  •  FOLLOW @ai_bareng_el + KOMEN "DAFTAR – NAMA – POSISI"  •  `, dari: adegan[1] ? adegan[1].id : adegan[0].id, sampai: adegan[adegan.length - 2].id };
+
+// pemeriksaan akhir
+const ids = adegan.map(a => a.id); const kembar = ids.filter((x, i) => ids.indexOf(x) !== i);
+if (kembar.length) throw new Error('id adegan kembar: ' + kembar.join(','));
+adegan.forEach((a, i) => {
+  if (a.baris.length) return;
+  const b = R.beat[i], cadangan = {
+    jersey: `Tiga desain jersey. Kalian yang pilih: ${hurufVote}?`,
+    voting: String((b && b.pertanyaan) || 'Kalian pilih yang mana?'),
+    papan_skuad: `Skuad sekarang ${skuadAkhir.length}. ` + (slotAkhir.length ? `Tinggal ${slotAkhir.length} slot lagi.` : 'Sebelas pemain, lengkap!'),
+    komentar: 'Kalian komen... kalian jadi pemain.',
+    info: String((b && b.judul) || ''),
+    latihan: 'Latihan dulu, biar nggak malu-maluin.',
+    cold_open: 'Ini bukan hari biasa di Yonoha.',
+    bersambung: 'Dan ternyata... ini baru permulaan.'
+  }[b && b.jenis] || 'Dan cerita berlanjut...';
+  a.baris = [{ oleh: 'jack', teks: cadangan, tts: ucap(cadangan) }];
+});
+const out = path.join(ROOT, 'episodes', `episode-${String(DAY).padStart(2, '0')}.json`);
+fs.writeFileSync(out, JSON.stringify(ep, null, 2));
+console.log(`Naskah: ${out}\n${adegan.map(a => `  ${a.id} ${a.panggung || a.tes || (a.tembak ? 'tembak' : '')} | ${a.baris.map(b => b.oleh + ': ' + b.teks).join(' / ')}`).join('\n')}`);
