@@ -1,0 +1,133 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Jersey Graffiti Yonoha</title>
+<style>html,body{margin:0;background:#eef0f3}canvas{display:block}</style></head>
+<body><canvas id="c" width="1600" height="1100"></canvas>
+<script>
+// Desain jersey graffiti orisinal Yonoha Sarang Tikus FC — aksen PUTIH (pengganti ungu)
+const c = document.getElementById('c'), g = c.getContext('2d');
+const FONT = '"Segoe UI Black","Arial Black","Noto Sans",sans-serif';
+let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const pick = a => a[Math.floor(rnd() * a.length)];
+const WARNA = ['#facc15', '#f97316', '#2563eb', '#06b6d4', '#ec4899', '#ef4444', '#22c55e', '#a3e635', '#fb923c', '#38bdf8'];
+const KATA = ['YONOHA', 'MAKAR', 'TIKUS', 'GAS!', 'ULTRAS', 'SARANG', 'FC', 'DARI NOL', 'DAY 1', 'JACK', 'GOL!', 'NGGAK TAKUT', 'DIV 5', 'BOOM'];
+
+// ---------- pola graffiti (dipakai untuk badan baju) ----------
+function pola(w, h, s) {
+  seed = s;
+  const p = document.createElement('canvas'); p.width = w; p.height = h; const q = p.getContext('2d');
+  q.fillStyle = '#ffffff'; q.fillRect(0, 0, w, h);
+  // blok warna miring
+  for (let i = 0; i < 38; i++) {
+    q.save(); q.translate(rnd() * w, rnd() * h); q.rotate((rnd() - 0.5) * 1.2);
+    q.fillStyle = pick(WARNA); const bw = 60 + rnd() * 160, bh = 30 + rnd() * 90;
+    q.beginPath(); q.roundRect(-bw / 2, -bh / 2, bw, bh, 14); q.fill(); q.restore();
+  }
+  // percikan semprot
+  for (let i = 0; i < 900; i++) { q.fillStyle = pick(WARNA.concat(['#111827'])); q.globalAlpha = 0.5 + rnd() * 0.5; q.beginPath(); q.arc(rnd() * w, rnd() * h, rnd() * 3.2, 0, 7); q.fill(); }
+  q.globalAlpha = 1;
+  // bintang & tanda seru
+  for (let i = 0; i < 14; i++) {
+    q.save(); q.translate(rnd() * w, rnd() * h); q.rotate(rnd() * 6); const r = 14 + rnd() * 22;
+    q.beginPath(); for (let k = 0; k < 10; k++) { const a = k * Math.PI / 5, rr = k % 2 ? r * 0.45 : r; q.lineTo(Math.cos(a) * rr, Math.sin(a) * rr); }
+    q.closePath(); q.fillStyle = pick(WARNA); q.fill(); q.lineWidth = 4; q.strokeStyle = '#111827'; q.stroke(); q.restore();
+  }
+  // tag tulisan gaya bubble (isi warna, garis hitam tebal, bayangan)
+  for (let i = 0; i < 26; i++) {
+    const t = pick(KATA), sz = 34 + rnd() * 46;
+    q.save(); q.translate(rnd() * w, rnd() * h); q.rotate((rnd() - 0.5) * 0.9);
+    q.font = `900 ${sz}px ${FONT}`; q.textAlign = 'center'; q.lineJoin = 'round';
+    q.lineWidth = sz * 0.28; q.strokeStyle = '#111827'; q.strokeText(t, sz * 0.06, sz * 0.08);
+    q.lineWidth = sz * 0.2; q.strokeText(t, 0, 0);
+    const gr = q.createLinearGradient(0, -sz * 0.6, 0, sz * 0.2); gr.addColorStop(0, pick(WARNA)); gr.addColorStop(1, pick(WARNA));
+    q.fillStyle = gr; q.fillText(t, 0, 0);
+    q.lineWidth = 2; q.strokeStyle = 'rgba(255,255,255,.8)'; q.strokeText(t, -1, -2);
+    // tetesan cat
+    q.fillStyle = q.fillStyle; for (let d = 0; d < 3; d++) { const dx = (rnd() - 0.5) * sz * 2, dl = 10 + rnd() * 30; q.fillStyle = pick(WARNA); q.fillRect(dx, 2, 5, dl); q.beginPath(); q.arc(dx + 2.5, dl + 2, 4, 0, 7); q.fill(); }
+    q.restore();
+  }
+  // garis coretan
+  q.lineCap = 'round';
+  for (let i = 0; i < 18; i++) { q.strokeStyle = pick(WARNA.concat(['#111827'])); q.lineWidth = 3 + rnd() * 6; q.beginPath(); let x = rnd() * w, y = rnd() * h; q.moveTo(x, y); for (let k = 0; k < 4; k++) { x += (rnd() - 0.5) * 140; y += (rnd() - 0.5) * 90; q.quadraticCurveTo(x + 40, y - 30, x, y); } q.stroke(); }
+  return p;
+}
+
+// ---------- bentuk baju ----------
+function bajuPath(x, y) { // x,y = kiri atas area 560x430
+  const p = new Path2D();
+  p.moveTo(x + 190, y + 10); p.lineTo(x + 230, y); p.quadraticCurveTo(x + 280, y + 46, x + 330, y); p.lineTo(x + 370, y + 10);
+  p.lineTo(x + 500, y + 60); p.lineTo(x + 560, y + 190); p.lineTo(x + 460, y + 228); p.lineTo(x + 430, y + 160);
+  p.lineTo(x + 440, y + 430); p.lineTo(x + 120, y + 430); p.lineTo(x + 130, y + 160); p.lineTo(x + 100, y + 228);
+  p.lineTo(x, y + 190); p.lineTo(x + 60, y + 60); p.closePath(); return p;
+}
+function baju(x, y, s, belakang) {
+  const path = bajuPath(x, y), pat = pola(560, 430, s);
+  g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 30; g.shadowOffsetY = 12; g.fillStyle = '#fff'; g.fill(path); g.restore();
+  g.save(); g.clip(path); g.drawImage(pat, x, y);
+  // ujung lengan PUTIH + garis hitam tipis
+  g.fillStyle = '#ffffff';
+  g.save(); g.translate(x + 530, y + 209); g.rotate(-0.36); g.fillRect(-60, -16, 120, 34); g.fillStyle = '#111827'; g.fillRect(-60, -18, 120, 4); g.restore();
+  g.save(); g.translate(x + 30, y + 209); g.rotate(0.36); g.fillRect(-60, -16, 120, 34); g.fillStyle = '#111827'; g.fillRect(-60, -18, 120, 4); g.restore();
+  // panel samping putih
+  g.fillStyle = '#ffffff'; g.fillRect(x + 118, y + 230, 22, 200); g.fillRect(x + 420, y + 230, 22, 200);
+  g.restore();
+  // kerah PUTIH (V di depan, bulat di belakang)
+  g.save(); g.lineJoin = 'round';
+  if (!belakang) { g.beginPath(); g.moveTo(x + 226, y + 2); g.lineTo(x + 280, y + 74); g.lineTo(x + 334, y + 2); g.lineTo(x + 316, y + 2); g.lineTo(x + 280, y + 50); g.lineTo(x + 244, y + 2); g.closePath(); g.fillStyle = '#fff'; g.fill(); g.lineWidth = 3; g.strokeStyle = '#111827'; g.stroke(); }
+  else { g.beginPath(); g.moveTo(x + 230, y); g.quadraticCurveTo(x + 280, y + 30, x + 330, y); g.lineWidth = 16; g.strokeStyle = '#fff'; g.stroke(); g.lineWidth = 2; g.strokeStyle = '#111827'; g.stroke(); }
+  g.restore();
+  g.lineWidth = 3; g.strokeStyle = '#1f2937'; g.stroke(path);
+}
+function teksTebal(t, x, y, sz, isi, garis) {
+  g.save(); g.font = `900 ${sz}px ${FONT}`; g.textAlign = 'center'; g.lineJoin = 'round';
+  g.lineWidth = sz * 0.22; g.strokeStyle = garis || '#111827'; g.strokeText(t, x, y);
+  g.lineWidth = sz * 0.1; g.strokeStyle = '#ffffff'; g.strokeText(t, x, y);
+  g.fillStyle = isi; g.fillText(t, x, y); g.restore();
+}
+function logo(x, y, r) { // perisai tikus orisinal
+  g.save(); g.translate(x, y);
+  g.beginPath(); g.moveTo(-r, -r); g.lineTo(r, -r); g.lineTo(r, r * 0.3); g.quadraticCurveTo(r, r * 1.1, 0, r * 1.35); g.quadraticCurveTo(-r, r * 1.1, -r, r * 0.3); g.closePath();
+  g.fillStyle = '#ffffff'; g.fill(); g.lineWidth = 4; g.strokeStyle = '#111827'; g.stroke();
+  g.fillStyle = '#9ca3af'; g.beginPath(); g.ellipse(0, r * 0.25, r * 0.5, r * 0.32, 0, 0, 7); g.fill();
+  g.beginPath(); g.arc(r * 0.42, -r * 0.05, r * 0.26, 0, 7); g.fill();
+  g.fillStyle = '#f9a8d4'; g.beginPath(); g.arc(r * 0.38, -r * 0.32, r * 0.13, 0, 7); g.fill();
+  g.fillStyle = '#111827'; g.beginPath(); g.arc(r * 0.5, -r * 0.08, r * 0.05, 0, 7); g.fill();
+  g.strokeStyle = '#f9a8d4'; g.lineWidth = 3; g.beginPath(); g.moveTo(-r * 0.45, r * 0.3); g.quadraticCurveTo(-r * 0.9, r * 0.1, -r * 0.7, r * 0.75); g.stroke();
+  g.fillStyle = '#111827'; g.font = `900 ${r * 0.34}px ${FONT}`; g.textAlign = 'center'; g.fillText('YSTFC', 0, r * 0.98);
+  g.restore();
+}
+function celana(x, y, belakang) {
+  const p = new Path2D(); p.moveTo(x, y); p.lineTo(x + 300, y); p.lineTo(x + 320, y + 200); p.lineTo(x + 170, y + 200); p.lineTo(x + 150, y + 90); p.lineTo(x + 130, y + 200); p.lineTo(x - 20, y + 200); p.closePath();
+  g.save(); g.shadowColor = 'rgba(0,0,0,.2)'; g.shadowBlur = 24; g.shadowOffsetY = 10; g.fillStyle = '#ffffff'; g.fill(p); g.restore();
+  g.save(); g.clip(p);
+  // strip graffiti tipis di sisi
+  const pat = pola(60, 200, 99); g.drawImage(pat, x - 20, y); g.drawImage(pat, x + 270, y);
+  g.fillStyle = '#111827'; g.fillRect(x - 20, y, 340, 8);
+  g.restore(); g.lineWidth = 3; g.strokeStyle = '#1f2937'; g.stroke(p);
+  if (!belakang) logo(x + 40, y + 120, 22); else teksTebal('10', x + 240, y + 150, 56, '#facc15');
+}
+
+// ---------- gambar ----------
+g.fillStyle = '#eef0f3'; g.fillRect(0, 0, 1600, 1100);
+g.fillStyle = '#111827'; g.font = `900 44px ${FONT}`; g.textAlign = 'center';
+g.fillText('YONOHA SARANG TIKUS FC — JERSEY GRAFFITI (AKSEN PUTIH)', 800, 70);
+g.font = `600 24px ${FONT}`; g.fillStyle = '#4b5563'; g.fillText('Desain orisinal · tampak depan & belakang', 800, 108);
+
+// depan
+baju(150, 160, 11, false);
+logo(530, 250, 36);
+teksTebal('YONOHA', 430, 340, 64, '#facc15');
+teksTebal('SARANG TIKUS', 430, 395, 34, '#ffffff');
+celana(280, 610, false);
+// belakang
+baju(890, 160, 23, true);
+teksTebal('PLAYER', 1170, 260, 58, '#ffffff');
+teksTebal('10', 1170, 480, 210, '#facc15');
+celana(1020, 610, true);
+
+g.font = `700 26px ${FONT}`; g.fillStyle = '#374151'; g.textAlign = 'left';
+g.fillText('DEPAN', 360, 860); g.fillText('BELAKANG', 1090, 860);
+// palet
+const PAL = [['#ffffff', 'Putih (aksen)'], ['#facc15', 'Kuning'], ['#f97316', 'Oranye'], ['#2563eb', 'Biru'], ['#06b6d4', 'Toska'], ['#ec4899', 'Pink'], ['#111827', 'Hitam (garis)']];
+PAL.forEach(([w, n], i) => { const px = 150 + i * 190; g.fillStyle = w; g.beginPath(); g.roundRect(px, 930, 44, 44, 10); g.fill(); g.lineWidth = 2; g.strokeStyle = '#9ca3af'; g.stroke(); g.fillStyle = '#374151'; g.font = `600 17px ${FONT}`; g.fillText(n, px + 52, 958); });
+window.siap = true;
+</script></body></html>

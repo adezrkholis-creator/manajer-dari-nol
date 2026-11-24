@@ -98,6 +98,8 @@ Nada: ${BIBLE.nada}
 Aturan dunia:
 - ${BIBLE.aturan_dunia.join('\n- ')}
 - ${BIBLE.aturan_seragam || ''}
+Rencana dari owner (jalankan pada saat yang tepat, jangan lebih cepat):
+- ${(BIBLE.ide_owner || []).join('\n- ')}
 Jawab HANYA JSON valid sesuai format yang diminta, bahasa Indonesia santai.`;
 
 function prompt(err) {

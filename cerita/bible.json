@@ -3,7 +3,6 @@
   "format": "Video vertikal 9:16, 40-50 detik, tayang 2x sehari (16.00 & 19.00 WIB). Setiap tayangan = DAY berikutnya.",
   "akun": "@ai_bareng_el",
   "nada": "Lucu, dramatis, cepat. Underdog miskin yang jujur. Humor receh lokal (bubur ayam, tukang ojek, tikus stadion). Tidak kasar, tidak SARA, tidak politik.",
-
   "tokoh": {
     "Jack": "Manajer, narator (sudut pandang orang pertama). Optimis, sering apes, sayang pemainnya.",
     "Waskito": "Ketua klub Yonoha. Gendut, berpeci, pelit, suka membawa kabar buruk mendadak.",
@@ -16,7 +15,6 @@
     "warna": "Abu-abu dan kuning",
     "markas": "Stadion Yonoha: lapangan becek, tribun kayu, papan skor rusak."
   },
-
   "aturan_dunia": [
     "Pemain Yonoha = penonton asli yang mendaftar lewat komentar. Pakai nama panggilan dari komentarnya. Username boleh ditampilkan di kartu komentar.",
     "Klub lawan boleh memakai NAMA KLUB ASLI (keputusan pemilik), TAPI semua pemain lawan FIKTIF: dilarang nama/wajah pemain sepak bola asli. Lambang lawan digambar sederhana (warna + inisial), bukan logo resmi.",
@@ -25,16 +23,64 @@
     "Setiap tayangan WAJIB: (1) menjawab cliffhanger/voting sebelumnya, (2) satu kejadian baru, (3) satu ajakan komentar atau VOTING, (4) ending yang menggantung (BERSAMBUNG).",
     "Jangan mempermalukan penonton. Pemain yang tidak lolos tetap diperlakukan baik (cadangan, tim B, atau 'menunggu panggilan')."
   ],
-
   "peta_cerita": [
-    { "babak": 1, "nama": "Musim 1 - Divisi 5: Klub Tanpa Pemain", "target": "Lengkapi 11 pemain, uji coba lawan Bintang Sebelah FC (DAY 10), lolos verifikasi liga, mulai liga Divisi 5.",
-      "konflik": ["slot kosong", "kas Rp 4,7 juta", "Bintang Sebelah mengambil pemain lama", "kiper cuma dua"], "selesai_jika": "Yonoha promosi dari Divisi 5" },
-    { "babak": 2, "nama": "Divisi 4: Anak Baru", "target": "Bertahan lalu promosi. Rival baru tiap divisi.", "konflik": ["cedera", "pemain bintang dari komentar", "sponsor aneh"], "selesai_jika": "promosi" },
-    { "babak": 3, "nama": "Divisi 3-1: Naik Kasta", "target": "Promosi beruntun sampai Divisi 1.", "konflik": ["skandal kecil", "pemain mau dibajak", "stadion mau digusur"], "selesai_jika": "juara Divisi 1" },
-    { "babak": 4, "nama": "Liga Nasional", "target": "Bertahan di kasta tertinggi Indonesia, lawan klub besar nasional (nama asli, pemain fiktif).", "konflik": ["laga lawan Persib Bandung", "suporter tamu", "kas menipis"], "selesai_jika": "lolos ke turnamen internasional" },
-    { "babak": 5, "nama": "Panggung Dunia", "target": "Turnamen internasional sampai bertemu Real Madrid (nama asli, pemain fiktif).", "konflik": ["paspor", "jet lag", "mimpi terbesar"], "selesai_jika": "final" }
+    {
+      "babak": 1,
+      "nama": "Musim 1 - Divisi 5: Klub Tanpa Pemain",
+      "target": "Lengkapi 11 pemain, uji coba lawan Bintang Sebelah FC (DAY 10), lolos verifikasi liga, mulai liga Divisi 5.",
+      "konflik": [
+        "slot kosong",
+        "kas Rp 4,7 juta",
+        "Bintang Sebelah mengambil pemain lama",
+        "kiper cuma dua"
+      ],
+      "selesai_jika": "Yonoha promosi dari Divisi 5"
+    },
+    {
+      "babak": 2,
+      "nama": "Divisi 4: Anak Baru",
+      "target": "Bertahan lalu promosi. Rival baru tiap divisi.",
+      "konflik": [
+        "cedera",
+        "pemain bintang dari komentar",
+        "sponsor aneh"
+      ],
+      "selesai_jika": "promosi"
+    },
+    {
+      "babak": 3,
+      "nama": "Divisi 3-1: Naik Kasta",
+      "target": "Promosi beruntun sampai Divisi 1.",
+      "konflik": [
+        "skandal kecil",
+        "pemain mau dibajak",
+        "stadion mau digusur"
+      ],
+      "selesai_jika": "juara Divisi 1"
+    },
+    {
+      "babak": 4,
+      "nama": "Liga Nasional",
+      "target": "Bertahan di kasta tertinggi Indonesia, lawan klub besar nasional (nama asli, pemain fiktif).",
+      "konflik": [
+        "laga lawan Persib Bandung",
+        "suporter tamu",
+        "kas menipis"
+      ],
+      "selesai_jika": "lolos ke turnamen internasional"
+    },
+    {
+      "babak": 5,
+      "nama": "Panggung Dunia",
+      "target": "Turnamen internasional sampai bertemu Real Madrid (nama asli, pemain fiktif).",
+      "konflik": [
+        "paspor",
+        "jet lag",
+        "mimpi terbesar"
+      ],
+      "selesai_jika": "final"
+    }
   ],
-
   "jenis_voting": [
     "Pilih starter: A/B/C (nama pemain dari komentar)",
     "Keputusan Jack: A/B (misal: terima sponsor bubur atau tolak)",
@@ -45,7 +91,6 @@
     "Nama sponsor / maskot / chant suporter"
   ],
   "aturan_seragam": "Begitu status.seragam terisi, SEMUA pemain Yonoha di setiap adegan memakai warna seragam itu (utama, aksen, celana). Sebelum ada seragam, pemain memakai baju masing-masing. Desain jersey harus original (tanpa meniru jersey klub asli).",
-
   "pola_cliffhanger": [
     "Kabar mendadak dari Waskito di detik terakhir",
     "Surat/telepon misterius",
@@ -53,5 +98,8 @@
     "Skor imbang di menit 90+, layar membeku",
     "Rival muncul dengan pemain baru",
     "Hasil voting yang mengubah segalanya"
+  ],
+  "ide_owner": [
+    "JERSEY: voting seragam yang sekarang (DAY 6) jalan dulu. Setelah Yonoha RESMI MASUK LIGA (lolos verifikasi / mulai Liga Divisi 5), adakan VOTING JERSEY ULANG untuk seragam liga. Salah satu opsinya wajib desain GRAFFITI: motif coretan penuh warna (kuning, oranye, biru, toska, pink, hijau, tulisan YONOHA/MAKAR/TIKUS/ULTRAS/GAS!) dengan kerah, ujung lengan, panel samping, dan celana PUTIH (desain/jersey-graffiti.png). Di beat jersey pakai pola \"graffiti\", utama #facc15, aksen #ffffff, celana #ffffff."
   ]
 }
