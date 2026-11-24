@@ -9,8 +9,9 @@ if (fs.existsSync(envFile)) for (const l of fs.readFileSync(envFile, 'utf8').spl
   const m = l.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
 }
 const TOKEN = process.env.META_IG_TOKEN, IG = process.env.IG_USER_ID || '17841474398873049';
-const KEY = process.env.OPENAI_API_KEY, BASE = (process.env.OPENAI_BASE_URL || 'https://ai.flaz.id/v1').replace(/\/+$/, '');
-const MODEL = process.env.LLM_MODEL_LABEL || 'gpt-4o-mini', OWN = 'ai_bareng_el';
+const KEY = process.env.OPENAI_API_KEY, GEMINI = /^AIza/.test(KEY || ''); // key Google AI Studio dikenali otomatis
+const BASE = GEMINI ? 'https://generativelanguage.googleapis.com/v1beta/openai' : (process.env.OPENAI_BASE_URL || 'https://ai.flaz.id/v1').replace(/\/+$/, '');
+const MODEL = GEMINI ? 'gemini-2.5-flash' : (process.env.LLM_MODEL_LABEL || 'gpt-4o-mini'), OWN = 'ai_bareng_el';
 const G = 'https://graph.facebook.com/v21.0';
 if (!TOKEN || !KEY) { console.error('Butuh META_IG_TOKEN dan OPENAI_API_KEY.'); process.exit(1); }
 const STATUS = JSON.parse(fs.readFileSync(path.join(ROOT, 'cerita', 'status.json'), 'utf8'));

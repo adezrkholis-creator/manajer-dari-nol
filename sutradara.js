@@ -16,8 +16,9 @@ if (fs.existsSync(envFile)) for (const l of fs.readFileSync(envFile, 'utf8').spl
   const m = l.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, '');
 }
 const KEY = process.env.OPENAI_API_KEY;
-const BASE = (process.env.OPENAI_BASE_URL || 'https://ai.flaz.id/v1').replace(/\/+$/, '');
-const MODEL = process.env.LLM_MODEL || 'gpt-4o';
+const GEMINI = /^AIza/.test(KEY || ''); // key Google AI Studio (gratis) dikenali otomatis
+const BASE = GEMINI ? 'https://generativelanguage.googleapis.com/v1beta/openai' : (process.env.OPENAI_BASE_URL || 'https://ai.flaz.id/v1').replace(/\/+$/, '');
+const MODEL = GEMINI ? 'gemini-2.5-flash' : (process.env.LLM_MODEL || 'gpt-4o');
 if (!KEY && !args.includes('--terapkan-dari')) { console.error('OPENAI_API_KEY belum ada (env / video/.env).'); process.exit(1); }
 
 const BIBLE = baca('cerita/bible.json');
