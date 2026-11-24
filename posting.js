@@ -55,27 +55,34 @@ async function api(method, url, params) {
   const size = fs.statSync(VIDEO).size;
   console.log(`Video: ${path.basename(VIDEO)} (${(size / 1048576).toFixed(1)} MB)`);
 
-  // 1) buat container Reel (upload langsung)
-  const c = await api('POST', `${G}/${IG}/media`, { media_type: 'REELS', upload_type: 'resumable', caption, share_to_feed: 'true', thumb_offset: String(EP.sampulMs || 1500) });
-  console.log('Container: ' + c.id);
-  // 2) kirim file video
-  const up = await fetch(c.uri || `https://rupload.facebook.com/ig-api-upload/${V}/${c.id}`, {
-    method: 'POST', headers: { Authorization: 'OAuth ' + TOKEN, offset: '0', file_size: String(size) }, body: fs.readFileSync(VIDEO)
-  });
-  const uj = await up.json().catch(() => ({}));
-  if (!up.ok || uj.success === false) throw new Error('Upload video gagal: ' + JSON.stringify(uj).slice(0, 300));
-  console.log('Video terkirim, menunggu Instagram memproses...');
-  // 3) tunggu FINISHED
-  let st = {};
-  for (let i = 0; i < 60; i++) {
-    await sleep(10000);
-    st = await api('GET', `${G}/${c.id}`, { fields: 'status_code,status' });
-    process.stdout.write(`\r  status: ${st.status_code}   `);
-    if (st.status_code === 'FINISHED') break;
-    if (st.status_code === 'ERROR' || st.status_code === 'EXPIRED') throw new Error('Instagram menolak video: ' + (st.status || st.status_code));
+  // 1-3) buat container, kirim video, tunggu FINISHED — diulang sampai 3x (server Meta kadang gagal sesaat,
+  //      mis. ProcessingFailedError 24-11-2026). Tiap ulangan pakai container baru.
+  async function unggah() {
+    const c = await api('POST', `${G}/${IG}/media`, { media_type: 'REELS', upload_type: 'resumable', caption, share_to_feed: 'true', thumb_offset: String(EP.sampulMs || 1500) });
+    console.log('Container: ' + c.id);
+    const up = await fetch(c.uri || `https://rupload.facebook.com/ig-api-upload/${V}/${c.id}`, {
+      method: 'POST', headers: { Authorization: 'OAuth ' + TOKEN, offset: '0', file_size: String(size) }, body: fs.readFileSync(VIDEO)
+    });
+    const uj = await up.json().catch(() => ({}));
+    if (!up.ok || uj.success === false) throw new Error('Upload video gagal: ' + JSON.stringify(uj).slice(0, 300));
+    console.log('Video terkirim, menunggu Instagram memproses...');
+    let st = {};
+    for (let i = 0; i < 60; i++) {
+      await sleep(10000);
+      st = await api('GET', `${G}/${c.id}`, { fields: 'status_code,status' });
+      process.stdout.write(`\r  status: ${st.status_code}   `);
+      if (st.status_code === 'FINISHED') break;
+      if (st.status_code === 'ERROR' || st.status_code === 'EXPIRED') throw new Error('Instagram menolak video: ' + (st.status || st.status_code));
+    }
+    console.log('');
+    if (st.status_code !== 'FINISHED') throw new Error('Proses Instagram terlalu lama (10 menit).');
+    return c;
   }
-  console.log('');
-  if (st.status_code !== 'FINISHED') throw new Error('Proses Instagram terlalu lama (10 menit). Coba lagi nanti.');
+  let c = null;
+  for (let coba = 1; coba <= 3 && !c; coba++) {
+    try { c = await unggah(); }
+    catch (e) { console.log(`Percobaan ${coba} gagal: ${e.message}`); if (coba === 3) throw e; console.log('Coba lagi 60 detik lagi...'); await sleep(60000); }
+  }
   // 4) tayangkan
   const p = await api('POST', `${G}/${IG}/media_publish`, { creation_id: c.id });
   const info = await api('GET', `${G}/${p.id}`, { fields: 'permalink,timestamp' });
