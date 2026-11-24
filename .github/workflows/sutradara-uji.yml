@@ -24,8 +24,8 @@ jobs:
           node-version: 22
       - name: Susun rencana episode
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_BASE_URL: https://ai.flaz.id/v1
+          OPENAI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.OPENAI_API_KEY }}
+          OPENAI_BASE_URL: ${{ secrets.GEMINI_API_KEY != '' && 'https://generativelanguage.googleapis.com/v1beta/openai' || 'https://ai.flaz.id/v1' }}
           LLM_MODEL: ${{ inputs.model }}
         run: node sutradara.js --bahan ${{ inputs.bahan }} | tee /tmp/log.txt
       - name: Simpan hasil ke branch pratinjau-rencana

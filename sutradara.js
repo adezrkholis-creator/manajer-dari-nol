@@ -238,7 +238,7 @@ const RINGAN = /cold_open|hook|caption|total kata|orang pertama/i; // masalah ya
 async function nilaiHook(r) {
   const co = (r.beat || [])[0] || {};
   const isi = `TEKS LAYAR: ${(r.hook_teks || []).join(' / ')}\nUCAPAN: ${[co.narasi].concat((co.dialog || []).map(d => d.oleh + ': ' + d.teks)).filter(Boolean).join(' / ')}`;
-  const res = await fetch(BASE + '/chat/completions', {
+  const res = await aiFetch(BASE + '/chat/completions', {
     method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' },
     body: JSON.stringify({ model: MODEL, temperature: 0.2, response_format: { type: 'json_object' }, messages: [
       { role: 'system', content: 'Kamu juri hook video pendek (Reels/Shorts) penonton Indonesia 18-34 th. Galak dan jujur. Jawab JSON saja.' },
@@ -250,7 +250,7 @@ async function nilaiHook(r) {
 }
 
 async function tanya(err) {
-  const res = await fetch(BASE + '/chat/completions', {
+  const res = await aiFetch(BASE + '/chat/completions', {
     method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' },
     body: JSON.stringify({ model: MODEL, temperature: 0.8, response_format: { type: 'json_object' },
       messages: [{ role: 'system', content: system }, { role: 'user', content: prompt(err) }] })
@@ -284,6 +284,14 @@ function terapkan(r) {
   s.rencana_dekat = r.rencana_dekat || [];
   s.riwayat.push(`DAY ${DAY}: ${r.riwayat || r.ringkas}`);
   return s;
+}
+
+// panggil AI; kalau server (mis. Gemini) menolak response_format, ulangi tanpa itu. Gagal 401/402/429 = berhenti dengan pesan jelas.
+async function aiFetch(url, opt) {
+  let r = await fetch(url, opt);
+  if (r.status === 400) { const b = JSON.parse(opt.body); if (b.response_format) { delete b.response_format; r = await fetch(url, { ...opt, body: JSON.stringify(b) }); } }
+  if ([401, 402, 403, 429].includes(r.status)) { const t = await r.text(); throw new Error(`AI menolak (${r.status}) — cek key/saldo/kuota: ${t.slice(0, 200)}`); }
+  return r;
 }
 
 (async () => {

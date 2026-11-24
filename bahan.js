@@ -21,6 +21,14 @@ async function graph(p, q) {
   const r = await fetch(u); const j = await r.json(); if (j.error) throw new Error('Graph: ' + j.error.message); return j;
 }
 
+// panggil AI; kalau server (mis. Gemini) menolak response_format, ulangi tanpa itu. Gagal 401/402/429 = berhenti dengan pesan jelas.
+async function aiFetch(url, opt) {
+  let r = await fetch(url, opt);
+  if (r.status === 400) { const b = JSON.parse(opt.body); if (b.response_format) { delete b.response_format; r = await fetch(url, { ...opt, body: JSON.stringify(b) }); } }
+  if ([401, 402, 403, 429].includes(r.status)) { const t = await r.text(); throw new Error(`AI menolak (${r.status}) — cek key/saldo/kuota: ${t.slice(0, 200)}`); }
+  return r;
+}
+
 (async () => {
   const media = (await graph(`/${IG}/media`, { fields: 'id,caption,timestamp', limit: '12' })).data || [];
   const semua = [];
@@ -48,7 +56,7 @@ async function graph(p, q) {
   let label = [];
   if (kandidat.length) {
     const daftar = kandidat.map(k => `${k.id} | @${k.username} | ${k.teks.replace(/\s+/g, ' ').slice(0, 160)}`).join('\n');
-    const r = await fetch(BASE + '/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' },
+    const r = await aiFetch(BASE + '/chat/completions', { method: 'POST', headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: MODEL, temperature: 0.1, response_format: { type: 'json_object' }, messages: [
         { role: 'system', content: 'Kamu memberi label komentar penonton serial sepak bola fiktif. Jawab JSON {"hasil":[...]} saja.' },
         { role: 'user', content: `Untuk tiap komentar keluarkan {"id","label":"DAFTAR|ULTRAS|VOTE|USUL|SARAN|PERTANYAAN|DUKUNGAN|SPAM|LAIN","nama","posisi":"GK|CB|LB|RB|DMF|CMF|AMF|LWF|RWF|CF|kosong","nomor","sebut_pemain_asli":true/false}. "nama" HANYA kalau ditulis di komentar (mis. "Daftar - Nadzar"), selain itu "kosong" — jangan menebak dari username. DAFTAR = ingin jadi pemain. ULTRAS = ingin jadi suporter/ultras/fans/penonton tribun Yonoha. VOTE = cuma memilih huruf A/B/C. USUL = usul desain/nama/ide. Bek kiri=LB, bek kanan=RB, bek tengah=CB, sayap kiri=LWF, sayap kanan=RWF, gelandang tengah=CMF, gelandang serang=AMF, penyerang=CF, kiper=GK.\n\n${daftar}` }] }) });
