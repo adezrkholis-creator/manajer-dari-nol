@@ -31,8 +31,8 @@ jobs:
       IG_USER_ID: ${{ secrets.IG_USER_ID }}
       OPENAI_API_KEY: ${{ secrets.GEMINI_API_KEY || secrets.OPENAI_API_KEY }}
       OPENAI_BASE_URL: ${{ secrets.GEMINI_API_KEY != '' && 'https://generativelanguage.googleapis.com/v1beta/openai' || 'https://ai.flaz.id/v1' }}
-      LLM_MODEL: ${{ secrets.GEMINI_API_KEY != '' && 'gemini-2.5-flash' || 'gpt-4o' }}
-      LLM_MODEL_LABEL: ${{ secrets.GEMINI_API_KEY != '' && 'gemini-2.5-flash' || 'gpt-4o-mini' }}
+      LLM_MODEL: ${{ secrets.GEMINI_API_KEY != '' && 'gemini-3.8-flash' || 'gpt-4o' }}
+      LLM_MODEL_LABEL: ${{ secrets.GEMINI_API_KEY != '' && 'gemini-3.8-flash' || 'gpt-4o-mini' }}
       CHROME_PATH: /usr/bin/google-chrome
       PYTHON: python3
       POSTING: ${{ github.event_name == 'schedule' || inputs.posting }}
