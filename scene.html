@@ -328,8 +328,8 @@ function stageUmum(u, k, talking, T) {
   if (lok === 'kantor') {
     lampOffice.intensity = 16; base = [OX, 0, 0];
     WASKITO.visible = ada('waskito'); WASKITO.position.set(OX, 0, -2.25); WASKITO.rotation.y = 0; pose(WASKITO, u, mood('waskito'), talking === 'waskito');
-    JACK.position.set(OX + 0.9, 0, 0.6); JACK.rotation.y = Math.PI + 0.5; pose(JACK, u, mood('jack'), talking === 'jack');
-    camA = [OX + 3.6, 2.4, 6.6]; camB = [OX + 2.2, 2.2, 4.4]; look = [OX + 0.3, 1.9, -1.0];
+    JACK.position.set(OX + 1.9, 0, 0.4); JACK.rotation.y = Math.PI + 0.9; pose(JACK, u, mood('jack'), talking === 'jack');
+    camA = [OX - 1.2, 2.4, 6.4]; camB = [OX - 0.6, 2.2, 4.6]; look = [OX + 0.6, 1.9, -1.0];
   } else if (lok === 'ruang_ganti') {
     lampLocker.intensity = 15 * flicker(T, 19); drip.visible = true; drip.position.y = 4.1 - ((u * 1.6) % 1) * 3.9;
     JACK.position.set(LX, 0, 0.6); JACK.rotation.y = ada('waskito') ? 0.6 : 0; pose(JACK, u, mood('jack'), talking === 'jack');
