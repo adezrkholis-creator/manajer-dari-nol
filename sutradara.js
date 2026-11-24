@@ -217,6 +217,9 @@ function rapikan(r) {
     if (b.jenis === 'jersey') (b.opsi || []).forEach((o, i) => ['utama', 'aksen', 'celana'].forEach((c, j) => { if (!/^#[0-9a-f]{6}$/i.test(o[c] || '')) o[c] = WARNA_CADANGAN[i % 3][j]; }));
   }
   r.beat = r.beat.filter(b => b.jenis !== 'ultras' || b.users.length);
+  const ISI = { komentar: 'Lihat komentar kalian. Kalian serius mau main!', ultras: 'Yang belum lolos? Kalian jadi ultras Yonoha!', lolos: `${PILIHAN.length} pemain baru resmi gabung Yonoha!`,
+    papan_skuad: 'Ini skuad kita sekarang.', info: 'Catat baik-baik.', latihan: 'Latihan dulu, biar nggak malu-maluin.', jersey: 'Kalian yang pilih seragamnya!', voting: 'Kalian yang pilih!' };
+  for (const b of r.beat) if (!String(b.narasi || '').trim() && !(b.dialog || []).length && ISI[b.jenis]) b.narasi = ISI[b.jenis];
   if (PILIHAN.length > 2 && !r.beat.some(b => b.jenis === 'lolos')) {
     const i = Math.max(1, r.beat.findIndex(b => b.jenis === 'voting' || b.jenis === 'jersey' || b.jenis === 'bersambung'));
     r.beat.splice(i, 0, { jenis: 'lolos', narasi: `${PILIHAN.length} pemain baru resmi gabung Yonoha!` });
@@ -292,8 +295,13 @@ function terapkan(r) {
   for (let coba = 1; coba <= 4; coba++) {
     try { r = rapikan(await tanya(err)); } catch (e) { console.log(`Percobaan ${coba}: AI error ${e.message}`); err = ['jawaban sebelumnya bukan JSON valid']; continue; }
     err = periksa(r);
-    if (err.every(x => RINGAN.test(x)) && (!cadangan || err.length < cadangan.err.length)) cadangan = { r: JSON.parse(JSON.stringify(r)), err };
-    if (!err.length) { const h = await nilaiHook(r).catch(() => null); if (h) { console.log(`Nilai hook: ${h.skor}/10 — ${h.alasan}`); if (h.skor < 7 && coba < 4) err = [`HOOK kurang nendang (skor ${h.skor}/10): ${h.alasan}. Saran: ${h.saran || 'buka dari momen paling dramatis/lucu, kalimat pendek berteriak'}`]; } }
+    let skor = 0;
+    if (err.every(x => RINGAN.test(x))) {
+      const h = await nilaiHook(r).catch(() => null);
+      if (h) { skor = h.skor; console.log(`Nilai hook: ${h.skor}/10 — ${h.alasan}`); if (h.skor < 7) err.push(`HOOK kurang nendang (skor ${h.skor}/10): ${h.alasan}. Saran: ${h.saran || 'buka dari momen paling dramatis/lucu, kalimat pendek berteriak'}`); }
+      const nilai = skor * 10 - err.length; // pilih hook terbaik, lalu masalah paling sedikit
+      if (!cadangan || nilai > cadangan.nilai) cadangan = { r: JSON.parse(JSON.stringify(r)), err: err.slice(), nilai };
+    }
     console.log(`Percobaan ${coba}: ${err.length ? err.length + ' masalah' : 'LOLOS validasi'}`);
     if (!err.length) break;
     err.forEach(x => console.log('  - ' + x));
