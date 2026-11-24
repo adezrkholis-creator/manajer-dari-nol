@@ -24,14 +24,32 @@ async function graph(p, q) {
 
 // panggil AI; kalau server (mis. Gemini) menolak response_format, ulangi tanpa itu. Gagal 401/402/429 = berhenti dengan pesan jelas.
 async function aiFetch(url, opt) {
-  let r;
-  for (let i = 1; i <= 6; i++) { // server sibuk (503/500/429) -> tunggu lalu ulang
-    r = await fetch(url, opt);
-    if (![429, 500, 502, 503, 504].includes(r.status) || i === 6) break;
-    console.log(`AI sibuk (${r.status}), coba lagi ${i * 15} dtk...`); await new Promise(z => setTimeout(z, i * 15000));
+  // model utama dulu; kalau sibuk/hilang (503/404/429/5xx) pindah ke model lain dari daftar /models (khusus Gemini)
+  const SIBUK = [404, 429, 500, 502, 503, 504];
+  const body0 = JSON.parse(opt.body);
+  let calon = [body0.model];
+  if (/generativelanguage/.test(url)) {
+    try {
+      const m = await (await fetch(url.replace(/\/chat\/completions$/, '/models'), { headers: { Authorization: opt.headers.Authorization } })).json();
+      const ids = (m.data || []).map(x => String(x.id).replace(/^models\//, '')).filter(id => /gemini/.test(id) && /flash|pro/.test(id) && !/image|tts|audio|live|embed|vision|exp|preview/.test(id));
+      ids.sort((a, b) => (/flash/.test(b) - /flash/.test(a)) || b.localeCompare(a, undefined, { numeric: true }));
+      calon = calon.concat(ids.filter(id => id !== body0.model)).slice(0, 5);
+    } catch (e) { /* daftar model gagal: pakai model utama saja */ }
   }
-  if (r.status === 400) { const b = JSON.parse(opt.body); if (b.response_format) { delete b.response_format; r = await fetch(url, { ...opt, body: JSON.stringify(b) }); } }
-  if (!r.ok) { const t = await r.text(); throw new Error(`AI menolak (${r.status}) — cek key/saldo/kuota: ${t.slice(0, 200)}`); }
+  let r;
+  for (const model of calon) {
+    const body = { ...body0, model };
+    for (let i = 1; i <= 3; i++) {
+      r = await fetch(url, { ...opt, body: JSON.stringify(body) });
+      if (r.status === 400 && body.response_format) { delete body.response_format; r = await fetch(url, { ...opt, body: JSON.stringify(body) }); }
+      if (!SIBUK.includes(r.status) || r.status === 404) break;
+      console.log(`AI ${model} sibuk (${r.status}), coba lagi ${i * 15} dtk...`); await new Promise(z => setTimeout(z, i * 15000));
+    }
+    if (r.ok) { if (model !== body0.model) console.log(`Pakai model cadangan: ${model}`); return r; }
+    if (!SIBUK.includes(r.status)) break;
+    console.log(`Model ${model} tidak bisa (${r.status}), pindah model...`);
+  }
+  if (!r.ok && r.status !== 400) { const t = await r.text(); throw new Error(`AI menolak (${r.status}) — cek key/saldo/kuota: ${t.slice(0, 200)}`); }
   return r;
 }
 
