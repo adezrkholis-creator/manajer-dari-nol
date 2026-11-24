@@ -1,0 +1,167 @@
+{
+  "day": 6,
+  "judul": "Seleksi Ramai, Jersey Baru",
+  "ringkas": "Seleksi gelombang kedua Yonoha, pamer tiga desain jersey.",
+  "jawab_sebelumnya": "Jack kembali setelah ketahuan, Waskito mengatur seleksi berikutnya.",
+  "pemain_lolos": [
+    {
+      "user": "marydillh2006_",
+      "nama": "Arya",
+      "posisi": "RB",
+      "nomor": "",
+      "alasan": "Kemampuan bertahan solid."
+    },
+    {
+      "user": "ikzz_nyalse",
+      "nama": "Ikzz",
+      "posisi": "LB",
+      "nomor": "21",
+      "alasan": "Kecepatan dan akurasi umpan."
+    },
+    {
+      "user": "ax_last_line",
+      "nama": "Putz",
+      "posisi": "LWF",
+      "nomor": "13",
+      "alasan": "Dribel lincah dan tembakan kuat."
+    },
+    {
+      "user": "iiamelzy",
+      "nama": "Iiamelzy",
+      "posisi": "CB",
+      "nomor": "",
+      "alasan": "Tangguh di udara."
+    },
+    {
+      "user": "bagasandikaprasetyo",
+      "nama": "Siso",
+      "posisi": "RB",
+      "nomor": "",
+      "alasan": "Teknik bertahan dan kecepatannya."
+    },
+    {
+      "user": "nadzar_30",
+      "nama": "Nadzar",
+      "posisi": "LWF",
+      "nomor": "",
+      "alasan": "Serangan dari sayap tajam."
+    },
+    {
+      "user": "recallllllllllllll",
+      "nama": "Adel",
+      "posisi": "CMF",
+      "nomor": "",
+      "alasan": "Visi permainan yang baik."
+    },
+    {
+      "user": "sotopenyet22",
+      "nama": "Zacky",
+      "posisi": "CMF",
+      "nomor": "10/8",
+      "alasan": "Distribusi bola apik."
+    },
+    {
+      "user": "1dongg_06_",
+      "nama": "Dongg",
+      "posisi": "LB",
+      "nomor": "",
+      "alasan": "Pertahanan kokoh dan tenang."
+    },
+    {
+      "user": "andi_muh.tegar",
+      "nama": "Tegar",
+      "posisi": "LWF",
+      "nomor": "",
+      "alasan": "Serangan balik cepat dan efektif."
+    }
+  ],
+  "beat": [
+    {
+      "jenis": "cold_open",
+      "teks_layar": [
+        "PERSAINGAN KETAT!",
+        "SIAPA LOLOS KE SKUAD INTI?"
+      ],
+      "narasi": "Seleksi hari ini ramai! Siapa saja yang bakal terpilih ke skuad Yonoha?"
+    },
+    {
+      "jenis": "komentar",
+      "users": [
+        "marydillh2006_",
+        "ikzz_nyalse",
+        "ax_last_line",
+        "iiamelzy"
+      ],
+      "narasi": "Banyaknya pendaftar kali ini bikin aku kewalahan juga, tapi makin seru!"
+    },
+    {
+      "jenis": "lolos",
+      "narasi": "Seleksi berjalan ketat dan berhasil merekrut beberapa talenta baru ke skuad Yonoha!"
+    },
+    {
+      "jenis": "jersey",
+      "opsi": [
+        {
+          "huruf": "A",
+          "nama": "Garuda Merah",
+          "utama": "#ff0000",
+          "aksen": "#ffffff",
+          "celana": "#ff0000",
+          "pola": "polos"
+        },
+        {
+          "huruf": "B",
+          "nama": "Biru Langit",
+          "utama": "#0000ff",
+          "aksen": "#ffffff",
+          "celana": "#0000ff",
+          "pola": "garis"
+        },
+        {
+          "huruf": "C",
+          "nama": "Hijau Tani",
+          "utama": "#008000",
+          "aksen": "#000000",
+          "celana": "#008000",
+          "pola": "selempang"
+        }
+      ],
+      "narasi": "Desain jersey juga sudah siap, yuk pilih mana yang paling pas buat kita!"
+    },
+    {
+      "jenis": "ultras",
+      "users": [
+        "onlygung1",
+        "amirdaffa27",
+        "lakuteruss.id",
+        "m.r.r21_"
+      ],
+      "nyanyian": "Yonoha tak terkalahkan!",
+      "narasi": "Beberapa penonton setia akhirnya bergabung menjadi ULTRAS Yonoha!"
+    },
+    {
+      "jenis": "bersambung",
+      "teaser": "Siapa sponsor jersey kita?",
+      "narasi": "Dengan jersey dan skuad baru, siapa yang akan jadi sponsor utama kita?"
+    }
+  ],
+  "nama_ultras": null,
+  "voting_baru": null,
+  "benang_terbuka": [
+    "Yonoha belum punya sponsor, siapa yang bakal deal?",
+    "Persiapan uji coba lawan Bintang Sebelah FC.",
+    "Nama kelompok Ultras Yonoha belum ada."
+  ],
+  "rencana_dekat": [
+    "Umumkan desain jersey terpilih.",
+    "Cari sponsor utama untuk Yonoha."
+  ],
+  "riwayat": "Perekrutan gelombang kedua sukses, pamer tiga desain jersey.",
+  "caption": "Seleksi Yonoha ramai! Arya, Ikzz, Putz, Iiamelzy, Siso, Nadzar, Adel, Zacky, Dongg, dan Tegar lolos! Pilih desain jersey A, B, atau C. #ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": [
+    "PERSAINGAN KETAT!",
+    "SIAPA LOLOS KE SKUAD INTI?"
+  ],
+  "peringatan": [],
+  "model": "gpt-4o"
+}

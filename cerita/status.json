@@ -1,40 +1,173 @@
 {
-  "day_terakhir": 5,
+  "day_terakhir": 6,
   "babak": 1,
   "divisi": "Divisi 5",
   "kas": 4750000,
-  "hari_menuju_ujicoba": 5,
-  "laga_berikutnya": { "lawan": "Bintang Sebelah FC", "jenis": "uji coba", "day": 10 },
+  "hari_menuju_ujicoba": 4,
+  "laga_berikutnya": {
+    "lawan": "Bintang Sebelah FC",
+    "jenis": "uji coba",
+    "day": 10
+  },
   "skuad": [
-    { "nama": "Rizky", "user": "kyy151030", "posisi": "RWF", "status": "inti" },
-    { "nama": "Miftakh", "user": "miftakh_al.13", "posisi": "CB", "status": "inti" },
-    { "nama": "Dapeng", "user": "daffazzh", "posisi": "AMF", "status": "inti" },
-    { "nama": "Jay", "user": "elmermuhandis_", "posisi": "CF", "status": "inti" },
-    { "nama": "Ando", "user": "sayaando8", "posisi": "GK", "status": "inti" },
-    { "nama": "Radhika", "user": "radhika_ananda16", "posisi": "GK", "status": "cadangan" },
-    { "nama": "Bagus", "user": "bagus73503", "posisi": "CMF", "status": "inti" }
+    {
+      "nama": "Rizky",
+      "user": "kyy151030",
+      "posisi": "RWF",
+      "status": "inti"
+    },
+    {
+      "nama": "Miftakh",
+      "user": "miftakh_al.13",
+      "posisi": "CB",
+      "status": "inti"
+    },
+    {
+      "nama": "Dapeng",
+      "user": "daffazzh",
+      "posisi": "AMF",
+      "status": "inti"
+    },
+    {
+      "nama": "Jay",
+      "user": "elmermuhandis_",
+      "posisi": "CF",
+      "status": "inti"
+    },
+    {
+      "nama": "Ando",
+      "user": "sayaando8",
+      "posisi": "GK",
+      "status": "inti"
+    },
+    {
+      "nama": "Radhika",
+      "user": "radhika_ananda16",
+      "posisi": "GK",
+      "status": "cadangan"
+    },
+    {
+      "nama": "Bagus",
+      "user": "bagus73503",
+      "posisi": "CMF",
+      "status": "inti"
+    },
+    {
+      "nama": "Arya",
+      "user": "marydillh2006_",
+      "posisi": "RB",
+      "status": "inti",
+      "nomor": ""
+    },
+    {
+      "nama": "Ikzz",
+      "user": "ikzz_nyalse",
+      "posisi": "LB",
+      "status": "inti",
+      "nomor": "21"
+    },
+    {
+      "nama": "Putz",
+      "user": "ax_last_line",
+      "posisi": "LWF",
+      "status": "inti",
+      "nomor": "13"
+    },
+    {
+      "nama": "Iiamelzy",
+      "user": "iiamelzy",
+      "posisi": "CB",
+      "status": "inti",
+      "nomor": ""
+    },
+    {
+      "nama": "Siso",
+      "user": "bagasandikaprasetyo",
+      "posisi": "RB",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Nadzar",
+      "user": "nadzar_30",
+      "posisi": "LWF",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Adel",
+      "user": "recallllllllllllll",
+      "posisi": "CMF",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Zacky",
+      "user": "sotopenyet22",
+      "posisi": "CMF",
+      "status": "cadangan",
+      "nomor": "10/8"
+    },
+    {
+      "nama": "Dongg",
+      "user": "1dongg_06_",
+      "posisi": "LB",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Tegar",
+      "user": "andi_muh.tegar",
+      "posisi": "LWF",
+      "status": "cadangan",
+      "nomor": ""
+    }
   ],
-  "slot_kosong": ["LB", "CB", "RB", "LWF"],
+  "slot_kosong": [],
   "skuad_maks": 30,
-  "ultras": { "nama": null, "anggota": [] },
+  "ultras": {
+    "nama": null,
+    "anggota": [
+      "onlygung1",
+      "amirdaffa27",
+      "lakuteruss.id",
+      "m.r.r21_"
+    ]
+  },
   "seragam": null,
   "seragam_tandang": null,
   "benang_terbuka": [
-    "DAY 5 berakhir: Jack ketahuan Coach Darman saat mengintip; uji coba lawan Bintang Sebelah FC (berisi 9 mantan pemain Yonoha) tinggal 5 hari.",
-    "4 slot belum terisi; banyak pendaftar baru di komentar (bek kiri, bek tengah, sayap kiri, kiper). Skuad boleh sampai 30 (sisanya cadangan).",
-    "Yonoha belum punya suporter. Penonton bisa gabung ULTRAS Yonoha (komen ULTRAS); nama kelompok ultras belum ada.",
-    "Yonoha BELUM PUNYA SERAGAM: pemain latihan pakai baju sendiri-sendiri. Harus ada sebelum uji coba DAY 10. Desain dipilih penonton lewat voting komentar (A/B/C atau usul sendiri)."
+    "Yonoha belum punya sponsor, siapa yang bakal deal?",
+    "Persiapan uji coba lawan Bintang Sebelah FC.",
+    "Nama kelompok Ultras Yonoha belum ada."
   ],
   "rencana_dekat": [
-    "Episode voting seragam: tampilkan 3 desain jersey (A/B/C), ajak komen A/B/C atau usul desain sendiri.",
-    "Episode berikutnya: umumkan pemenang ('Kalian memilih ...'), usul terbaik jadi jersey tandang + sebut username pengusul. Cliffhanger: Waskito 'siapa yang bayar?' -> sponsor aneh."
+    "Umumkan desain jersey terpilih.",
+    "Cari sponsor utama untuk Yonoha."
   ],
-  "voting_berjalan": null,
+  "voting_berjalan": {
+    "pertanyaan": "Pilih seragam",
+    "opsi": [
+      {
+        "huruf": "A",
+        "teks": "Garuda Merah"
+      },
+      {
+        "huruf": "B",
+        "teks": "Biru Langit"
+      },
+      {
+        "huruf": "C",
+        "teks": "Hijau Tani"
+      }
+    ]
+  },
   "riwayat": [
     "DAY 1: Jack tiba, klub tanpa pemain, lowongan dibuka.",
     "DAY 2: Rizky, Miftakh, Dapeng lolos seleksi. Butuh kiper.",
     "DAY 3: Jay, Ando (GK utama), Radhika (GK pelapis), Bagus lolos. Skuad 7/11. Wajib follow untuk daftar.",
     "DAY 4: Latihan perdana, sisi kiri kosong. Waskito: uji coba hari ke-10 lawan Bintang Sebelah FC.",
-    "DAY 5: Jack mengintip latihan Bintang Sebelah (18 pemain, kas Rp 450 juta, 9 mantan Yonoha), ketahuan Coach Darman."
+    "DAY 5: Jack mengintip latihan Bintang Sebelah (18 pemain, kas Rp 450 juta, 9 mantan Yonoha), ketahuan Coach Darman.",
+    "DAY 6: Perekrutan gelombang kedua sukses, pamer tiga desain jersey."
   ]
 }

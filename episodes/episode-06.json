@@ -1,0 +1,401 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 6,
+  "judul": "DAY 6 — Seleksi Ramai, Jersey Baru",
+  "subjudul": "DAY 6 · SELEKSI RAMAI, JERSEY BARU",
+  "fps": 30,
+  "ukuran": [
+    1080,
+    1920
+  ],
+  "suara": {
+    "jack": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+10%",
+      "pitch": "-3Hz",
+      "label": "JACK"
+    },
+    "waskito": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+0%",
+      "pitch": "-24Hz",
+      "label": "WASKITO (KETUA)"
+    },
+    "darman": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+6%",
+      "pitch": "-14Hz",
+      "label": "COACH DARMAN (BINTANG SEBELAH)"
+    }
+  },
+  "otomatis": true,
+  "sumber_rencana": "cerita/rencana/day-06.json",
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": [
+    "PERSAINGAN KETAT!",
+    "SIAPA LOLOS KE SKUAD INTI?"
+  ],
+  "skuadAwal": 7,
+  "skuadMaks": 30,
+  "musikHangat": "semua",
+  "ketukan": [
+    "b3",
+    "b5"
+  ],
+  "seragam": null,
+  "pemain_data": {},
+  "adegan": [
+    {
+      "id": "b1",
+      "suasana": "pagi",
+      "min": 3.6,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Seleksi hari ini ramai! Siapa saja yang bakal terpilih ke skuad Yonoha?"
+        }
+      ],
+      "panggung": "umum",
+      "dramatis": true,
+      "lokasi3d": "lapangan",
+      "tokoh": [
+        "jack"
+      ],
+      "lead": 0.1,
+      "sfx": [
+        [
+          0,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b2",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Banyaknya pendaftar kali ini bikin aku kewalahan juga, tapi makin seru!"
+        }
+      ],
+      "panggung": "komen",
+      "komen": [
+        {
+          "user": "marydillh2006_",
+          "waktu": "baru",
+          "teks": "DAFTAR - Arya - Bek Kanan @rilll_0295",
+          "warna": "#16a34a"
+        },
+        {
+          "user": "ikzz_nyalse",
+          "waktu": "baru",
+          "teks": "aku bang bek no 21 udah follow",
+          "warna": "#4f46e5"
+        },
+        {
+          "user": "ax_last_line",
+          "waktu": "baru",
+          "teks": "Saya bang Sayap kiri putz no 13",
+          "warna": "#4f46e5"
+        },
+        {
+          "user": "iiamelzy",
+          "waktu": "baru",
+          "teks": "daftar bang cb",
+          "warna": "#2563eb"
+        }
+      ],
+      "sfx": [
+        [
+          0.6,
+          "ding"
+        ],
+        [
+          1.05,
+          "ding"
+        ],
+        [
+          1.5,
+          "ding"
+        ],
+        [
+          1.9500000000000002,
+          "ding"
+        ]
+      ],
+      "tambahSkuad": 4,
+      "dihitung": [
+        "marydillh2006_",
+        "ikzz_nyalse",
+        "ax_last_line",
+        "iiamelzy"
+      ]
+    },
+    {
+      "id": "b3",
+      "suasana": "pagi",
+      "min": 7.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Seleksi berjalan ketat dan berhasil merekrut beberapa talenta baru ke skuad Yonoha!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "lokasi": "HASIL SELEKSI",
+      "lolosList": [
+        {
+          "nama": "ARYA",
+          "user": "marydillh2006_",
+          "pos": "RB",
+          "inti": true,
+          "warna": "#16a34a"
+        },
+        {
+          "nama": "IKZZ",
+          "user": "ikzz_nyalse",
+          "pos": "LB",
+          "inti": true,
+          "warna": "#4f46e5"
+        },
+        {
+          "nama": "PUTZ",
+          "user": "ax_last_line",
+          "pos": "LWF",
+          "inti": true,
+          "warna": "#4f46e5"
+        },
+        {
+          "nama": "IIAMELZY",
+          "user": "iiamelzy",
+          "pos": "CB",
+          "inti": true,
+          "warna": "#2563eb"
+        },
+        {
+          "nama": "SISO",
+          "user": "bagasandikaprasetyo",
+          "pos": "RB",
+          "inti": false,
+          "warna": "#0891b2"
+        },
+        {
+          "nama": "NADZAR",
+          "user": "nadzar_30",
+          "pos": "LWF",
+          "inti": false,
+          "warna": "#2563eb"
+        },
+        {
+          "nama": "ADEL",
+          "user": "recallllllllllllll",
+          "pos": "CMF",
+          "inti": false,
+          "warna": "#16a34a"
+        },
+        {
+          "nama": "ZACKY",
+          "user": "sotopenyet22",
+          "pos": "CMF",
+          "inti": false,
+          "warna": "#ea580c"
+        },
+        {
+          "nama": "DONGG",
+          "user": "1dongg_06_",
+          "pos": "LB",
+          "inti": false,
+          "warna": "#ca8a04"
+        },
+        {
+          "nama": "TEGAR",
+          "user": "andi_muh.tegar",
+          "pos": "LWF",
+          "inti": false,
+          "warna": "#059669"
+        }
+      ],
+      "sfx": [
+        [
+          0.7,
+          "ding"
+        ],
+        [
+          0.95,
+          "ding"
+        ],
+        [
+          1.2,
+          "ding"
+        ],
+        [
+          1.45,
+          "ding"
+        ],
+        [
+          1.7,
+          "ding"
+        ],
+        [
+          1.95,
+          "ding"
+        ],
+        [
+          2.2,
+          "ding"
+        ],
+        [
+          2.45,
+          "ding"
+        ],
+        [
+          2.7,
+          "ding"
+        ],
+        [
+          2.95,
+          "ding"
+        ]
+      ],
+      "tambahSkuad": 6,
+      "dihitung": [
+        "bagasandikaprasetyo",
+        "nadzar_30",
+        "recallllllllllllll",
+        "sotopenyet22",
+        "1dongg_06_",
+        "andi_muh.tegar"
+      ]
+    },
+    {
+      "id": "b4",
+      "suasana": "pagi",
+      "min": 6.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Desain jersey juga sudah siap, yuk pilih mana yang paling pas buat kita!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "jersey": [
+        {
+          "huruf": "A",
+          "nama": "Garuda Merah",
+          "utama": "#ff0000",
+          "aksen": "#ffffff",
+          "celana": "#ff0000",
+          "pola": "polos"
+        },
+        {
+          "huruf": "B",
+          "nama": "Biru Langit",
+          "utama": "#0000ff",
+          "aksen": "#ffffff",
+          "celana": "#0000ff",
+          "pola": "garis"
+        },
+        {
+          "huruf": "C",
+          "nama": "Hijau Tani",
+          "utama": "#008000",
+          "aksen": "#000000",
+          "celana": "#008000",
+          "pola": "selempang"
+        }
+      ],
+      "sfx": [
+        [
+          0.5,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 5.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Beberapa penonton setia akhirnya bergabung menjadi ULTRAS Yonoha!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "tribun",
+      "lokasi": "TRIBUN · ULTRAS",
+      "ultras": {
+        "nama": "ULTRAS YONOHA",
+        "anggota": [
+          {
+            "user": "onlygung1",
+            "warna": "#2563eb"
+          },
+          {
+            "user": "amirdaffa27",
+            "warna": "#059669"
+          },
+          {
+            "user": "lakuteruss.id",
+            "warna": "#ea580c"
+          },
+          {
+            "user": "m.r.r21_",
+            "warna": "#16a34a"
+          }
+        ],
+        "total": 4,
+        "nyanyian": "Yonoha tak terkalahkan!"
+      },
+      "sfx": [
+        [
+          0.8,
+          "ding"
+        ],
+        [
+          1.1,
+          "ding"
+        ],
+        [
+          1.4,
+          "ding"
+        ],
+        [
+          1.7,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "penutup",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Dengan jersey dan skuad baru, siapa yang akan jadi sponsor utama kita?"
+        }
+      ],
+      "teaser": "Siapa sponsor jersey kita?"
+    }
+  ],
+  "akhir": {
+    "judul": "GABUNG ULTRAS!",
+    "posisi": [
+      "KOMEN \"ULTRAS\""
+    ],
+    "tombol": "KOMEN: A, B atau C",
+    "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
+    "status": "Skuad 17/30 · uji coba 4 hari lagi"
+  },
+  "caption": "Seleksi Yonoha ramai! Arya, Ikzz, Putz, Iiamelzy, Siso, Nadzar, Adel, Zacky, Dongg, dan Tegar lolos! Pilih desain jersey A, B, atau C. #ManajerDariNol #SepakBola #CeritaFiksi",
+  "ticker": {
+    "teks": "SKUAD 17/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
+    "dari": "b2",
+    "sampai": "b5"
+  }
+}
