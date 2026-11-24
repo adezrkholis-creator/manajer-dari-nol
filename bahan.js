@@ -24,7 +24,12 @@ async function graph(p, q) {
 
 // panggil AI; kalau server (mis. Gemini) menolak response_format, ulangi tanpa itu. Gagal 401/402/429 = berhenti dengan pesan jelas.
 async function aiFetch(url, opt) {
-  let r = await fetch(url, opt);
+  let r;
+  for (let i = 1; i <= 6; i++) { // server sibuk (503/500/429) -> tunggu lalu ulang
+    r = await fetch(url, opt);
+    if (![429, 500, 502, 503, 504].includes(r.status) || i === 6) break;
+    console.log(`AI sibuk (${r.status}), coba lagi ${i * 15} dtk...`); await new Promise(z => setTimeout(z, i * 15000));
+  }
   if (r.status === 400) { const b = JSON.parse(opt.body); if (b.response_format) { delete b.response_format; r = await fetch(url, { ...opt, body: JSON.stringify(b) }); } }
   if (!r.ok) { const t = await r.text(); throw new Error(`AI menolak (${r.status}) — cek key/saldo/kuota: ${t.slice(0, 200)}`); }
   return r;
