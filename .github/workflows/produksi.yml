@@ -2,9 +2,10 @@ name: Produksi harian
 
 # Otomatis 2x sehari: 15.30 & 18.30 WIB (08.30 & 11.30 UTC) -> tayang ±16.00 & ±19.00 WIB
 on:
-  schedule:
-    - cron: "30 8 * * *"
-    - cron: "30 11 * * *"
+  # JADWAL DIMATIKAN SEMENTARA (25-11-2026): owner posting manual. Aktifkan lagi dengan menghapus tanda # di 3 baris ini.
+  # schedule:
+  #   - cron: "30 8 * * *"
+  #   - cron: "30 11 * * *"
   workflow_dispatch:
     inputs:
       posting:

@@ -1,0 +1,447 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 7,
+  "judul": "DAY 7 — Tiga Sayap Kiri",
+  "subjudul": "DAY 7 · TIGA SAYAP KIRI",
+  "fps": 30,
+  "ukuran": [
+    1080,
+    1920
+  ],
+  "suara": {
+    "jack": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+10%",
+      "pitch": "-3Hz",
+      "label": "JACK"
+    },
+    "waskito": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+0%",
+      "pitch": "-24Hz",
+      "label": "WASKITO (KETUA)"
+    },
+    "darman": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+6%",
+      "pitch": "-14Hz",
+      "label": "COACH DARMAN (BINTANG SEBELAH)"
+    }
+  },
+  "otomatis": true,
+  "sumber_rencana": "cerita/rencana/day-07.json",
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": [
+    "3 SAYAP KIRI.",
+    "CUMA 1 YANG MAIN!"
+  ],
+  "skuadAwal": 17,
+  "skuadMaks": 30,
+  "musikHangat": "semua",
+  "ketukan": [
+    "pemanasan",
+    "b3"
+  ],
+  "seragam": null,
+  "pemain_data": {
+    "rizky": {
+      "skin": "#c58b5c",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "miftakh": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#1e3a8a",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "skala": 1.07
+    },
+    "dapeng": {
+      "skin": "#e0ac80",
+      "shirt": "#16a34a",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316"
+    },
+    "jay": {
+      "skin": "#c58b5c",
+      "shirt": "#f8fafc",
+      "stripe": "#ea580c",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#ea580c"
+    },
+    "ando": {
+      "skin": "#b97a4f",
+      "shirt": "#f59e0b",
+      "stripe": "#111827",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "gloves": "#f8fafc",
+      "shoes": "#111",
+      "kiper": true,
+      "skala": 1.06
+    },
+    "radhika": {
+      "skin": "#e0ac80",
+      "shirt": "#7c3aed",
+      "stripe": "#c4b5fd",
+      "pants": "#1f2937",
+      "hair": "#2b1d14",
+      "gloves": "#22c55e",
+      "shoes": "#f3f4f6",
+      "kiper": true
+    },
+    "bagus": {
+      "skin": "#d9a273",
+      "shirt": "#facc15",
+      "stripe": "#1f2937",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "belly": 0.25
+    },
+    "p_marydillh2006_": {
+      "skin": "#e0ac80"
+    },
+    "p_ikzz_nyalse": {
+      "skin": "#b97a4f",
+      "shirt": "#4f46e5",
+      "stripe": "#fde047",
+      "pants": "#1e3a8a",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "cap": "#111827"
+    },
+    "p_ax_last_line": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_iiamelzy": {
+      "skin": "#c58b5c",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_bagasandikaprasetyo": {
+      "skin": "#c58b5c",
+      "stripe": "#f8fafc",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_nadzar_30": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#dc2626"
+    },
+    "p_recallllllllllllll": {
+      "skin": "#e0ac80",
+      "pants": "#111827"
+    },
+    "p_sotopenyet22": {
+      "skin": "#b97a4f",
+      "stripe": "#f8fafc"
+    },
+    "p_1dongg_06_": {
+      "skin": "#d9a273",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6"
+    },
+    "p_andi_muh_tegar": {
+      "skin": "#f1c7a0",
+      "shirt": "#16a34a",
+      "stripe": "#111827",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    }
+  },
+  "adegan": [
+    {
+      "id": "b1",
+      "suasana": "pagi",
+      "min": 3.6,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Tiga sayap kiri. Satu posisi. Dan mereka nggak ada yang mau ngalah!"
+        }
+      ],
+      "panggung": "umum",
+      "dramatis": true,
+      "lokasi3d": "lapangan",
+      "tokoh": [
+        "jack"
+      ],
+      "lead": 0.1,
+      "sfx": [
+        [
+          0,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "pemanasan",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Hari pertama tujuh belas pemain latihan bareng. Lapangan tikus ini akhirnya ramai."
+        }
+      ],
+      "lokasi": "LATIHAN · PEMANASAN",
+      "sfx": [
+        [
+          0.2,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b3",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Putz, Nadzar, Tegar. Semuanya sayap kiri. Semuanya ngotot."
+        }
+      ],
+      "panggung": "masalah",
+      "lokasi": "LATIHAN · GIM MINI",
+      "sfx": [
+        [
+          0.6,
+          "tendang"
+        ]
+      ]
+    },
+    {
+      "id": "b4",
+      "suasana": "dalam",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "waskito",
+          "teks": "Jack, kas kita tinggal empat koma tujuh juta. Jersey belum dibayar."
+        },
+        {
+          "oleh": "jack",
+          "teks": "Tenang, Pak. Kita cari sponsor."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "kantor",
+      "tokoh": [
+        "jack",
+        "waskito"
+      ],
+      "lokasi": "KANTOR KETUA"
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Tujuh belas pemain. Uji coba tinggal tiga hari."
+        }
+      ],
+      "panggung": "skuad",
+      "barisan": [
+        "rizky",
+        "miftakh",
+        "dapeng",
+        "jay",
+        "ando",
+        "radhika",
+        "bagus",
+        "p_marydillh2006_",
+        "p_ikzz_nyalse",
+        "p_ax_last_line",
+        "p_iiamelzy",
+        "p_bagasandikaprasetyo",
+        "p_nadzar_30",
+        "p_recallllllllllllll",
+        "p_sotopenyet22",
+        "p_1dongg_06_",
+        "p_andi_muh_tegar"
+      ],
+      "papan": [
+        {
+          "pos": "RWF",
+          "nama": "Rizky",
+          "warna": "#dc2626",
+          "baru": false
+        },
+        {
+          "pos": "CB",
+          "nama": "Miftakh",
+          "warna": "#2563eb",
+          "baru": false
+        },
+        {
+          "pos": "AMF",
+          "nama": "Dapeng",
+          "warna": "#059669",
+          "baru": false
+        },
+        {
+          "pos": "CF",
+          "nama": "Jay",
+          "warna": "#16a34a",
+          "baru": false
+        },
+        {
+          "pos": "GK",
+          "nama": "Ando",
+          "warna": "#db2777",
+          "baru": false
+        },
+        {
+          "pos": "CMF",
+          "nama": "Bagus",
+          "warna": "#2563eb",
+          "baru": false
+        },
+        {
+          "pos": "RB",
+          "nama": "Arya",
+          "warna": "#16a34a",
+          "baru": false
+        },
+        {
+          "pos": "LB",
+          "nama": "Ikzz",
+          "warna": "#4f46e5",
+          "baru": false
+        },
+        {
+          "pos": "LWF",
+          "nama": "Putz",
+          "warna": "#4f46e5",
+          "baru": false
+        },
+        {
+          "pos": "CB",
+          "nama": "Iiamelzy",
+          "warna": "#2563eb",
+          "baru": false
+        },
+        {
+          "pos": "CADANGAN",
+          "nama": "+7 lagi",
+          "warna": "#7c3aed"
+        },
+        {
+          "pos": "",
+          "kamu": true
+        }
+      ],
+      "papanJudul": "17 / 30",
+      "sfx": [
+        [
+          0.3,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "b6",
+      "suasana": "pagi",
+      "min": 6.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Voting jersey ditutup besok. Garuda Merah, Biru Langit, atau Hijau Tani?"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "jersey": [
+        {
+          "huruf": "A",
+          "nama": "Garuda Merah",
+          "utama": "#dc2626",
+          "aksen": "#ffffff",
+          "celana": "#dc2626",
+          "pola": "polos"
+        },
+        {
+          "huruf": "B",
+          "nama": "Biru Langit",
+          "utama": "#2563eb",
+          "aksen": "#ffffff",
+          "celana": "#2563eb",
+          "pola": "garis"
+        },
+        {
+          "huruf": "C",
+          "nama": "Hijau Tani",
+          "utama": "#15803d",
+          "aksen": "#111827",
+          "celana": "#15803d",
+          "pola": "selempang"
+        }
+      ],
+      "sfx": [
+        [
+          0.5,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "penutup",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Malamnya, ada mobil hitam berhenti di depan stadion. Siapa dia...?"
+        }
+      ],
+      "teaser": "Mobil hitam berhenti di depan stadion..."
+    }
+  ],
+  "akhir": {
+    "judul": "GABUNG ULTRAS!",
+    "posisi": [
+      "KOMEN \"ULTRAS\""
+    ],
+    "tombol": "KOMEN: A, B atau C",
+    "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
+    "status": "Skuad 17/30 · uji coba 3 hari lagi"
+  },
+  "caption": "TIGA SAYAP KIRI, CUMA SATU YANG MAIN! 🔥 Hari pertama 17 pemain Yonoha latihan bareng — Putz, Nadzar, dan Tegar rebutan sisi kiri. Kas tinggal Rp 4,7 juta, jersey belum kebayar... lalu ada mobil hitam berhenti di depan stadion 👀\n\nVOTING JERSEY DITUTUP BESOK! Komen A (Garuda Merah), B (Biru Langit), atau C (Hijau Tani).\nMau jadi ULTRAS Yonoha? Komen ULTRAS!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "ticker": {
+    "teks": "SKUAD 17/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
+    "dari": "pemanasan",
+    "sampai": "b6"
+  }
+}

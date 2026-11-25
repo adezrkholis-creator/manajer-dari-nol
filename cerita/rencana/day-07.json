@@ -1,0 +1,39 @@
+{
+  "day": 7,
+  "judul": "Tiga Sayap Kiri",
+  "ringkas": "Latihan pertama 17 pemain: tiga sayap kiri rebutan satu posisi, kas menipis untuk jersey, sponsor misterius datang.",
+  "jawab_sebelumnya": "Skuad 17/30 latihan bersama untuk pertama kali; voting jersey DAY 6 masih berjalan (ditutup besok); pertanyaan 'siapa yang bayar jersey' dijawab dengan kas yang menipis.",
+  "pemain_lolos": [],
+  "beat": [
+    { "jenis": "cold_open", "lokasi": "lapangan", "narasi": "Tiga sayap kiri. Satu posisi. Dan mereka nggak ada yang mau ngalah!" },
+    { "jenis": "latihan", "aktivitas": "pemanasan", "narasi": "Hari pertama tujuh belas pemain latihan bareng. Lapangan tikus ini akhirnya ramai." },
+    { "jenis": "latihan", "aktivitas": "gim", "narasi": "Putz, Nadzar, Tegar. Semuanya sayap kiri. Semuanya ngotot." },
+    { "jenis": "ngobrol", "lokasi": "kantor", "dialog": [
+      { "oleh": "waskito", "teks": "Jack, kas kita tinggal empat koma tujuh juta. Jersey belum dibayar." },
+      { "oleh": "jack", "teks": "Tenang, Pak. Kita cari sponsor." } ] },
+    { "jenis": "papan_skuad", "narasi": "Tujuh belas pemain. Uji coba tinggal tiga hari." },
+    { "jenis": "jersey", "narasi": "Voting jersey ditutup besok. Garuda Merah, Biru Langit, atau Hijau Tani?",
+      "opsi": [
+        { "huruf": "A", "nama": "Garuda Merah", "utama": "#dc2626", "aksen": "#ffffff", "celana": "#dc2626", "pola": "polos" },
+        { "huruf": "B", "nama": "Biru Langit", "utama": "#2563eb", "aksen": "#ffffff", "celana": "#2563eb", "pola": "garis" },
+        { "huruf": "C", "nama": "Hijau Tani", "utama": "#15803d", "aksen": "#111827", "celana": "#15803d", "pola": "selempang" } ] },
+    { "jenis": "bersambung", "teaser": "Mobil hitam berhenti di depan stadion...", "narasi": "Malamnya, ada mobil hitam berhenti di depan stadion. Siapa dia...?" }
+  ],
+  "voting_baru": { "pertanyaan": "Pilih seragam", "opsi": [ { "huruf": "A", "teks": "Garuda Merah" }, { "huruf": "B", "teks": "Biru Langit" }, { "huruf": "C", "teks": "Hijau Tani" } ] },
+  "benang_terbuka": [
+    "Tiga sayap kiri (Putz, Nadzar, Tegar) rebutan satu posisi inti LWF.",
+    "Kas tinggal Rp 4,75 juta, jersey belum dibayar.",
+    "Mobil hitam misterius di depan stadion: calon sponsor?",
+    "Uji coba lawan Bintang Sebelah FC tinggal 3 hari (DAY 10).",
+    "Nama kelompok Ultras Yonoha belum ada."
+  ],
+  "rencana_dekat": [
+    "Umumkan hasil voting jersey (hitung komen A/B/C di DAY 6 & 7).",
+    "Siapa pemilik mobil hitam: sponsor aneh dengan syarat lucu.",
+    "Starter sayap kiri dipilih lewat voting."
+  ],
+  "riwayat": "DAY 7: Latihan pertama 17 pemain, tiga sayap kiri rebutan posisi, kas menipis, mobil hitam misterius datang.",
+  "caption": "TIGA SAYAP KIRI, CUMA SATU YANG MAIN! 🔥 Hari pertama 17 pemain Yonoha latihan bareng — Putz, Nadzar, dan Tegar rebutan sisi kiri. Kas tinggal Rp 4,7 juta, jersey belum kebayar... lalu ada mobil hitam berhenti di depan stadion 👀\n\nVOTING JERSEY DITUTUP BESOK! Komen A (Garuda Merah), B (Biru Langit), atau C (Hijau Tani).\nMau jadi ULTRAS Yonoha? Komen ULTRAS!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": ["3 SAYAP KIRI.", "CUMA 1 YANG MAIN!"],
+  "model": "manual (Claude) — Gemini gratis sedang penuh"
+}
