@@ -73,6 +73,7 @@ function baris(b) {
   return out.filter(x => String(x.teks || '').trim()).map(x => { const t = bersih(x.teks), s = ucap(t); return s !== t ? { ...x, teks: t, tts: s } : { ...x, teks: t }; });
 }
 const adegan = [], ketukan = [];
+let skorTerakhir = null;
 let id = 0;
 for (const b of R.beat) {
   id++;
@@ -122,12 +123,16 @@ for (const b of R.beat) {
     Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', jersey: (b.opsi || []).slice(0, 3), min: 6.5, sfx: [[0.5, 'ding']] });
   } else if (b.jenis === 'laga') {
     const ad = b.adegan || 'serang';
-    const LBL = { lorong: 'LORONG PEMAIN', keluar: 'MASUK LAPANGAN', barisan: 'LINE-UP', kickoff: 'KICK-OFF', serang: 'PERTANDINGAN', golLawan: 'GOL LAWAN', golKita: 'GOL!', penalti: 'PENALTI' };
-    Object.assign(a, { lokasi: b.skor ? null : (LBL[ad] || 'PERTANDINGAN'), min: ad === 'golLawan' ? 5 : 4.5 });
+    const LBL = { lorong: 'LORONG PEMAIN', keluar: 'MASUK LAPANGAN', barisan: 'LINE-UP', kickoff: 'KICK-OFF', serang: 'PERTANDINGAN', golLawan: 'GOL LAWAN', golKita: 'GOL!', penalti: 'PENALTI', golTikus: 'GOL TIKUS?!', turunMinum: 'TURUN MINUM' };
+    Object.assign(a, { lokasi: b.skor ? null : (LBL[ad] || 'PERTANDINGAN'), min: ad === 'golLawan' ? 5 : ad === 'golTikus' ? 6 : 4.5 });
     if (ad === 'golKita') { a.tembak = { penendang: pastikan(b.pemain || 'elmermuhandis_', 'CF'), kiper: 'rival', hasil: 'gol' }; a.sfx = [[1.0, 'tendang'], [1.5, 'jaring'], [1.7, 'peluit']]; }
     else if (ad === 'penalti') { a.panggung = 'penalti'; a.sfx = [[0.3, 'peluit']]; }
-    else { a.panggung = 'laga'; a.laga = { jenis: ad }; a.suasana = ad === 'lorong' ? 'dalam' : 'pagi'; a.sfx = ad === 'kickoff' ? [[1.2, 'peluit']] : ad === 'golLawan' ? [[2.4, 'tendang'], [2.85, 'jaring']] : []; }
+    else { a.panggung = 'laga'; a.laga = { jenis: ad, variasi: b.variasi || 1 }; a.suasana = ad === 'lorong' ? 'dalam' : 'pagi'; a.sfx = ad === 'kickoff' ? [[1.2, 'peluit']] : ad === 'golLawan' ? [[2.4, 'tendang'], [2.85, 'jaring']] : ad === 'golTikus' ? [[2.0, 'tendang'], [2.35, 'tangkap'], [3.4, 'jaring'], [3.75, 'peluit']] : []; }
+    if (b.lineup) { a.lineup = b.lineup; a.min = 7; }
     if (b.skor) a.skor = b.skor; if (b.menit) a.menit = b.menit;
+    const GOL = { golLawan: 2.85, golTikus: 3.45, golKita: 1.5 };
+    if (GOL[ad] != null && b.skor) { a.golPada = GOL[ad]; a.golLawan = ad === 'golLawan'; a.skorAwal = skorTerakhir || [0, 0]; }
+    if (b.skor) skorTerakhir = b.skor;
     if (!['lorong', 'keluar', 'barisan'].includes(ad)) ketukan.push(a.id);
   } else if (b.jenis === 'lolos') {
     const diSeleksi = new Set(R.beat.filter(x => x.jenis === 'seleksi').map(x => String(x.pemain || '').replace(/^@/, '').toLowerCase()));

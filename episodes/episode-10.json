@@ -1,8 +1,8 @@
 {
   "seri": "Manajer dari Nol",
   "episode": 10,
-  "judul": "DAY 10 — Uji Coba!",
-  "subjudul": "DAY 10 · UJI COBA!",
+  "judul": "DAY 10 — Gol Tikus",
+  "subjudul": "DAY 10 · GOL TIKUS",
   "fps": 30,
   "ukuran": [
     1080,
@@ -33,18 +33,17 @@
   "hookCepat": true,
   "tanpaJudul": true,
   "hookTeks": [
-    "UJI COBA HARI INI!",
-    "LAWAN 9 MANTAN SENDIRI."
+    "TIKUS CETAK GOL?!",
+    "YONOHA VS 9 MANTAN SENDIRI."
   ],
   "skuadAwal": 25,
   "skuadMaks": 30,
   "musikHangat": "semua",
   "ketukan": [
-    "b4",
     "b5",
+    "b6",
     "b7",
-    "b8",
-    "b9"
+    "b8"
   ],
   "seragam": {
     "nama": "Hijau Tani",
@@ -267,7 +266,8 @@
       "lokasi": "LORONG PEMAIN",
       "panggung": "laga",
       "laga": {
-        "jenis": "lorong"
+        "jenis": "lorong",
+        "variasi": 1
       },
       "sfx": []
     },
@@ -284,7 +284,8 @@
       "lokasi": "MASUK LAPANGAN",
       "panggung": "laga",
       "laga": {
-        "jenis": "keluar"
+        "jenis": "keluar",
+        "variasi": 1
       },
       "sfx": []
     },
@@ -305,12 +306,118 @@
       "lokasi": "LINE-UP",
       "panggung": "laga",
       "laga": {
-        "jenis": "barisan"
+        "jenis": "barisan",
+        "variasi": 1
       },
       "sfx": []
     },
     {
       "id": "b4",
+      "suasana": "pagi",
+      "min": 7,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Ini sebelas pertama Yonoha. Kapten sementara: Siso, sampai voting kalian selesai!"
+        }
+      ],
+      "lokasi": "LINE-UP",
+      "panggung": "laga",
+      "laga": {
+        "jenis": "barisan",
+        "variasi": 1
+      },
+      "sfx": [],
+      "lineup": {
+        "formasi": "4-3-3",
+        "pemain": [
+          {
+            "slot": "GK",
+            "pos": "GK",
+            "nama": "Ando",
+            "kapten": false
+          },
+          {
+            "slot": "LB",
+            "pos": "LB",
+            "nama": "Ikzz",
+            "kapten": false
+          },
+          {
+            "slot": "CB1",
+            "pos": "CB",
+            "nama": "Miftakh",
+            "kapten": false
+          },
+          {
+            "slot": "CB2",
+            "pos": "CB",
+            "nama": "Iiamelzy",
+            "kapten": false
+          },
+          {
+            "slot": "RB",
+            "pos": "RB",
+            "nama": "Siso",
+            "kapten": true
+          },
+          {
+            "slot": "CM1",
+            "pos": "CMF",
+            "nama": "Bagus",
+            "kapten": false
+          },
+          {
+            "slot": "CM2",
+            "pos": "CMF",
+            "nama": "Adel",
+            "kapten": false
+          },
+          {
+            "slot": "CM3",
+            "pos": "AMF",
+            "nama": "Dapeng",
+            "kapten": false
+          },
+          {
+            "slot": "LW",
+            "pos": "LWF",
+            "nama": "Putz",
+            "kapten": false
+          },
+          {
+            "slot": "CF",
+            "pos": "CF",
+            "nama": "Jay",
+            "kapten": false
+          },
+          {
+            "slot": "RW",
+            "pos": "RWF",
+            "nama": "Rizky",
+            "kapten": false
+          }
+        ],
+        "cadangan": [
+          "Radhika",
+          "Arya",
+          "Nadzar",
+          "Zacky",
+          "Dongg",
+          "Tegar",
+          "Revan",
+          "Amir",
+          "Gung",
+          "Epan",
+          "Irzz",
+          "Arya P",
+          "Mardian",
+          "Sabil"
+        ]
+      }
+    },
+    {
+      "id": "b5",
       "suasana": "pagi",
       "min": 4.5,
       "baris": [
@@ -322,7 +429,8 @@
       "lokasi": null,
       "panggung": "laga",
       "laga": {
-        "jenis": "kickoff"
+        "jenis": "kickoff",
+        "variasi": 1
       },
       "sfx": [
         [
@@ -337,19 +445,20 @@
       "menit": "1'"
     },
     {
-      "id": "b5",
+      "id": "b6",
       "suasana": "pagi",
       "min": 5,
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Gol lagi! Dua kosong. Dua-duanya dari mantan pemain kita."
+          "teks": "Menit delapan belas. Mantan pemain kita sendiri yang cetak gol. Nol satu."
         }
       ],
       "lokasi": null,
       "panggung": "laga",
       "laga": {
-        "jenis": "golLawan"
+        "jenis": "golLawan",
+        "variasi": 1
       },
       "sfx": [
         [
@@ -363,18 +472,108 @@
       ],
       "skor": [
         0,
-        2
+        1
       ],
-      "menit": "38'"
+      "menit": "18'",
+      "golPada": 2.85,
+      "golLawan": true,
+      "skorAwal": [
+        0,
+        0
+      ]
     },
     {
-      "id": "b6",
+      "id": "b7",
+      "suasana": "pagi",
+      "min": 6,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Tunggu... ada tikus masuk lapangan?! Bolanya kena tikus... dan masuk! Satu satu!"
+        }
+      ],
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "golTikus",
+        "variasi": 1
+      },
+      "sfx": [
+        [
+          2,
+          "tendang"
+        ],
+        [
+          2.35,
+          "tangkap"
+        ],
+        [
+          3.4,
+          "jaring"
+        ],
+        [
+          3.75,
+          "peluit"
+        ]
+      ],
+      "skor": [
+        1,
+        1
+      ],
+      "menit": "31'",
+      "golPada": 3.45,
+      "golLawan": false,
+      "skorAwal": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "b8",
+      "suasana": "pagi",
+      "min": 5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Tapi menjelang turun minum... mereka cetak gol lagi. Satu dua."
+        }
+      ],
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "golLawan",
+        "variasi": 2
+      },
+      "sfx": [
+        [
+          2.4,
+          "tendang"
+        ],
+        [
+          2.85,
+          "jaring"
+        ]
+      ],
+      "skor": [
+        1,
+        2
+      ],
+      "menit": "44'",
+      "golPada": 2.85,
+      "golLawan": true,
+      "skorAwal": [
+        1,
+        1
+      ]
+    },
+    {
+      "id": "b9",
       "suasana": "dalam",
       "min": 4.5,
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Dengar! Kalian dipilih penonton! Main buat mereka!"
+          "teks": "Kita cuma kalah satu gol. Babak kedua milik kita!"
         }
       ],
       "panggung": "umum",
@@ -385,113 +584,31 @@
       "lokasi": "RUANG GANTI"
     },
     {
-      "id": "b7",
-      "suasana": "pagi",
-      "min": 4.5,
-      "baris": [
-        {
-          "oleh": "jack",
-          "teks": "Babak kedua. Kita gempur terus dari kiri."
-        }
-      ],
-      "lokasi": null,
-      "panggung": "laga",
-      "laga": {
-        "jenis": "serang"
-      },
-      "sfx": [],
-      "skor": [
-        0,
-        2
-      ],
-      "menit": "64'"
-    },
-    {
-      "id": "b8",
-      "suasana": "pagi",
-      "min": 4.5,
-      "baris": [
-        {
-          "oleh": "jack",
-          "teks": "Jay! Gol! Satu dua!"
-        }
-      ],
-      "lokasi": null,
-      "tembak": {
-        "penendang": "jay",
-        "kiper": "rival",
-        "hasil": "gol"
-      },
-      "sfx": [
-        [
-          1,
-          "tendang"
-        ],
-        [
-          1.5,
-          "jaring"
-        ],
-        [
-          1.7,
-          "peluit"
-        ]
-      ],
-      "skor": [
-        1,
-        2
-      ],
-      "menit": "67'"
-    },
-    {
-      "id": "b9",
-      "suasana": "pagi",
-      "min": 4.5,
-      "baris": [
-        {
-          "oleh": "jack",
-          "teks": "Menit delapan puluh sembilan. Wasit menunjuk titik putih. Penalti!"
-        }
-      ],
-      "lokasi": null,
-      "panggung": "penalti",
-      "sfx": [
-        [
-          0.3,
-          "peluit"
-        ]
-      ],
-      "skor": [
-        1,
-        2
-      ],
-      "menit": "89'"
-    },
-    {
       "id": "b10",
       "suasana": "pagi",
       "min": 5.5,
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Satu tendangan penentu. Kalian yang pilih penendangnya!"
+          "teks": "Babak kedua, kalian yang atur strateginya!"
         }
       ],
       "panggung": "umum",
       "lokasi3d": "lapangan",
       "voting": {
-        "pertanyaan": "Siapa yang ambil penalti?",
+        "pertanyaan": "Strategi babak kedua?",
         "opsi": [
           {
             "huruf": "A",
-            "teks": "Jay"
+            "teks": "Serang total"
           },
           {
             "huruf": "B",
-            "teks": "Putz"
+            "teks": "Masukkan Amir"
           },
           {
             "huruf": "C",
-            "teks": "Adel"
+            "teks": "Bertahan, balik cepat"
           }
         ]
       },
@@ -505,7 +622,7 @@
         1,
         2
       ],
-      "menit": "89'"
+      "menit": "HT"
     },
     {
       "id": "penutup",
@@ -514,10 +631,10 @@
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Sponsor, harga diri, semuanya ada di satu tendangan ini..."
+          "teks": "Lalu pintu ruang ganti diketuk. Yang berdiri di sana... mantan pemain Yonoha?"
         }
       ],
-      "teaser": "Penalti terakhir: gol atau gagal?"
+      "teaser": "Mantan pemain Yonoha mengetuk pintu ruang ganti..."
     }
   ],
   "akhir": {
@@ -525,9 +642,9 @@
     "posisi": [],
     "tombol": "KOMEN: A, B atau C",
     "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
-    "status": "Yonoha 1 - 2 Bintang Sebelah · menit 89 · PENALTI"
+    "status": "Turun minum · Yonoha 1 - 2 Bintang Sebelah"
   },
-  "caption": "UJI COBA! ⚽ Yonoha vs Bintang Sebelah FC — tim yang ngambil 9 pemain lama kita. Babak 1 kebobolan 0-2 sama MANTAN PEMAIN SENDIRI 😤 Jay balas 1-2... dan menit 89 wasit nunjuk titik putih. PENALTI! Sponsor kerupuk Rp 10 juta dipertaruhkan di satu tendangan.\n\nSIAPA YANG AMBIL PENALTI? Komen A (Jay), B (Putz), atau C (Adel)!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "caption": "TIKUS CETAK GOL?! 🐀⚽ Uji coba Yonoha vs Bintang Sebelah FC — tim yang ngambil 9 pemain lama kita. Starting XI turun dengan kapten sementara SISO. Menit 18 mantan pemain kita bikin 0-1... menit 31 seekor TIKUS masuk lapangan dan bolanya mantul jadi gol 1-1! Tapi menjelang turun minum, 1-2. Lalu pintu ruang ganti diketuk... 👀\n\nSTRATEGI BABAK 2? Komen A (Serang total), B (Masukkan Amir), atau C (Bertahan, balik cepat)!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
   "ticker": {
     "teks": "SKUAD 25/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
     "dari": "b2",
