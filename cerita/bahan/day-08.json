@@ -1,0 +1,225 @@
+{
+  "dibuat": "2026-11-25T10:26:18.001Z",
+  "day": 8,
+  "hasil_voting": {
+    "pertanyaan": "Pilih seragam",
+    "suara": {
+      "A": 0,
+      "B": 2,
+      "C": 4
+    },
+    "total": 6,
+    "pemenang": "C"
+  },
+  "komentar": [
+    {
+      "username": "m.r.r21_",
+      "teks": "ga lolos dong gua",
+      "episode": "6",
+      "likes": 0,
+      "label": "LAIN",
+      "nama": "m.r.r21_",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "amirdaffa27",
+      "teks": "Balas lah komen gw bg",
+      "episode": "6",
+      "likes": 0,
+      "label": "LAIN",
+      "nama": "amirdaffa27",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "ceritanyagini._",
+      "teks": "Kalo udah masuk pertandingan jangan kalah 10-1 bang",
+      "episode": "6",
+      "likes": 0,
+      "label": "LAIN",
+      "nama": "ceritanyagini._",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "raditna_",
+      "teks": "aku bg",
+      "episode": "6",
+      "likes": 0,
+      "label": "LAIN",
+      "nama": "raditna_",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "saepudinnnns_",
+      "teks": "kak ikut nama:epan posisi gk",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Epan",
+      "posisi": "GK",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "irzzyy.t",
+      "teks": "kak aku ikut nma: irzz posisi :bek tengah",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Irzz",
+      "posisi": "CB",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "aryaputa234",
+      "teks": "Kak aku ikut nama: Arya. posis: LW",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Arya",
+      "posisi": "LWF",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "archive_yann_11",
+      "teks": "daftar-mardian-gelandang serang",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Mardian",
+      "posisi": "AMF",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "sabil.8808",
+      "teks": "Aku cadangan nama sabilarroyan nomor 15 St",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Sabil",
+      "posisi": "CF",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "onlygung1",
+      "teks": "saya bang kiper cadangan nomor 19",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Gung",
+      "posisi": "GK",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "amirdaffa27",
+      "teks": "Amir bg lwf dah follow",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Amir",
+      "posisi": "LWF",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "m.r.r21_",
+      "teks": "revan LB bang @endog2121",
+      "episode": "6",
+      "likes": 0,
+      "label": "DAFTAR",
+      "nama": "Revan",
+      "posisi": "LB",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "elmermuhandis_",
+      "teks": "C nomor nya ganti warna putih",
+      "episode": "6",
+      "likes": 0,
+      "label": "VOTE",
+      "nama": "elmermuhandis_",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "bagus73503",
+      "teks": "hijau tani coach",
+      "episode": "6",
+      "likes": 0,
+      "label": "VOTE",
+      "nama": "bagus73503",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "irzzyy.t",
+      "teks": "C",
+      "episode": "6",
+      "likes": 0,
+      "label": "VOTE",
+      "nama": "irzzyy.t",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "marydillh2006_",
+      "teks": "C",
+      "episode": "6",
+      "likes": 0,
+      "label": "VOTE",
+      "nama": "marydillh2006_",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "daffazzh",
+      "teks": "B",
+      "episode": "6",
+      "likes": 0,
+      "label": "VOTE",
+      "nama": "daffazzh",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "nadzar_30",
+      "teks": "B",
+      "episode": "6",
+      "likes": 0,
+      "label": "VOTE",
+      "nama": "nadzar_30",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    },
+    {
+      "username": "bagus73503",
+      "teks": "wihh,makin rame aja coach",
+      "episode": "6",
+      "likes": 0,
+      "label": "DUKUNGAN",
+      "nama": "bagus73503",
+      "posisi": "",
+      "nomor": "",
+      "sebut_pemain_asli": ""
+    }
+  ]
+}

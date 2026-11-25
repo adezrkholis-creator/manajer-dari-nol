@@ -1,0 +1,454 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 10,
+  "judul": "DAY 10 — Uji Coba!",
+  "subjudul": "DAY 10 · UJI COBA!",
+  "fps": 30,
+  "ukuran": [
+    1080,
+    1920
+  ],
+  "suara": {
+    "jack": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+10%",
+      "pitch": "-3Hz",
+      "label": "JACK"
+    },
+    "waskito": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+0%",
+      "pitch": "-24Hz",
+      "label": "WASKITO (KETUA)"
+    },
+    "darman": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+6%",
+      "pitch": "-14Hz",
+      "label": "COACH DARMAN (BINTANG SEBELAH)"
+    }
+  },
+  "otomatis": true,
+  "sumber_rencana": "cerita/rencana/day-10.json",
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": [
+    "0-2 DARI MANTAN!",
+    "PENALTI MENIT 89."
+  ],
+  "skuadAwal": 25,
+  "skuadMaks": 30,
+  "musikHangat": "semua",
+  "ketukan": [
+    "b4"
+  ],
+  "seragam": {
+    "nama": "Hijau Tani",
+    "utama": "#15803d",
+    "aksen": "#111827",
+    "celana": "#15803d",
+    "pola": "selempang",
+    "nomor": "#ffffff",
+    "pemenang_voting": "C 4 suara, B 2, A 0 (DAY 6-7)",
+    "usul": "nomor putih dari @elmermuhandis_"
+  },
+  "pemain_data": {
+    "rizky": {
+      "skin": "#c58b5c",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "miftakh": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#1e3a8a",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "skala": 1.07
+    },
+    "dapeng": {
+      "skin": "#e0ac80",
+      "shirt": "#16a34a",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316"
+    },
+    "jay": {
+      "skin": "#c58b5c",
+      "shirt": "#f8fafc",
+      "stripe": "#ea580c",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#ea580c"
+    },
+    "ando": {
+      "skin": "#b97a4f",
+      "shirt": "#f59e0b",
+      "stripe": "#111827",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "gloves": "#f8fafc",
+      "shoes": "#111",
+      "kiper": true,
+      "skala": 1.06
+    },
+    "radhika": {
+      "skin": "#e0ac80",
+      "shirt": "#7c3aed",
+      "stripe": "#c4b5fd",
+      "pants": "#1f2937",
+      "hair": "#2b1d14",
+      "gloves": "#22c55e",
+      "shoes": "#f3f4f6",
+      "kiper": true
+    },
+    "bagus": {
+      "skin": "#d9a273",
+      "shirt": "#facc15",
+      "stripe": "#1f2937",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "belly": 0.25
+    },
+    "p_marydillh2006_": {
+      "skin": "#e0ac80"
+    },
+    "p_ikzz_nyalse": {
+      "skin": "#b97a4f",
+      "shirt": "#4f46e5",
+      "stripe": "#fde047",
+      "pants": "#1e3a8a",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "cap": "#111827"
+    },
+    "p_ax_last_line": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_iiamelzy": {
+      "skin": "#c58b5c",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_bagasandikaprasetyo": {
+      "skin": "#c58b5c",
+      "stripe": "#f8fafc",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_nadzar_30": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#dc2626"
+    },
+    "p_recallllllllllllll": {
+      "skin": "#e0ac80",
+      "pants": "#111827"
+    },
+    "p_sotopenyet22": {
+      "skin": "#b97a4f",
+      "stripe": "#f8fafc"
+    },
+    "p_1dongg_06_": {
+      "skin": "#d9a273",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6"
+    },
+    "p_andi_muh_tegar": {
+      "skin": "#f1c7a0",
+      "shirt": "#16a34a",
+      "stripe": "#111827",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "p_m_r_r21_": {
+      "skin": "#e0ac80",
+      "shirt": "#0891b2",
+      "stripe": "#f8fafc",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "p_amirdaffa27": {
+      "skin": "#f1c7a0",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "shoes": "#111"
+    },
+    "p_onlygung1": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "gloves": "#f8fafc",
+      "kiper": true
+    },
+    "p_saepudinnnns_": {
+      "skin": "#d9a273",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "gloves": "#f8fafc",
+      "kiper": true
+    },
+    "p_irzzyy_t": {
+      "skin": "#f1c7a0",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#3b2a20",
+      "shoes": "#f97316",
+      "cap": "#dc2626"
+    },
+    "p_aryaputa234": {
+      "skin": "#d9a273",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_archive_yann_11": {
+      "skin": "#d9a273",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316",
+      "cap": "#111827"
+    },
+    "p_sabil_8808": {
+      "skin": "#d9a273",
+      "shirt": "#4f46e5",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6",
+      "cap": "#111827"
+    }
+  },
+  "adegan": [
+    {
+      "id": "b1",
+      "suasana": "pagi",
+      "min": 3.6,
+      "baris": [
+        {
+          "oleh": "darman",
+          "teks": "Sembilan mantan pemainmu ada di sini, Jack. Siap dipermalukan?"
+        }
+      ],
+      "panggung": "umum",
+      "dramatis": true,
+      "lokasi3d": "lapangan",
+      "tokoh": [
+        "jack",
+        "darman"
+      ],
+      "lead": 0.1,
+      "sfx": [
+        [
+          0,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b2",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Babak pertama, kebobolan dua. Yang cetak gol mantan pemain kita sendiri."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "kartu": {
+        "jenis": "peringatan",
+        "tunda": 0.3,
+        "judul": "BABAK 1",
+        "sub": "",
+        "isi": [
+          [
+            "Yonoha",
+            "0"
+          ],
+          [
+            "Bintang Sebelah",
+            "2"
+          ],
+          [
+            "Pencetak",
+            "Mantan pemain kita"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "suasana": "dalam",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Dengar! Kalian bukan pemain buangan. Kalian dipilih penonton! Main buat mereka!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "ruang_ganti",
+      "tokoh": [
+        "jack"
+      ],
+      "lokasi": "RUANG GANTI"
+    },
+    {
+      "id": "b4",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Menit enam puluh tujuh. Jay! Gol! Satu dua!"
+        }
+      ],
+      "lokasi": "MENIT 67 · GOL JAY!",
+      "tembak": {
+        "penendang": "jay",
+        "kiper": "radhika",
+        "hasil": "gol"
+      },
+      "sfx": [
+        [
+          1,
+          "tendang"
+        ],
+        [
+          1.5,
+          "jaring"
+        ],
+        [
+          1.7,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Menit delapan puluh sembilan. Wasit menunjuk titik putih. Penalti buat kita!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "kartu": {
+        "jenis": "sukses",
+        "tunda": 0.3,
+        "judul": "MENIT 89",
+        "sub": "",
+        "isi": [
+          [
+            "Yonoha",
+            "1"
+          ],
+          [
+            "Bintang Sebelah",
+            "2"
+          ],
+          [
+            "Wasit",
+            "PENALTI!"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "suasana": "pagi",
+      "min": 5.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Satu tendangan penentu. Kalian yang pilih penendangnya!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "voting": {
+        "pertanyaan": "Siapa yang ambil penalti?",
+        "opsi": [
+          {
+            "huruf": "A",
+            "teks": "Jay"
+          },
+          {
+            "huruf": "B",
+            "teks": "Putz"
+          },
+          {
+            "huruf": "C",
+            "teks": "Adel"
+          }
+        ]
+      },
+      "sfx": [
+        [
+          0.3,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "penutup",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Sponsor, harga diri, semuanya ada di satu tendangan ini..."
+        }
+      ],
+      "teaser": "Penalti terakhir: gol atau gagal?"
+    }
+  ],
+  "akhir": {
+    "judul": null,
+    "posisi": [],
+    "tombol": "KOMEN: A, B atau C",
+    "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
+    "status": "Yonoha 1 - 2 Bintang Sebelah · menit 89 · PENALTI"
+  },
+  "caption": "UJI COBA! ⚽ Yonoha vs Bintang Sebelah FC — tim yang ngambil 9 pemain lama kita. Babak 1 kebobolan 0-2 sama MANTAN PEMAIN SENDIRI 😤 Jay balas 1-2... dan menit 89 wasit nunjuk titik putih. PENALTI! Sponsor kerupuk Rp 10 juta dipertaruhkan di satu tendangan.\n\nSIAPA YANG AMBIL PENALTI? Komen A (Jay), B (Putz), atau C (Adel)!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "ticker": {
+    "teks": "SKUAD 25/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
+    "dari": "b2",
+    "sampai": "b6"
+  }
+}

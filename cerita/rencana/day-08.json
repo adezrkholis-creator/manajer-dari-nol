@@ -1,0 +1,39 @@
+{
+  "day": 8,
+  "judul": "Hijau Tani Menang",
+  "ringkas": "Jersey Hijau Tani menang voting, Revan-Amir-Gung yang protes 'cuma jadi ultras' akhirnya jadi pemain, 8 pemain baru masuk, skuad 25/30.",
+  "jawab_sebelumnya": "Voting jersey DAY 6-7 diumumkan (C Hijau Tani 4 suara). Komentar protes penonton dijawab langsung.",
+  "pemain_lolos": [
+    { "nama": "Revan", "user": "m.r.r21_", "posisi": "LB", "alasan": "protes masuk ultras, padahal daftar pemain" },
+    { "nama": "Amir", "user": "amirdaffa27", "posisi": "LWF", "alasan": "protes minta dibalas" },
+    { "nama": "Gung", "user": "onlygung1", "posisi": "GK", "nomor": "19", "alasan": "kiper cadangan no 19" },
+    { "nama": "Epan", "user": "saepudinnnns_", "posisi": "GK", "alasan": "daftar kiper" },
+    { "nama": "Irzz", "user": "irzzyy.t", "posisi": "CB", "alasan": "daftar bek tengah" },
+    { "nama": "Arya P", "user": "aryaputa234", "posisi": "LWF", "alasan": "daftar LW (Arya kedua)" },
+    { "nama": "Mardian", "user": "archive_yann_11", "posisi": "AMF", "alasan": "daftar gelandang serang" },
+    { "nama": "Sabil", "user": "sabil.8808", "posisi": "CF", "nomor": "15", "alasan": "daftar striker no 15" }
+  ],
+  "beat": [
+    { "jenis": "cold_open", "lokasi": "lapangan", "narasi": "Hijau Tani menang! Dan nomor punggungnya putih, persis usul Jay!" },
+    { "jenis": "info", "warna": "hijau", "judul": "Jersey Terpilih", "isi": [["Pemenang", "C · Hijau Tani"], ["Suara", "C 4 · B 2 · A 0"], ["Nomor", "Putih (usul Jay)"]], "narasi": "Empat suara buat Hijau Tani. Mulai hari ini, kita hijau!" },
+    { "jenis": "komentar", "users": ["m.r.r21_", "amirdaffa27"], "narasi": "Revan sama Amir protes. Maaf, kemarin aku salah masukin kalian ke ultras." },
+    { "jenis": "seleksi", "pemain": "amirdaffa27", "tes": "lari", "stat": [["Kecepatan", 86], ["Dribel", 78], ["Ngotot", 95]], "narasi": "Amir, sayap kiri. Larinya kencang banget!" },
+    { "jenis": "lolos", "narasi": "Delapan pemain baru. Kalian pemain, bukan penonton!" },
+    { "jenis": "papan_skuad", "narasi": "Dua puluh lima pemain. Tinggal lima kursi lagi." },
+    { "jenis": "voting", "pertanyaan": "Siapa starter sayap kiri?", "opsi": [{ "huruf": "A", "teks": "Putz" }, { "huruf": "B", "teks": "Nadzar" }, { "huruf": "C", "teks": "Tegar" }], "narasi": "Sayap kiri sekarang ada lima. Kalian yang pilih starternya!" },
+    { "jenis": "bersambung", "teaser": "Siapa yang turun dari mobil hitam?", "narasi": "Lalu pintu mobil hitam itu terbuka pelan-pelan..." }
+  ],
+  "voting_baru": { "pertanyaan": "Siapa starter sayap kiri?", "opsi": [{ "huruf": "A", "teks": "Putz" }, { "huruf": "B", "teks": "Nadzar" }, { "huruf": "C", "teks": "Tegar" }] },
+  "benang_terbuka": [
+    "Mobil hitam misterius: pintunya terbuka, siapa yang turun?",
+    "Voting starter sayap kiri (A Putz, B Nadzar, C Tegar).",
+    "Kas tinggal Rp 4,75 juta untuk bayar jersey Hijau Tani.",
+    "Uji coba lawan Bintang Sebelah FC tinggal 2 hari (DAY 10).",
+    "Nama kelompok Ultras belum ada."
+  ],
+  "rencana_dekat": ["Sponsor aneh turun dari mobil hitam dengan syarat lucu.", "Uji coba DAY 10 lawan Bintang Sebelah FC."],
+  "riwayat": "DAY 8: Jersey Hijau Tani (nomor putih) menang voting; Revan, Amir, Gung + 5 pendaftar baru jadi pemain, skuad 25/30; voting starter sayap kiri.",
+  "caption": "HIJAU TANI MENANG! 💚 Jersey resmi Yonoha: hijau dengan nomor punggung PUTIH (usul @elmermuhandis_). Revan, Amir, Gung — maaf kemarin salah masukin ke ultras, kalian PEMAIN! Plus Epan, Irzz, Arya P, Mardian, Sabil. Skuad 25/30, tinggal 5 kursi!\n\nSIAPA STARTER SAYAP KIRI? Komen A (Putz), B (Nadzar), atau C (Tegar)!\nMau daftar? FOLLOW + komen DAFTAR – NAMA – POSISI.\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": ["HIJAU TANI MENANG!", "NOMOR PUTIH USUL JAY."],
+  "model": "manual (Claude)"
+}

@@ -1,0 +1,31 @@
+{
+  "day": 9,
+  "judul": "Sponsor Kerupuk",
+  "ringkas": "Yang turun dari mobil hitam ternyata juragan kerupuk: sponsor Rp 10 juta dengan syarat aneh. Latihan penalti, voting kapten, lalu telepon tengah malam dari Coach Darman.",
+  "jawab_sebelumnya": "Pintu mobil hitam terbuka: sponsor Kerupuk Makar Jaya. Kas yang menipis terjawab, tapi ada syarat menang.",
+  "pemain_lolos": [],
+  "beat": [
+    { "jenis": "cold_open", "lokasi": "kantor", "dialog": [
+      { "oleh": "waskito", "teks": "Jack! Yang turun dari mobil itu juragan kerupuk! Dia mau jadi sponsor!" } ] },
+    { "jenis": "info", "warna": "ungu", "judul": "Surat Sponsor", "isi": [["Sponsor", "Kerupuk Makar Jaya"], ["Dana", "Rp 10 juta"], ["Syarat 1", "Logo kerupuk di dada"], ["Syarat 2", "Menang lawan Bintang"]], "narasi": "Sepuluh juta! Tapi kalau kalah lawan Bintang Sebelah, uangnya ditarik lagi." },
+    { "jenis": "ngobrol", "lokasi": "kantor", "dialog": [
+      { "oleh": "waskito", "teks": "Jack, kita belum pernah main sekali pun." },
+      { "oleh": "jack", "teks": "Makanya besok kita buktikan, Pak." } ] },
+    { "jenis": "latihan", "aktivitas": "tembak", "narasi": "Latihan penalti. Jay masih tajam, tapi Radhika masih jago tepis." },
+    { "jenis": "papan_skuad", "narasi": "Dua puluh lima pemain. Besok cuma sebelas yang turun." },
+    { "jenis": "voting", "pertanyaan": "Siapa kapten Yonoha?", "opsi": [{ "huruf": "A", "teks": "Jay" }, { "huruf": "B", "teks": "Adel" }, { "huruf": "C", "teks": "Ando" }], "narasi": "Tim butuh kapten. Kalian yang tentukan!" },
+    { "jenis": "bersambung", "teaser": "Telepon tengah malam dari kubu rival...", "narasi": "Tengah malam, teleponku berdering. Dari Coach Darman...?" }
+  ],
+  "voting_baru": { "pertanyaan": "Siapa kapten Yonoha?", "opsi": [{ "huruf": "A", "teks": "Jay" }, { "huruf": "B", "teks": "Adel" }, { "huruf": "C", "teks": "Ando" }] },
+  "benang_terbuka": [
+    "Sponsor Kerupuk Makar Jaya Rp 10 juta, ditarik kalau kalah lawan Bintang Sebelah.",
+    "Telepon tengah malam dari Coach Darman.",
+    "Voting kapten (A Jay, B Adel, C Ando) dan starter sayap kiri.",
+    "Uji coba lawan Bintang Sebelah FC BESOK (DAY 10)."
+  ],
+  "rencana_dekat": ["DAY 10: uji coba lawan Bintang Sebelah FC, sponsor dipertaruhkan."],
+  "riwayat": "DAY 9: Sponsor Kerupuk Makar Jaya Rp 10 juta dengan syarat menang lawan Bintang Sebelah; latihan penalti; voting kapten; telepon tengah malam dari Coach Darman.",
+  "caption": "SPONSOR PERTAMA DATANG! 🍘 Yang turun dari mobil hitam ternyata juragan Kerupuk Makar Jaya — Rp 10 juta buat Yonoha! Tapi syaratnya: logo kerupuk di dada, dan KALAU KALAH lawan Bintang Sebelah besok, uangnya ditarik 😳 Tengah malam, Coach Darman malah nelepon...\n\nSIAPA KAPTEN YONOHA? Komen A (Jay), B (Adel), atau C (Ando)!\nMau jadi ULTRAS? Komen ULTRAS!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": ["SPONSOR DATANG!", "TAPI SYARATNYA ANEH."],
+  "model": "manual (Claude)"
+}

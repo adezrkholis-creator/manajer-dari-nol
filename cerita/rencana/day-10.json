@@ -1,0 +1,30 @@
+{
+  "day": 10,
+  "judul": "Uji Coba!",
+  "ringkas": "Uji coba lawan Bintang Sebelah FC: tertinggal 0-2 dari mantan pemain sendiri, Jay memperkecil 1-2, menit 89 Yonoha dapat penalti. Penonton memilih penendangnya.",
+  "jawab_sebelumnya": "Telepon Coach Darman: ejekan sebelum laga. Uji coba DAY 10 akhirnya dimainkan, sponsor kerupuk dipertaruhkan.",
+  "pemain_lolos": [],
+  "beat": [
+    { "jenis": "cold_open", "lokasi": "lapangan", "dialog": [
+      { "oleh": "darman", "teks": "Sembilan mantan pemainmu ada di sini, Jack. Siap dipermalukan?" } ] },
+    { "jenis": "info", "warna": "merah", "judul": "Babak 1", "isi": [["Yonoha", "0"], ["Bintang Sebelah", "2"], ["Pencetak", "Mantan pemain kita"]], "narasi": "Babak pertama, kebobolan dua. Yang cetak gol mantan pemain kita sendiri." },
+    { "jenis": "ngobrol", "lokasi": "ruang_ganti", "dialog": [
+      { "oleh": "jack", "teks": "Dengar! Kalian bukan pemain buangan. Kalian dipilih penonton! Main buat mereka!" } ] },
+    { "jenis": "latihan", "aktivitas": "tembak", "narasi": "Menit enam puluh tujuh. Jay! Gol! Satu dua!" },
+    { "jenis": "info", "warna": "hijau", "judul": "Menit 89", "isi": [["Yonoha", "1"], ["Bintang Sebelah", "2"], ["Wasit", "PENALTI!"]], "narasi": "Menit delapan puluh sembilan. Wasit menunjuk titik putih. Penalti buat kita!" },
+    { "jenis": "voting", "pertanyaan": "Siapa yang ambil penalti?", "opsi": [{ "huruf": "A", "teks": "Jay" }, { "huruf": "B", "teks": "Putz" }, { "huruf": "C", "teks": "Adel" }], "narasi": "Satu tendangan penentu. Kalian yang pilih penendangnya!" },
+    { "jenis": "bersambung", "teaser": "Penalti terakhir: gol atau gagal?", "narasi": "Sponsor, harga diri, semuanya ada di satu tendangan ini..." }
+  ],
+  "voting_baru": { "pertanyaan": "Siapa yang ambil penalti?", "opsi": [{ "huruf": "A", "teks": "Jay" }, { "huruf": "B", "teks": "Putz" }, { "huruf": "C", "teks": "Adel" }] },
+  "benang_terbuka": [
+    "Uji coba lawan Bintang Sebelah FC: skor 1-2 menit 89, Yonoha dapat PENALTI. Penendang dipilih penonton (A Jay, B Putz, C Adel).",
+    "Kalau penalti gagal (kalah), sponsor Kerupuk Makar Jaya Rp 10 juta ditarik; kalau gol (imbang 2-2) sponsor bisa ditawar.",
+    "Voting kapten (Jay/Adel/Ando) dan starter sayap kiri belum diumumkan.",
+    "Nama kelompok Ultras belum ada."
+  ],
+  "rencana_dekat": ["DAY 11: hasil penalti sesuai voting penonton, nasib sponsor, umumkan kapten.", "Setelah itu: verifikasi liga dan mulai Liga Divisi 5 (lalu voting jersey ulang sesuai ide owner)."],
+  "riwayat": "DAY 10: Uji coba vs Bintang Sebelah FC: 0-2 di babak 1, Jay cetak gol (1-2), menit 89 penalti untuk Yonoha; penonton memilih penendang.",
+  "caption": "UJI COBA! ⚽ Yonoha vs Bintang Sebelah FC — tim yang ngambil 9 pemain lama kita. Babak 1 kebobolan 0-2 sama MANTAN PEMAIN SENDIRI 😤 Jay balas 1-2... dan menit 89 wasit nunjuk titik putih. PENALTI! Sponsor kerupuk Rp 10 juta dipertaruhkan di satu tendangan.\n\nSIAPA YANG AMBIL PENALTI? Komen A (Jay), B (Putz), atau C (Adel)!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": ["0-2 DARI MANTAN!", "PENALTI MENIT 89."],
+  "model": "manual (Claude)"
+}

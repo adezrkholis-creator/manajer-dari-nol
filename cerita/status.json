@@ -1,13 +1,14 @@
 {
-  "day_terakhir": 7,
+  "day_terakhir": 10,
   "babak": 1,
   "divisi": "Divisi 5",
   "kas": 4750000,
-  "hari_menuju_ujicoba": 3,
+  "hari_menuju_ujicoba": 0,
   "laga_berikutnya": {
     "lawan": "Bintang Sebelah FC",
     "jenis": "uji coba",
-    "day": 10
+    "day": 10,
+    "status": "BERLANGSUNG: 1-2 menit 89, penalti untuk Yonoha (penendang dipilih voting DAY 10)"
   },
   "skuad": [
     {
@@ -121,6 +122,62 @@
       "posisi": "LWF",
       "status": "cadangan",
       "nomor": ""
+    },
+    {
+      "nama": "Revan",
+      "user": "m.r.r21_",
+      "posisi": "LB",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Amir",
+      "user": "amirdaffa27",
+      "posisi": "LWF",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Gung",
+      "user": "onlygung1",
+      "posisi": "GK",
+      "status": "cadangan",
+      "nomor": "19"
+    },
+    {
+      "nama": "Epan",
+      "user": "saepudinnnns_",
+      "posisi": "GK",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Irzz",
+      "user": "irzzyy.t",
+      "posisi": "CB",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Arya P",
+      "user": "aryaputa234",
+      "posisi": "LWF",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Mardian",
+      "user": "archive_yann_11",
+      "posisi": "AMF",
+      "status": "cadangan",
+      "nomor": ""
+    },
+    {
+      "nama": "Sabil",
+      "user": "sabil.8808",
+      "posisi": "CF",
+      "status": "cadangan",
+      "nomor": "15"
     }
   ],
   "slot_kosong": [],
@@ -128,40 +185,44 @@
   "ultras": {
     "nama": null,
     "anggota": [
-      "onlygung1",
-      "amirdaffa27",
-      "lakuteruss.id",
-      "m.r.r21_"
+      "lakuteruss.id"
     ]
   },
-  "seragam": null,
+  "seragam": {
+    "nama": "Hijau Tani",
+    "utama": "#15803d",
+    "aksen": "#111827",
+    "celana": "#15803d",
+    "pola": "selempang",
+    "nomor": "#ffffff",
+    "pemenang_voting": "C 4 suara, B 2, A 0 (DAY 6-7)",
+    "usul": "nomor putih dari @elmermuhandis_"
+  },
   "seragam_tandang": null,
   "benang_terbuka": [
-    "Tiga sayap kiri (Putz, Nadzar, Tegar) rebutan satu posisi inti LWF.",
-    "Kas tinggal Rp 4,75 juta, jersey belum dibayar.",
-    "Mobil hitam misterius di depan stadion: calon sponsor?",
-    "Uji coba lawan Bintang Sebelah FC tinggal 3 hari (DAY 10).",
-    "Nama kelompok Ultras Yonoha belum ada."
+    "Uji coba lawan Bintang Sebelah FC: skor 1-2 menit 89, Yonoha dapat PENALTI. Penendang dipilih penonton (A Jay, B Putz, C Adel).",
+    "Kalau penalti gagal (kalah), sponsor Kerupuk Makar Jaya Rp 10 juta ditarik; kalau gol (imbang 2-2) sponsor bisa ditawar.",
+    "Voting kapten (Jay/Adel/Ando) dan starter sayap kiri belum diumumkan.",
+    "Nama kelompok Ultras belum ada."
   ],
   "rencana_dekat": [
-    "Umumkan hasil voting jersey (hitung komen A/B/C di DAY 6 & 7).",
-    "Siapa pemilik mobil hitam: sponsor aneh dengan syarat lucu.",
-    "Starter sayap kiri dipilih lewat voting."
+    "DAY 11: hasil penalti sesuai voting penonton, nasib sponsor, umumkan kapten.",
+    "Setelah itu: verifikasi liga dan mulai Liga Divisi 5 (lalu voting jersey ulang sesuai ide owner)."
   ],
   "voting_berjalan": {
-    "pertanyaan": "Pilih seragam",
+    "pertanyaan": "Siapa yang ambil penalti?",
     "opsi": [
       {
         "huruf": "A",
-        "teks": "Garuda Merah"
+        "teks": "Jay"
       },
       {
         "huruf": "B",
-        "teks": "Biru Langit"
+        "teks": "Putz"
       },
       {
         "huruf": "C",
-        "teks": "Hijau Tani"
+        "teks": "Adel"
       }
     ]
   },
@@ -172,6 +233,18 @@
     "DAY 4: Latihan perdana, sisi kiri kosong. Waskito: uji coba hari ke-10 lawan Bintang Sebelah FC.",
     "DAY 5: Jack mengintip latihan Bintang Sebelah (18 pemain, kas Rp 450 juta, 9 mantan Yonoha), ketahuan Coach Darman.",
     "DAY 6: Perekrutan gelombang kedua sukses, pamer tiga desain jersey.",
-    "DAY 7: DAY 7: Latihan pertama 17 pemain, tiga sayap kiri rebutan posisi, kas menipis, mobil hitam misterius datang."
-  ]
+    "DAY 7: DAY 7: Latihan pertama 17 pemain, tiga sayap kiri rebutan posisi, kas menipis, mobil hitam misterius datang.",
+    "DAY 8: DAY 8: Jersey Hijau Tani (nomor putih) menang voting; Revan, Amir, Gung + 5 pendaftar baru jadi pemain, skuad 25/30; voting starter sayap kiri.",
+    "DAY 9: DAY 9: Sponsor Kerupuk Makar Jaya Rp 10 juta dengan syarat menang lawan Bintang Sebelah; latihan penalti; voting kapten; telepon tengah malam dari Coach Darman.",
+    "DAY 10: DAY 10: Uji coba vs Bintang Sebelah FC: 0-2 di babak 1, Jay cetak gol (1-2), menit 89 penalti untuk Yonoha; penonton memilih penendang."
+  ],
+  "sponsor": {
+    "nama": "Kerupuk Makar Jaya",
+    "dana": 10000000,
+    "syarat": [
+      "logo kerupuk di dada",
+      "menang lawan Bintang Sebelah (kalau kalah dana ditarik)"
+    ],
+    "status": "menunggu hasil uji coba"
+  }
 }

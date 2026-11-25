@@ -1,0 +1,545 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 9,
+  "judul": "DAY 9 — Sponsor Kerupuk",
+  "subjudul": "DAY 9 · SPONSOR KERUPUK",
+  "fps": 30,
+  "ukuran": [
+    1080,
+    1920
+  ],
+  "suara": {
+    "jack": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+10%",
+      "pitch": "-3Hz",
+      "label": "JACK"
+    },
+    "waskito": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+0%",
+      "pitch": "-24Hz",
+      "label": "WASKITO (KETUA)"
+    },
+    "darman": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+6%",
+      "pitch": "-14Hz",
+      "label": "COACH DARMAN (BINTANG SEBELAH)"
+    }
+  },
+  "otomatis": true,
+  "sumber_rencana": "cerita/rencana/day-09.json",
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": [
+    "SPONSOR DATANG!",
+    "TAPI SYARATNYA ANEH."
+  ],
+  "skuadAwal": 25,
+  "skuadMaks": 30,
+  "musikHangat": "semua",
+  "ketukan": [
+    "b4"
+  ],
+  "seragam": {
+    "nama": "Hijau Tani",
+    "utama": "#15803d",
+    "aksen": "#111827",
+    "celana": "#15803d",
+    "pola": "selempang",
+    "nomor": "#ffffff",
+    "pemenang_voting": "C 4 suara, B 2, A 0 (DAY 6-7)",
+    "usul": "nomor putih dari @elmermuhandis_"
+  },
+  "pemain_data": {
+    "rizky": {
+      "skin": "#c58b5c",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "miftakh": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#1e3a8a",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "skala": 1.07
+    },
+    "dapeng": {
+      "skin": "#e0ac80",
+      "shirt": "#16a34a",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316"
+    },
+    "jay": {
+      "skin": "#c58b5c",
+      "shirt": "#f8fafc",
+      "stripe": "#ea580c",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#ea580c"
+    },
+    "ando": {
+      "skin": "#b97a4f",
+      "shirt": "#f59e0b",
+      "stripe": "#111827",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "gloves": "#f8fafc",
+      "shoes": "#111",
+      "kiper": true,
+      "skala": 1.06
+    },
+    "radhika": {
+      "skin": "#e0ac80",
+      "shirt": "#7c3aed",
+      "stripe": "#c4b5fd",
+      "pants": "#1f2937",
+      "hair": "#2b1d14",
+      "gloves": "#22c55e",
+      "shoes": "#f3f4f6",
+      "kiper": true
+    },
+    "bagus": {
+      "skin": "#d9a273",
+      "shirt": "#facc15",
+      "stripe": "#1f2937",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "belly": 0.25
+    },
+    "p_marydillh2006_": {
+      "skin": "#e0ac80"
+    },
+    "p_ikzz_nyalse": {
+      "skin": "#b97a4f",
+      "shirt": "#4f46e5",
+      "stripe": "#fde047",
+      "pants": "#1e3a8a",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "cap": "#111827"
+    },
+    "p_ax_last_line": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_iiamelzy": {
+      "skin": "#c58b5c",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_bagasandikaprasetyo": {
+      "skin": "#c58b5c",
+      "stripe": "#f8fafc",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_nadzar_30": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#dc2626"
+    },
+    "p_recallllllllllllll": {
+      "skin": "#e0ac80",
+      "pants": "#111827"
+    },
+    "p_sotopenyet22": {
+      "skin": "#b97a4f",
+      "stripe": "#f8fafc"
+    },
+    "p_1dongg_06_": {
+      "skin": "#d9a273",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6"
+    },
+    "p_andi_muh_tegar": {
+      "skin": "#f1c7a0",
+      "shirt": "#16a34a",
+      "stripe": "#111827",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "p_m_r_r21_": {
+      "skin": "#e0ac80",
+      "shirt": "#0891b2",
+      "stripe": "#f8fafc",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "p_amirdaffa27": {
+      "skin": "#f1c7a0",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "shoes": "#111"
+    },
+    "p_onlygung1": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "gloves": "#f8fafc",
+      "kiper": true
+    },
+    "p_saepudinnnns_": {
+      "skin": "#d9a273",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "gloves": "#f8fafc",
+      "kiper": true
+    },
+    "p_irzzyy_t": {
+      "skin": "#f1c7a0",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#3b2a20",
+      "shoes": "#f97316",
+      "cap": "#dc2626"
+    },
+    "p_aryaputa234": {
+      "skin": "#d9a273",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_archive_yann_11": {
+      "skin": "#d9a273",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316",
+      "cap": "#111827"
+    },
+    "p_sabil_8808": {
+      "skin": "#d9a273",
+      "shirt": "#4f46e5",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6",
+      "cap": "#111827"
+    }
+  },
+  "adegan": [
+    {
+      "id": "b1",
+      "suasana": "pagi",
+      "min": 3.6,
+      "baris": [
+        {
+          "oleh": "waskito",
+          "teks": "Jack! Yang turun dari mobil itu juragan kerupuk! Dia mau jadi sponsor!"
+        }
+      ],
+      "panggung": "umum",
+      "dramatis": true,
+      "lokasi3d": "kantor",
+      "tokoh": [
+        "jack",
+        "waskito"
+      ],
+      "lead": 0.1,
+      "sfx": [
+        [
+          0,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b2",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Sepuluh juta! Tapi kalau kalah lawan Bintang Sebelah, uangnya ditarik lagi."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "kartu": {
+        "jenis": "target",
+        "tunda": 0.3,
+        "judul": "SURAT SPONSOR",
+        "sub": "",
+        "isi": [
+          [
+            "Sponsor",
+            "Kerupuk Makar Jaya"
+          ],
+          [
+            "Dana",
+            "Rp 10 juta"
+          ],
+          [
+            "Syarat 1",
+            "Logo kerupuk di dada"
+          ],
+          [
+            "Syarat 2",
+            "Menang lawan Bintang"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "suasana": "dalam",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "waskito",
+          "teks": "Jack, kita belum pernah main sekali pun."
+        },
+        {
+          "oleh": "jack",
+          "teks": "Makanya besok kita buktikan, Pak."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "kantor",
+      "tokoh": [
+        "jack",
+        "waskito"
+      ],
+      "lokasi": "KANTOR KETUA"
+    },
+    {
+      "id": "b4",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Latihan penalti. Jay masih tajam, tapi Radhika masih jago tepis."
+        }
+      ],
+      "lokasi": "LATIHAN · TEMBAKAN",
+      "tembak": {
+        "penendang": "jay",
+        "kiper": "radhika",
+        "hasil": "tepis"
+      },
+      "sfx": [
+        [
+          1,
+          "tendang"
+        ],
+        [
+          1.5,
+          "tangkap"
+        ]
+      ]
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Dua puluh lima pemain. Besok cuma sebelas yang turun."
+        }
+      ],
+      "panggung": "skuad",
+      "barisan": [
+        "rizky",
+        "miftakh",
+        "dapeng",
+        "jay",
+        "ando",
+        "radhika",
+        "bagus",
+        "p_marydillh2006_",
+        "p_ikzz_nyalse",
+        "p_ax_last_line",
+        "p_iiamelzy",
+        "p_bagasandikaprasetyo",
+        "p_nadzar_30",
+        "p_recallllllllllllll",
+        "p_sotopenyet22",
+        "p_1dongg_06_",
+        "p_andi_muh_tegar",
+        "p_m_r_r21_",
+        "p_amirdaffa27",
+        "p_onlygung1",
+        "p_saepudinnnns_",
+        "p_irzzyy_t",
+        "p_aryaputa234",
+        "p_archive_yann_11",
+        "p_sabil_8808"
+      ],
+      "papan": [
+        {
+          "pos": "RWF",
+          "nama": "Rizky",
+          "warna": "#dc2626",
+          "baru": false
+        },
+        {
+          "pos": "CB",
+          "nama": "Miftakh",
+          "warna": "#2563eb",
+          "baru": false
+        },
+        {
+          "pos": "AMF",
+          "nama": "Dapeng",
+          "warna": "#059669",
+          "baru": false
+        },
+        {
+          "pos": "CF",
+          "nama": "Jay",
+          "warna": "#16a34a",
+          "baru": false
+        },
+        {
+          "pos": "GK",
+          "nama": "Ando",
+          "warna": "#db2777",
+          "baru": false
+        },
+        {
+          "pos": "CMF",
+          "nama": "Bagus",
+          "warna": "#2563eb",
+          "baru": false
+        },
+        {
+          "pos": "RB",
+          "nama": "Arya",
+          "warna": "#16a34a",
+          "baru": false
+        },
+        {
+          "pos": "LB",
+          "nama": "Ikzz",
+          "warna": "#4f46e5",
+          "baru": false
+        },
+        {
+          "pos": "LWF",
+          "nama": "Putz",
+          "warna": "#4f46e5",
+          "baru": false
+        },
+        {
+          "pos": "CB",
+          "nama": "Iiamelzy",
+          "warna": "#2563eb",
+          "baru": false
+        },
+        {
+          "pos": "CADANGAN",
+          "nama": "+15 lagi",
+          "warna": "#7c3aed"
+        },
+        {
+          "pos": "",
+          "kamu": true
+        }
+      ],
+      "papanJudul": "25 / 30",
+      "sfx": [
+        [
+          0.3,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "b6",
+      "suasana": "pagi",
+      "min": 5.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Tim butuh kapten. Kalian yang tentukan!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "voting": {
+        "pertanyaan": "Siapa kapten Yonoha?",
+        "opsi": [
+          {
+            "huruf": "A",
+            "teks": "Jay"
+          },
+          {
+            "huruf": "B",
+            "teks": "Adel"
+          },
+          {
+            "huruf": "C",
+            "teks": "Ando"
+          }
+        ]
+      },
+      "sfx": [
+        [
+          0.3,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "penutup",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Tengah malam, teleponku berdering. Dari Coach Darman...?"
+        }
+      ],
+      "teaser": "Telepon tengah malam dari kubu rival..."
+    }
+  ],
+  "akhir": {
+    "judul": "GABUNG ULTRAS!",
+    "posisi": [
+      "KOMEN \"ULTRAS\""
+    ],
+    "tombol": "KOMEN: A, B atau C",
+    "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
+    "status": "Skuad 25/30 · uji coba 1 hari lagi"
+  },
+  "caption": "SPONSOR PERTAMA DATANG! 🍘 Yang turun dari mobil hitam ternyata juragan Kerupuk Makar Jaya — Rp 10 juta buat Yonoha! Tapi syaratnya: logo kerupuk di dada, dan KALAU KALAH lawan Bintang Sebelah besok, uangnya ditarik 😳 Tengah malam, Coach Darman malah nelepon...\n\nSIAPA KAPTEN YONOHA? Komen A (Jay), B (Adel), atau C (Ando)!\nMau jadi ULTRAS? Komen ULTRAS!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "ticker": {
+    "teks": "SKUAD 25/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
+    "dari": "b2",
+    "sampai": "b6"
+  }
+}
