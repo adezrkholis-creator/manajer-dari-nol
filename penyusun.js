@@ -120,6 +120,15 @@ for (const b of R.beat) {
     a.sfx = [[0.3, 'ding']]; a.min = 5;
   } else if (b.jenis === 'jersey') {
     Object.assign(a, { panggung: 'umum', lokasi3d: 'lapangan', jersey: (b.opsi || []).slice(0, 3), min: 6.5, sfx: [[0.5, 'ding']] });
+  } else if (b.jenis === 'laga') {
+    const ad = b.adegan || 'serang';
+    const LBL = { lorong: 'LORONG PEMAIN', keluar: 'MASUK LAPANGAN', barisan: 'LINE-UP', kickoff: 'KICK-OFF', serang: 'PERTANDINGAN', golLawan: 'GOL LAWAN', golKita: 'GOL!', penalti: 'PENALTI' };
+    Object.assign(a, { lokasi: b.skor ? null : (LBL[ad] || 'PERTANDINGAN'), min: ad === 'golLawan' ? 5 : 4.5 });
+    if (ad === 'golKita') { a.tembak = { penendang: pastikan(b.pemain || 'elmermuhandis_', 'CF'), kiper: 'rival', hasil: 'gol' }; a.sfx = [[1.0, 'tendang'], [1.5, 'jaring'], [1.7, 'peluit']]; }
+    else if (ad === 'penalti') { a.panggung = 'penalti'; a.sfx = [[0.3, 'peluit']]; }
+    else { a.panggung = 'laga'; a.laga = { jenis: ad }; a.suasana = ad === 'lorong' ? 'dalam' : 'pagi'; a.sfx = ad === 'kickoff' ? [[1.2, 'peluit']] : ad === 'golLawan' ? [[2.4, 'tendang'], [2.85, 'jaring']] : []; }
+    if (b.skor) a.skor = b.skor; if (b.menit) a.menit = b.menit;
+    if (!['lorong', 'keluar', 'barisan'].includes(ad)) ketukan.push(a.id);
   } else if (b.jenis === 'lolos') {
     const diSeleksi = new Set(R.beat.filter(x => x.jenis === 'seleksi').map(x => String(x.pemain || '').replace(/^@/, '').toLowerCase()));
     const sudahDihitung = new Set(adegan.flatMap(x => x.dihitung || []));

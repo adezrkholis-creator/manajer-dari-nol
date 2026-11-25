@@ -33,14 +33,18 @@
   "hookCepat": true,
   "tanpaJudul": true,
   "hookTeks": [
-    "0-2 DARI MANTAN!",
-    "PENALTI MENIT 89."
+    "UJI COBA HARI INI!",
+    "LAWAN 9 MANTAN SENDIRI."
   ],
   "skuadAwal": 25,
   "skuadMaks": 30,
   "musikHangat": "semua",
   "ketukan": [
-    "b4"
+    "b4",
+    "b5",
+    "b7",
+    "b8",
+    "b9"
   ],
   "seragam": {
     "nama": "Hijau Tani",
@@ -252,28 +256,20 @@
   "adegan": [
     {
       "id": "b1",
-      "suasana": "pagi",
-      "min": 3.6,
+      "suasana": "dalam",
+      "min": 4.5,
       "baris": [
         {
-          "oleh": "darman",
-          "teks": "Sembilan mantan pemainmu ada di sini, Jack. Siap dipermalukan?"
+          "oleh": "jack",
+          "teks": "Lorong sempit ini. Di sebelah kita, sembilan mantan pemain Yonoha."
         }
       ],
-      "panggung": "umum",
-      "dramatis": true,
-      "lokasi3d": "lapangan",
-      "tokoh": [
-        "jack",
-        "darman"
-      ],
-      "lead": 0.1,
-      "sfx": [
-        [
-          0,
-          "peluit"
-        ]
-      ]
+      "lokasi": "LORONG PEMAIN",
+      "panggung": "laga",
+      "laga": {
+        "jenis": "lorong"
+      },
+      "sfx": []
     },
     {
       "id": "b2",
@@ -282,40 +278,103 @@
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Babak pertama, kebobolan dua. Yang cetak gol mantan pemain kita sendiri."
+          "teks": "Dan tribunnya... penuh! Ultras Yonoha datang!"
         }
       ],
-      "panggung": "umum",
-      "lokasi3d": "lapangan",
-      "kartu": {
-        "jenis": "peringatan",
-        "tunda": 0.3,
-        "judul": "BABAK 1",
-        "sub": "",
-        "isi": [
-          [
-            "Yonoha",
-            "0"
-          ],
-          [
-            "Bintang Sebelah",
-            "2"
-          ],
-          [
-            "Pencetak",
-            "Mantan pemain kita"
-          ]
-        ]
-      }
+      "lokasi": "MASUK LAPANGAN",
+      "panggung": "laga",
+      "laga": {
+        "jenis": "keluar"
+      },
+      "sfx": []
     },
     {
       "id": "b3",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "darman",
+          "teks": "Siap dipermalukan, Jack?"
+        },
+        {
+          "oleh": "jack",
+          "teks": "Kita lihat nanti, Coach."
+        }
+      ],
+      "lokasi": "LINE-UP",
+      "panggung": "laga",
+      "laga": {
+        "jenis": "barisan"
+      },
+      "sfx": []
+    },
+    {
+      "id": "b4",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Peluit berbunyi. Uji coba dimulai!"
+        }
+      ],
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "kickoff"
+      },
+      "sfx": [
+        [
+          1.2,
+          "peluit"
+        ]
+      ],
+      "skor": [
+        0,
+        0
+      ],
+      "menit": "1'"
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Gol lagi! Dua kosong. Dua-duanya dari mantan pemain kita."
+        }
+      ],
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "golLawan"
+      },
+      "sfx": [
+        [
+          2.4,
+          "tendang"
+        ],
+        [
+          2.85,
+          "jaring"
+        ]
+      ],
+      "skor": [
+        0,
+        2
+      ],
+      "menit": "38'"
+    },
+    {
+      "id": "b6",
       "suasana": "dalam",
       "min": 4.5,
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Dengar! Kalian bukan pemain buangan. Kalian dipilih penonton! Main buat mereka!"
+          "teks": "Dengar! Kalian dipilih penonton! Main buat mereka!"
         }
       ],
       "panggung": "umum",
@@ -326,19 +385,41 @@
       "lokasi": "RUANG GANTI"
     },
     {
-      "id": "b4",
+      "id": "b7",
       "suasana": "pagi",
       "min": 4.5,
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Menit enam puluh tujuh. Jay! Gol! Satu dua!"
+          "teks": "Babak kedua. Kita gempur terus dari kiri."
         }
       ],
-      "lokasi": "MENIT 67 · GOL JAY!",
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "serang"
+      },
+      "sfx": [],
+      "skor": [
+        0,
+        2
+      ],
+      "menit": "64'"
+    },
+    {
+      "id": "b8",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Jay! Gol! Satu dua!"
+        }
+      ],
+      "lokasi": null,
       "tembak": {
         "penendang": "jay",
-        "kiper": "radhika",
+        "kiper": "rival",
         "hasil": "gol"
       },
       "sfx": [
@@ -354,43 +435,39 @@
           1.7,
           "peluit"
         ]
-      ]
+      ],
+      "skor": [
+        1,
+        2
+      ],
+      "menit": "67'"
     },
     {
-      "id": "b5",
+      "id": "b9",
       "suasana": "pagi",
       "min": 4.5,
       "baris": [
         {
           "oleh": "jack",
-          "teks": "Menit delapan puluh sembilan. Wasit menunjuk titik putih. Penalti buat kita!"
+          "teks": "Menit delapan puluh sembilan. Wasit menunjuk titik putih. Penalti!"
         }
       ],
-      "panggung": "umum",
-      "lokasi3d": "lapangan",
-      "kartu": {
-        "jenis": "sukses",
-        "tunda": 0.3,
-        "judul": "MENIT 89",
-        "sub": "",
-        "isi": [
-          [
-            "Yonoha",
-            "1"
-          ],
-          [
-            "Bintang Sebelah",
-            "2"
-          ],
-          [
-            "Wasit",
-            "PENALTI!"
-          ]
+      "lokasi": null,
+      "panggung": "penalti",
+      "sfx": [
+        [
+          0.3,
+          "peluit"
         ]
-      }
+      ],
+      "skor": [
+        1,
+        2
+      ],
+      "menit": "89'"
     },
     {
-      "id": "b6",
+      "id": "b10",
       "suasana": "pagi",
       "min": 5.5,
       "baris": [
@@ -423,7 +500,12 @@
           0.3,
           "ding"
         ]
-      ]
+      ],
+      "skor": [
+        1,
+        2
+      ],
+      "menit": "89'"
     },
     {
       "id": "penutup",
@@ -449,6 +531,6 @@
   "ticker": {
     "teks": "SKUAD 25/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
     "dari": "b2",
-    "sampai": "b6"
+    "sampai": "b10"
   }
 }

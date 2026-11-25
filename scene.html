@@ -428,7 +428,7 @@ function shotScene(u, k, o) {
   }
   BALL.position.set(b[0], b[1], b[2]); BALL.rotation.z = s * 9;
   if (o.kiper) {
-    const K = PL[o.kiper]; K.visible = true; K.rotation.y = Math.PI / 2; pose(K, s * 1.5, 'idle', false);
+    const K = o.kiper === 'rival' ? AWAY[0] : PL[o.kiper]; K.visible = true; if (o.kiper === 'rival') { sorakPenonton(u, s > 1.5); JACK.visible = false; } K.rotation.y = Math.PI / 2; pose(K, s * 1.5, 'idle', false);
     const d = ease((s - 1.02) / 0.4);
     K.position.set(-18.6, Math.sin(Math.PI * clamp((s - 1.02) / 0.65)) * 0.55, d * 0.7);
     K.rotation.x = d * 1.1;
@@ -439,6 +439,159 @@ function shotScene(u, k, o) {
   if (o.lambat) cam([-13.2, 1.6, 4.4], [-14.2, 1.5, 3.9], [-18.6, 1.35, 1.2], [-18.6, 1.3, 1.3], k);
   else cam([-5.4, 2.5, 0.9], [-6.4, 2.35, 0.9], [-19, 2.3, 0.9], [-19, 2.2, 0.9], k);
 }
+// ================= PERTANDINGAN (panggung "laga") =================
+// Tim kandang (Yonoha) menyerang ke KIRI (gawang x = -19.2), tim tamu (merah) menyerang ke KANAN.
+const KULIT = ['#d9a273', '#c58b5c', '#e0ac80', '#b97a4f', '#f1c7a0'];
+const HOME = [], AWAY = [];
+const WASIT = makePerson({ skin: '#c58b5c', shirt: '#facc15', stripe: '#111827', sleeve: '#111827', pants: '#111827', hair: '#1b1b1b', shoes: '#111' });
+world.add(WASIT);
+const FORM = [[17.2, 0], [12, -7], [12.6, -2.6], [12.6, 2.6], [12, 7], [6.5, -4.5], [7.5, 0], [6.5, 4.5], [2.2, -7], [1.2, 0], [2.2, 7]]; // 4-3-3, setengah kanan
+function buatTim() {
+  HOME.concat(AWAY).forEach(function (p) { world.remove(p); }); HOME.length = 0; AWAY.length = 0;
+  const sg = EP.seragam || { utama: '#15803d', aksen: '#111827', celana: '#15803d' };
+  for (let i = 0; i < 11; i++) {
+    const gk = i === 0;
+    const h = makePerson({ skin: KULIT[i % 5], shirt: gk ? '#111827' : sg.utama, stripe: gk ? '#facc15' : sg.aksen, pants: gk ? '#111827' : sg.celana, hair: i % 3 ? '#1b1b1b' : '#3b2a20', shoes: i % 2 ? '#111' : '#f3f4f6', gloves: gk ? '#f8fafc' : null });
+    const a = makePerson({ skin: KULIT[(i + 2) % 5], shirt: gk ? '#facc15' : '#b91c1c', stripe: gk ? '#111827' : '#f8fafc', pants: gk ? '#111827' : '#f8fafc', hair: i % 2 ? '#1b1b1b' : '#2b1d14', shoes: '#111', gloves: gk ? '#22c55e' : null });
+    world.add(h); world.add(a); HOME.push(h); AWAY.push(a);
+  }
+}
+// penonton di tribun utama (z = -16.5) + spanduk ultras
+const CROWD = new THREE.Group(); stand.add(CROWD); CROWD.visible = false;
+{ const warna = ['#15803d', '#15803d', '#16a34a', '#f8fafc', '#facc15', '#2563eb', '#dc2626', '#15803d'];
+  for (let s = 0; s < 4; s++) for (let i = 0; i < 18; i++) {
+    if (R() < 0.18) continue;
+    const g = new THREE.Group(); g.position.set(-9.4 + i * 1.1 + (R() - 0.5) * 0.3, 0.6 + s * 0.65, -s * 1.1 - 0.1); CROWD.add(g);
+    boxM(0.46, 0.55, 0.3, warna[Math.floor(R() * warna.length)], 0, 0.3, 0, g); boxM(0.3, 0.3, 0.28, KULIT[Math.floor(R() * 5)], 0, 0.74, 0, g);
+    g.userData.f = R() * 6;
+  }
+  const ut = textTex(1024, 180, function (x, w, h) { x.fillStyle = '#111'; x.fillRect(0, 0, w, h); for (let i = -2; i < 14; i++) { x.fillStyle = i % 2 ? '#111' : '#15803d'; x.beginPath(); x.moveTo(i * 90, 0); x.lineTo(i * 90 + 90, 0); x.lineTo(i * 90 + 40, h); x.lineTo(i * 90 - 50, h); x.fill(); }
+    x.fillStyle = '#fde047'; x.strokeStyle = '#000'; x.lineWidth = 14; x.font = '900 92px Segoe UI, Arial'; x.textAlign = 'center'; x.strokeText('ULTRAS YONOHA', w / 2, 125); x.fillText('ULTRAS YONOHA', w / 2, 125); });
+  const sp = plane(8, 1.4, ut, 0, 0.55, 1.15, CROWD); sp.rotation.x = -0.15; }
+function sorakPenonton(T, kuat) { CROWD.visible = true; CROWD.children.forEach(function (g) { if (g.userData.f == null) return; g.position.y = g.position.y - (g.userData.y0 || 0); g.userData.y0 = Math.max(0, Math.sin(T * (kuat ? 9 : 4) + g.userData.f)) * (kuat ? 0.28 : 0.08); g.position.y += g.userData.y0; }); }
+// mulut lorong di sisi lapangan dekat (z = 13.5)
+const MULUT = new THREE.Group(); MULUT.position.set(0, 0, 14.2); world.add(MULUT); MULUT.visible = false;
+boxM(0.5, 3, 0.6, '#4b5563', -2, 1.5, 0, MULUT); boxM(0.5, 3, 0.6, '#4b5563', 2, 1.5, 0, MULUT); boxM(4.5, 0.6, 0.6, '#374151', 0, 3.1, 0, MULUT);
+boxM(3.5, 2.8, 0.1, '#0b0f17', 0, 1.4, 0.3, MULUT);
+// lorong pemain (lokasi terpisah, x = 150)
+const TUX = 150;
+const LORONG = new THREE.Group(); LORONG.position.set(TUX, 0, 0); world.add(LORONG);
+boxM(5, 0.1, 24, '#3a3f47', 0, 0.02, -2, LORONG); boxM(0.3, 3.6, 24, '#6b7280', -2.5, 1.8, -2, LORONG); boxM(0.3, 3.6, 24, '#6b7280', 2.5, 1.8, -2, LORONG); boxM(5.3, 0.3, 24, '#4b5563', 0, 3.7, -2, LORONG);
+for (let i = 0; i < 6; i++) { const l = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.08, 0.4), glow('#fff7d6')); l.position.set(0, 3.5, -12 + i * 4); LORONG.add(l); }
+{ const ex = new THREE.Mesh(new THREE.PlaneGeometry(5, 3.6), glow('#fffbeb')); ex.position.set(0, 1.8, 9.9); ex.rotation.y = Math.PI; LORONG.add(ex);
+  const st = textTex(1024, 160, function (x, w, h) { x.fillStyle = '#15803d'; x.fillRect(0, 0, w, h); x.fillStyle = '#fff'; x.font = '900 70px Segoe UI, Arial'; x.textAlign = 'center'; x.fillText('YONOHA  vs  BINTANG SEBELAH', w / 2, 105); });
+  const s1 = plane(4.2, 0.65, st, -2.33, 2.6, -2, LORONG); s1.rotation.y = Math.PI / 2; }
+const lampLorong = pointLight(0xfff1c8, TUX, 3, 0); lampLorong.distance = 30;
+function tampilTim(n) { HOME.concat(AWAY).forEach(function (p) { p.visible = true; p.position.y = 0; p.rotation.set(0, 0, 0); }); WASIT.visible = true; }
+function arahke(p, x, z) { p.rotation.y = Math.atan2(x - p.position.x, z - p.position.z); }
+function bolaJalur(pts, s) { // pts: [[x,z],...], s 0..1
+  const n = pts.length - 1, f = clamp(s) * n, i = Math.min(n - 1, Math.floor(f)), t = f - i;
+  return [lerp(pts[i][0], pts[i + 1][0], t), lerp(pts[i][1], pts[i + 1][1], t)];
+}
+function stageLaga(u, k, T) {
+  const L = CUR_DEF.laga || {}, jenis = L.jenis || 'serang';
+  WASIT.visible = false; JACK.visible = false; CROWD.visible = false; MULUT.visible = false;
+  HOME.concat(AWAY).forEach(function (p) { p.visible = false; });
+  if (jenis === 'lorong') {
+    tampilTim(); lampLorong.intensity = 30;
+    const maju = u * 1.15;
+    WASIT.position.set(TUX, 0, -3 + maju); WASIT.rotation.y = 0; pose(WASIT, u * 1.1, 'walk', false);
+    for (let i = 0; i < 11; i++) {
+      const z = -5 - i * 1.45 + maju;
+      HOME[i].position.set(TUX - 0.95, 0, z); HOME[i].rotation.y = 0; pose(HOME[i], u * 1.1 + i * 0.3, 'walk', false);
+      AWAY[i].position.set(TUX + 0.95, 0, z - 0.4); AWAY[i].rotation.y = 0; pose(AWAY[i], u * 1.1 + i * 0.3 + 1, 'walk', false);
+    }
+    camera.position.set(TUX + 0.4, 2.3, 9.2 - u * 0.3); camera.lookAt(TUX, 1.5, -6);
+    return;
+  }
+  sorakPenonton(T, jenis === 'golKita' || jenis === 'keluar' || jenis === 'golLawan');
+  if (jenis === 'keluar') {
+    tampilTim();
+    const maju = u * 1.25;
+    WASIT.position.set(0, 0, 11.6 - maju); WASIT.rotation.y = Math.PI; pose(WASIT, u, 'walk', false);
+    for (let i = 0; i < 11; i++) {
+      const z = 12.8 + i * 1.4 - maju, on = z < 13.9;
+      HOME[i].visible = on; AWAY[i].visible = on;
+      HOME[i].position.set(-0.9, 0, z); HOME[i].rotation.y = Math.PI; pose(HOME[i], u + i * 0.3, 'walk', false);
+      AWAY[i].position.set(0.9, 0, z + 0.4); AWAY[i].rotation.y = Math.PI; pose(AWAY[i], u + i * 0.3 + 1, 'walk', false);
+    }
+    cam([0.5, 6.4, 22], [0.3, 5.0, 19.5], [0, 0, 3], [0, 0.6, -1], k);
+    return;
+  }
+  if (jenis === 'barisan') {
+    tampilTim();
+    WASIT.position.set(0, 0, 2); WASIT.rotation.y = Math.PI; pose(WASIT, u, 'idle', false);
+    for (let i = 0; i < 11; i++) {
+      HOME[i].position.set(-1.3 - i * 0.95, 0, 2); HOME[i].rotation.y = Math.PI; pose(HOME[i], u + i, 'idle', false);
+      AWAY[i].position.set(1.3 + i * 0.95, 0, 2); AWAY[i].rotation.y = Math.PI; pose(AWAY[i], u + i, 'idle', false);
+      HOME[i].userData.armR.rotation.x = -0.9; HOME[i].userData.armR.rotation.z = -0.5; // tangan di dada
+    }
+    const x = lerp(-9, 9, ease(k));
+    camera.position.set(x, 2.3, -7.6); camera.lookAt(x * 0.9, 1.3, 2);
+    return;
+  }
+  // formasi dasar + pergeseran sesuai bola
+  tampilTim();
+  let bola = [0, 0], fase = 0, tgtH = null;
+  if (jenis === 'kickoff') { bola = u < 1.3 ? [0, 0] : [lerp(0, 4, clamp((u - 1.3) / 1.2)), lerp(0, -2, clamp((u - 1.3) / 1.2))]; }
+  else if (jenis === 'serang') { bola = bolaJalur(L.jalur || [[3, 2], [-3, -4], [-8, 1], [-12, -3], [-15, 2]], (u - 0.2) / 4.5); fase = -0.6; }
+  else if (jenis === 'golLawan') { bola = bolaJalur([[-2, 3], [4, -2], [9, 3], [13.5, 1.2]], (u - 0.2) / 2.2); fase = 0.7; }
+  const geserH = jenis === 'kickoff' ? 0 : (bola[0] * 0.45 + fase * 4), geserA = jenis === 'kickoff' ? 0 : (bola[0] * 0.45 + fase * 4);
+  for (let i = 0; i < 11; i++) {
+    const f = FORM[i], gk = i === 0;
+    const hx = gk ? f[0] : f[0] + geserH, hz = f[1] + (gk ? clamp((bola[1] + 3) / 6) * 2 - 1 : (bola[1] - f[1]) * 0.15) + Math.sin(T * 1.3 + i) * 0.3;
+    const ax = gk ? -f[0] : -f[0] + geserA, az = -f[1] + (gk ? clamp((bola[1] + 3) / 6) * 2 - 1 : (bola[1] + f[1]) * 0.15) + Math.cos(T * 1.2 + i) * 0.3;
+    HOME[i].position.set(jenis === 'kickoff' ? Math.max(hx, 0.6) : hx, 0, hz); AWAY[i].position.set(jenis === 'kickoff' ? Math.min(ax, -0.6) : ax, 0, az);
+    arahke(HOME[i], bola[0], bola[1]); arahke(AWAY[i], bola[0], bola[1]);
+    const lari = jenis !== 'kickoff' || u > 1.3;
+    pose(HOME[i], T * 1.3 + i, lari && !gk ? 'walk' : 'idle', false); pose(AWAY[i], T * 1.3 + i + 0.5, lari && !gk ? 'walk' : 'idle', false);
+  }
+  // pemain terdekat bola menggiring
+  let dekat = null, dmin = 1e9; (jenis === 'golLawan' ? AWAY : HOME).forEach(function (p, i) { if (i === 0) return; const d = Math.hypot(p.position.x - bola[0], p.position.z - bola[1]); if (d < dmin) { dmin = d; dekat = p; } });
+  if (dekat && jenis !== 'kickoff') { dekat.position.set(bola[0] + (jenis === 'golLawan' ? -0.7 : 0.7), 0, bola[1]); arahke(dekat, bola[0] + (jenis === 'golLawan' ? 5 : -5), bola[1]); }
+  BALL.visible = true; BALL.position.set(bola[0], 0.22, bola[1]); BALL.rotation.z = T * 8;
+  WASIT.position.set(bola[0] * 0.8 + 2, 0, bola[1] * 0.6 - 4.5); arahke(WASIT, bola[0], bola[1]); pose(WASIT, T, jenis === 'kickoff' && u < 1.3 ? 'point' : 'walk', false);
+  if (jenis === 'golLawan') {
+    const sk = clamp((u - 2.4) / 0.45), K = HOME[0];
+    if (u > 2.4) { BALL.position.set(lerp(13.5, 19.6, sk), lerp(0.22, 1.5, sk), lerp(1.2, -2.2, sk)); }
+    const d = ease((u - 2.45) / 0.35); K.position.set(17.8, Math.sin(Math.PI * clamp((u - 2.45) / 0.6)) * 0.5, d * 2.2); K.rotation.y = -Math.PI / 2; K.rotation.x = -d * 1.1;
+    if (u > 3.2) AWAY.forEach(function (p, i) { if (i) pose(p, T + i, 'cheer', false); });
+    if (u > 3.2) HOME.forEach(function (p, i) { if (i) p.userData.head.rotation.x = 0.45; });
+    cam([7, 6.5, 13], [10.5, 3.2, 9.5], [10, 0, 0], [17.5, 1, -0.5], k);
+    return;
+  }
+  if (jenis === 'kickoff') cam([0, 13, -27], [0, 9.5, -22], [0, 0, 0], [0, 0, 0], k);
+  else cam([bola[0] * 0.7, 9.5, -22], [bola[0] * 0.75, 8.5, -20], [bola[0], 0, 0], [bola[0], 0, 0], k);
+  camera.lookAt(bola[0] * 0.95, 0, bola[1] * 0.3);
+}
+function stagePenalti(u, k, T) {
+  sorakPenonton(T, false); WASIT.visible = true; JACK.visible = false; tampilTim();
+  BALL.visible = true; BALL.position.set(-13.6, 0.22, 0);
+  const K = AWAY[0]; K.position.set(-18.6, 0, Math.sin(T * 2.2) * 0.4); K.rotation.y = Math.PI / 2; pose(K, T, 'idle', false);
+  K.userData.armL.rotation.z = -0.6; K.userData.armR.rotation.z = 0.6;
+  WASIT.position.set(-12.2, 0, 2.2); WASIT.rotation.y = -1.9; pose(WASIT, u, 'point', false);
+  for (let i = 1; i < 11; i++) {
+    const zz = (i % 2 ? -1 : 1) * (2.6 + Math.floor((i - 1) / 2) * 1.25);
+    HOME[i].position.set(-10.4 + (i % 3) * 0.5, 0, zz); arahke(HOME[i], -13.6, 0); pose(HOME[i], T + i, 'idle', false);
+    if (i % 2) { HOME[i].userData.armL.rotation.x = -2.6; HOME[i].userData.armR.rotation.x = -2.6; }
+    AWAY[i].position.set(-11.2 + (i % 3) * 0.5, 0, zz + (zz > 0 ? 0.6 : -0.6)); arahke(AWAY[i], -13.6, 0); pose(AWAY[i], T + i, 'idle', false);
+  }
+  HOME[0].position.set(17.5, 0, 0);
+  cam([-6.2, 1.5, 0.6], [-9.6, 1.25, 0.25], [-18.6, 1.4, 0], [-18.6, 1.25, 0], k);
+}
+// papan skor kecil di layar saat pertandingan
+function skorBug(s, menit) {
+  const x = S(40), y = S(240), w = S(520), h = S(78);
+  g2.save(); g2.globalAlpha = 0.96; rr(x, y, w, h, S(14)); g2.fillStyle = '#0b1220'; g2.fill();
+  rr(x, y, S(170), h, S(14)); g2.fillStyle = '#15803d'; g2.fill(); g2.fillRect(x + S(150), y, S(20), h);
+  rr(x + S(330), y, S(190), h, S(14)); g2.fillStyle = '#b91c1c'; g2.fill(); g2.fillRect(x + S(330), y, S(20), h);
+  g2.fillStyle = '#fff'; g2.font = '900 ' + S(34) + 'px ' + FONT; g2.textAlign = 'center';
+  g2.fillText('YON', x + S(85), y + S(51)); g2.fillText('BSF', x + S(425), y + S(51));
+  g2.font = '900 ' + S(44) + 'px ' + FONT; g2.fillText(s[0] + ' - ' + s[1], x + S(250), y + S(55));
+  if (menit) { rr(x + w + S(12), y + S(10), S(110), h - S(20), S(12)); g2.fillStyle = '#facc15'; g2.fill(); g2.fillStyle = '#111827'; g2.font = '900 ' + S(32) + 'px ' + FONT; g2.fillText(menit, x + w + S(67), y + S(52)); }
+  g2.restore();
+}
+
 PL.miftakh.scale.setScalar(1.07);
 Object.keys(PL).forEach(function (k) { world.add(PL[k]); });
 const BALL = new THREE.Mesh(new THREE.IcosahedronGeometry(0.22, 1), mat('#f8fafc')); BALL.castShadow = true; world.add(BALL);
@@ -518,6 +671,7 @@ function stage(id, u, dur, talking, mode, T) {
   JACK.visible = true; WASKITO.visible = false; RAT.visible = false; drip.visible = false; suitcase.visible = false; key.visible = false;
   rain.visible = false; dust.visible = false; phone.visible = false; suratW.visible = false;
   RIVALS.forEach(function (p) { p.visible = false; }); DARMAN.visible = false; binoc.visible = false;
+  HOME.concat(AWAY).forEach(function (p) { p.visible = false; p.rotation.set(0, 0, 0); p.position.y = 0; }); WASIT.visible = false; CROWD.visible = false; MULUT.visible = false; lampLorong.intensity = 0;
   if (camera.fov !== 42) { camera.fov = 42; camera.updateProjectionMatrix(); } BALL.visible = false; CONES.visible = false;
   Object.keys(PL).forEach(function (n) { PL[n].visible = false; PL[n].position.y = 0; PL[n].rotation.set(0, 0, 0); });
   lampGate.intensity = 0; lampBus.intensity = 0; lampOffice.intensity = 0; lampLocker.intensity = 0;
@@ -525,6 +679,8 @@ function stage(id, u, dur, talking, mode, T) {
   suasana(mode);
 
   if (CUR_DEF.panggung === 'umum') { stageUmum(u, k, talking, T); return; }
+  if (CUR_DEF.panggung === 'laga') { stageLaga(u, k, T); return; }
+  if (CUR_DEF.panggung === 'penalti') { stagePenalti(u, k, T); return; }
   if (id === 'buka') {
     rain.visible = true; updateRain(T);
     lampBus.intensity = 14 * flicker(T, 3);
@@ -1291,7 +1447,7 @@ window.setup = function (ep, timeline, size) {
   EP = ep; TL = timeline; W = size[0]; H = size[1];
   out.width = W; out.height = H; renderer.setSize(W, H, false); renderer.setPixelRatio(1);
   camera.aspect = W / H; camera.updateProjectionMatrix();
-  pasangPemain();
+  pasangPemain(); buatTim();
   return { ok: true, durasi: TL.durasi };
 };
 window.renderAt = function (t, quality) {
@@ -1329,6 +1485,7 @@ window.renderAt = function (t, quality) {
   if (def.komen) komenList(def.komen, u);
   if (def.pemain) kartuPemain(def.pemain, u, LINES[1] ? LINES[1].selesai + 0.1 - sc.mulai : dur - 1.5);
   if (def.kartu) card(def.kartu, u);
+  if (def.skor) skorBug(def.skor, def.menit);
   if (def.jersey) jerseyPilihan(def.jersey, u);
   if (def.voting) votingKartu(def.voting, u);
   if (def.ultras) ultrasKartu(def.ultras, u);

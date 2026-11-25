@@ -88,6 +88,7 @@ const JENIS = {
   lolos: 'Pengumuman daftar pemain yang lolos (otomatis dari pemain_lolos, sampai 10 nama). WAJIB dipakai kalau pemain_lolos lebih dari 2. "narasi" singkat yang seru.',
   papan_skuad: 'Papan skuad terbaru (otomatis dari status + pemain_lolos) dengan slot KOSONG dan "KAMU?".',
   jersey: 'Pamer 3 desain jersey. "opsi": [{huruf A/B/C, nama, utama #hex, aksen #hex, celana #hex, pola: polos|garis|setengah|selempang}]. Desain original.',
+  laga: 'Adegan PERTANDINGAN 3D (pakai saat ada laga). "adegan": lorong (pemain berjalan di lorong) | keluar (masuk lapangan, penonton bersorak) | barisan (line-up) | kickoff | serang (Yonoha menyerang) | golLawan | golKita (+"pemain": username pencetak) | penalti; "skor": [yonoha, lawan], "menit": "67\'". Urutkan seperti siaran: lorong → keluar → barisan → kickoff → momen laga.',
   latihan: 'Montase latihan tim. "aktivitas": pemanasan|umpan|tembak|gim.',
   ultras: 'Penonton bergabung jadi ULTRAS (suporter garis keras Yonoha) di tribun. "users": 3-8 username dari komentar berlabel ULTRAS/DUKUNGAN (atau pendaftar yang belum lolos), "nyanyian": yel pendek orisinal maks 8 kata (opsional).',
   voting: 'Kartu voting. "pertanyaan" (maks 8 kata), "opsi": 2-3 [{huruf, teks maks 4 kata}]. Penonton komen hurufnya.',
