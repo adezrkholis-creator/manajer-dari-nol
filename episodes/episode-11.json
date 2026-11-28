@@ -1,0 +1,603 @@
+{
+  "seri": "Manajer dari Nol",
+  "episode": 11,
+  "judul": "DAY 11 — Comeback",
+  "subjudul": "DAY 11 · COMEBACK",
+  "fps": 30,
+  "ukuran": [
+    1080,
+    1920
+  ],
+  "suara": {
+    "jack": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+10%",
+      "pitch": "-3Hz",
+      "label": "JACK"
+    },
+    "waskito": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+0%",
+      "pitch": "-24Hz",
+      "label": "WASKITO (KETUA)"
+    },
+    "darman": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+6%",
+      "pitch": "-14Hz",
+      "label": "COACH DARMAN (BINTANG SEBELAH)"
+    },
+    "rudi": {
+      "voice": "id-ID-ArdiNeural",
+      "rate": "+4%",
+      "pitch": "-8Hz",
+      "label": "RUDI (MANTAN KAPTEN YONOHA)"
+    }
+  },
+  "otomatis": true,
+  "sumber_rencana": "cerita/rencana/day-11.json",
+  "hookCepat": true,
+  "tanpaJudul": true,
+  "hookTeks": [
+    "90+2'. SKOR 2-2.",
+    "SATU TENDANGAN TERAKHIR!"
+  ],
+  "skuadAwal": 25,
+  "skuadMaks": 30,
+  "musikHangat": "semua",
+  "ketukan": [
+    "b4",
+    "b5",
+    "b6",
+    "b7"
+  ],
+  "seragam": {
+    "nama": "Hijau Tani",
+    "utama": "#15803d",
+    "aksen": "#111827",
+    "celana": "#15803d",
+    "pola": "selempang",
+    "nomor": "#ffffff",
+    "pemenang_voting": "C 4 suara, B 2, A 0 (DAY 6-7)",
+    "usul": "nomor putih dari @elmermuhandis_"
+  },
+  "pemain_data": {
+    "rizky": {
+      "skin": "#c58b5c",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "miftakh": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#1e3a8a",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "skala": 1.07
+    },
+    "dapeng": {
+      "skin": "#e0ac80",
+      "shirt": "#16a34a",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316"
+    },
+    "jay": {
+      "skin": "#c58b5c",
+      "shirt": "#f8fafc",
+      "stripe": "#ea580c",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "shoes": "#ea580c"
+    },
+    "ando": {
+      "skin": "#b97a4f",
+      "shirt": "#f59e0b",
+      "stripe": "#111827",
+      "pants": "#111827",
+      "hair": "#1b1b1b",
+      "gloves": "#f8fafc",
+      "shoes": "#111",
+      "kiper": true,
+      "skala": 1.06
+    },
+    "radhika": {
+      "skin": "#e0ac80",
+      "shirt": "#7c3aed",
+      "stripe": "#c4b5fd",
+      "pants": "#1f2937",
+      "hair": "#2b1d14",
+      "gloves": "#22c55e",
+      "shoes": "#f3f4f6",
+      "kiper": true
+    },
+    "bagus": {
+      "skin": "#d9a273",
+      "shirt": "#facc15",
+      "stripe": "#1f2937",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "belly": 0.25
+    },
+    "p_marydillh2006_": {
+      "skin": "#e0ac80"
+    },
+    "p_ikzz_nyalse": {
+      "skin": "#b97a4f",
+      "shirt": "#4f46e5",
+      "stripe": "#fde047",
+      "pants": "#1e3a8a",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "cap": "#111827"
+    },
+    "p_ax_last_line": {
+      "skin": "#b97a4f",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#3b2a20",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_iiamelzy": {
+      "skin": "#c58b5c",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_bagasandikaprasetyo": {
+      "skin": "#c58b5c",
+      "stripe": "#f8fafc",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#111827"
+    },
+    "p_nadzar_30": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "cap": "#dc2626"
+    },
+    "p_recallllllllllllll": {
+      "skin": "#e0ac80",
+      "pants": "#111827"
+    },
+    "p_sotopenyet22": {
+      "skin": "#b97a4f",
+      "stripe": "#f8fafc"
+    },
+    "p_1dongg_06_": {
+      "skin": "#d9a273",
+      "shirt": "#0891b2",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6"
+    },
+    "p_andi_muh_tegar": {
+      "skin": "#f1c7a0",
+      "shirt": "#16a34a",
+      "stripe": "#111827",
+      "pants": "#1f2937",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "p_m_r_r21_": {
+      "skin": "#e0ac80",
+      "shirt": "#0891b2",
+      "stripe": "#f8fafc",
+      "pants": "#374151",
+      "hair": "#1b1b1b",
+      "shoes": "#f3f4f6"
+    },
+    "p_amirdaffa27": {
+      "skin": "#f1c7a0",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "shoes": "#111"
+    },
+    "p_onlygung1": {
+      "skin": "#c58b5c",
+      "shirt": "#2563eb",
+      "stripe": "#111827",
+      "pants": "#374151",
+      "hair": "#2b1d14",
+      "shoes": "#2563eb",
+      "gloves": "#f8fafc",
+      "kiper": true
+    },
+    "p_saepudinnnns_": {
+      "skin": "#d9a273",
+      "hair": "#1b1b1b",
+      "shoes": "#111",
+      "gloves": "#f8fafc",
+      "kiper": true
+    },
+    "p_irzzyy_t": {
+      "skin": "#f1c7a0",
+      "shirt": "#dc2626",
+      "stripe": "#f8fafc",
+      "pants": "#111827",
+      "hair": "#3b2a20",
+      "shoes": "#f97316",
+      "cap": "#dc2626"
+    },
+    "p_aryaputa234": {
+      "skin": "#d9a273",
+      "hair": "#1b1b1b",
+      "shoes": "#111"
+    },
+    "p_archive_yann_11": {
+      "skin": "#d9a273",
+      "shirt": "#2563eb",
+      "stripe": "#fde047",
+      "pants": "#1f2937",
+      "hair": "#3b2a20",
+      "shoes": "#f97316",
+      "cap": "#111827"
+    },
+    "p_sabil_8808": {
+      "skin": "#d9a273",
+      "shirt": "#4f46e5",
+      "stripe": "#111827",
+      "pants": "#1e3a8a",
+      "hair": "#3b2a20",
+      "shoes": "#f3f4f6",
+      "cap": "#111827"
+    }
+  },
+  "adegan": [
+    {
+      "id": "b1",
+      "suasana": "pagi",
+      "min": 3.6,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Menit sembilan puluh plus dua. Skor dua dua. Satu tendangan terakhir!"
+        }
+      ],
+      "panggung": "umum",
+      "dramatis": true,
+      "lokasi3d": "lapangan",
+      "tokoh": [
+        "jack"
+      ],
+      "lead": 0.1,
+      "sfx": [
+        [
+          0,
+          "peluit"
+        ]
+      ]
+    },
+    {
+      "id": "b2",
+      "suasana": "dalam",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "rudi",
+          "teks": "Aku Rudi, dulu kapten Yonoha. Kiper mereka lemah di tiang dekat."
+        },
+        {
+          "oleh": "jack",
+          "teks": "Kenapa kamu bantu kami?"
+        },
+        {
+          "oleh": "rudi",
+          "teks": "Karena hatiku masih di sini, Jack."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "ruang_ganti",
+      "tokoh": [
+        "jack",
+        "rudi",
+        "rudi"
+      ],
+      "lokasi": "RUANG GANTI"
+    },
+    {
+      "id": "b3",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Kalian pilih B: Amir masuk. Dan taktik dari Dapeng... kita pakai!"
+        }
+      ],
+      "panggung": "komen",
+      "komen": [
+        {
+          "user": "ax_last_line",
+          "waktu": "baru",
+          "teks": "Menurut gua B min",
+          "warna": "#4f46e5"
+        },
+        {
+          "user": "daffazzh",
+          "waktu": "baru",
+          "teks": "babak 2 naikin tempo, adel main jangkar, kasih umpan matang ke jay. rizky, putz nusuk ke dalem!",
+          "warna": "#059669"
+        }
+      ],
+      "sfx": [
+        [
+          0.6,
+          "ding"
+        ],
+        [
+          1.05,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "b4",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Babak kedua. Amir masuk gantikan Putz. Tempo dinaikkan!"
+        }
+      ],
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "kickoff",
+        "variasi": 1
+      },
+      "sfx": [
+        [
+          1.2,
+          "peluit"
+        ]
+      ],
+      "skor": [
+        1,
+        2
+      ],
+      "menit": "46'"
+    },
+    {
+      "id": "b5",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Amir! Tiang dekat, persis bocoran Rudi! Dua dua!"
+        }
+      ],
+      "lokasi": null,
+      "tembak": {
+        "penendang": "p_amirdaffa27",
+        "kiper": "rival",
+        "hasil": "gol"
+      },
+      "sfx": [
+        [
+          1,
+          "tendang"
+        ],
+        [
+          1.5,
+          "jaring"
+        ],
+        [
+          1.7,
+          "peluit"
+        ]
+      ],
+      "skor": [
+        2,
+        2
+      ],
+      "menit": "58'",
+      "golPada": 1.5,
+      "golLawan": false,
+      "skorAwal": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": "b6",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Bintang Sebelah menekan habis-habisan. Ando jatuh bangun jaga gawang!"
+        }
+      ],
+      "lokasi": null,
+      "panggung": "laga",
+      "laga": {
+        "jenis": "serang",
+        "variasi": 1
+      },
+      "sfx": [],
+      "skor": [
+        2,
+        2
+      ],
+      "menit": "77'"
+    },
+    {
+      "id": "b7",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Umpan matang Dapeng... Jay! TIGA DUA! Yonoha MENANG!"
+        }
+      ],
+      "lokasi": null,
+      "tembak": {
+        "penendang": "jay",
+        "kiper": "rival",
+        "hasil": "gol"
+      },
+      "sfx": [
+        [
+          1,
+          "tendang"
+        ],
+        [
+          1.5,
+          "jaring"
+        ],
+        [
+          1.7,
+          "peluit"
+        ]
+      ],
+      "skor": [
+        3,
+        2
+      ],
+      "menit": "90+2'",
+      "golPada": 1.5,
+      "golLawan": false,
+      "skorAwal": [
+        2,
+        2
+      ]
+    },
+    {
+      "id": "b8",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Sponsor kerupuk aman. Sepuluh juta masuk kas!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "kartu": {
+        "jenis": "sukses",
+        "tunda": 0.3,
+        "judul": "SPONSOR AMAN!",
+        "sub": "Kerupuk Makar Jaya tetap bersama Yonoha",
+        "isi": [
+          [
+            "Skor akhir",
+            "Yonoha 3 - 2 Bintang"
+          ],
+          [
+            "Dana sponsor",
+            "+ Rp 10 juta"
+          ],
+          [
+            "Gol",
+            "Tikus, Amir, Jay"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "b9",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "darman",
+          "teks": "Ini belum selesai, Jack."
+        },
+        {
+          "oleh": "jack",
+          "teks": "Kerupuknya aman, Coach."
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "tokoh": [
+        "jack",
+        "darman"
+      ],
+      "lokasi": "STADION YONOHA"
+    },
+    {
+      "id": "b10",
+      "suasana": "pagi",
+      "min": 5.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Rudi minta balik ke Yonoha. Kalian yang putuskan!"
+        }
+      ],
+      "panggung": "umum",
+      "lokasi3d": "lapangan",
+      "voting": {
+        "pertanyaan": "Rudi mau balik ke Yonoha?",
+        "opsi": [
+          {
+            "huruf": "A",
+            "teks": "Terima, jadi kapten"
+          },
+          {
+            "huruf": "B",
+            "teks": "Tolak, dia pernah pergi"
+          },
+          {
+            "huruf": "C",
+            "teks": "Terima, tapi cadangan"
+          }
+        ]
+      },
+      "sfx": [
+        [
+          0.3,
+          "ding"
+        ]
+      ]
+    },
+    {
+      "id": "penutup",
+      "suasana": "pagi",
+      "min": 4.5,
+      "baris": [
+        {
+          "oleh": "jack",
+          "teks": "Malam itu, Waskito menerima surat dari liga. Isinya... bikin Jack terdiam."
+        }
+      ],
+      "teaser": "Surat dari liga datang malam itu..."
+    }
+  ],
+  "akhir": {
+    "judul": "GABUNG ULTRAS!",
+    "posisi": [
+      "KOMEN \"ULTRAS\""
+    ],
+    "tombol": "KOMEN: A, B atau C",
+    "baris2": "Follow @ai_bareng_el biar nggak ketinggalan",
+    "status": "Skuad 25/30"
+  },
+  "caption": "COMEBACK! YONOHA MENANG 3-2! 🔥🐀 Turun minum, pintu ruang ganti diketuk RUDI — mantan kapten Yonoha — yang bocorin kelemahan kiper Bintang Sebelah: tiang dekat. Kalian pilih B, AMIR MASUK... dan Amir cetak gol tiang dekat 2-2! Menit 90+2, umpan matang Dapeng, JAY 3-2! Sponsor kerupuk AMAN 💸\n\nTapi sekarang Rudi minta balik ke Yonoha. Komen A (Terima jadi kapten), B (Tolak), atau C (Terima, tapi cadangan)!\nMau jadi ULTRAS? Komen ULTRAS!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "ticker": {
+    "teks": "SKUAD 25/30  •  MASIH BUKA CADANGAN: KOMEN \"DAFTAR – NAMA – POSISI\"  •  GABUNG ULTRAS YONOHA: KOMEN \"ULTRAS\"  •  ",
+    "dari": "b2",
+    "sampai": "b10"
+  }
+}

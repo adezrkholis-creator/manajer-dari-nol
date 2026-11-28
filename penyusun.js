@@ -63,7 +63,7 @@ function pastikan(user, posisi) {
 if (STATUS.seragam) skuadAkhir.forEach(p => pastikan(p.user, p.posisi));
 
 // ---------- beat -> adegan ----------
-const SUARA = { jack: { voice: 'id-ID-ArdiNeural', rate: '+10%', pitch: '-3Hz', label: 'JACK' }, waskito: { voice: 'id-ID-ArdiNeural', rate: '+0%', pitch: '-24Hz', label: 'WASKITO (KETUA)' }, darman: { voice: 'id-ID-ArdiNeural', rate: '+6%', pitch: '-14Hz', label: 'COACH DARMAN (BINTANG SEBELAH)' } };
+const SUARA = { jack: { voice: 'id-ID-ArdiNeural', rate: '+10%', pitch: '-3Hz', label: 'JACK' }, waskito: { voice: 'id-ID-ArdiNeural', rate: '+0%', pitch: '-24Hz', label: 'WASKITO (KETUA)' }, darman: { voice: 'id-ID-ArdiNeural', rate: '+6%', pitch: '-14Hz', label: 'COACH DARMAN (BINTANG SEBELAH)' }, rudi: { voice: 'id-ID-ArdiNeural', rate: '+4%', pitch: '-8Hz', label: 'RUDI (MANTAN KAPTEN YONOHA)' } };
 const LOK = { lapangan: 'lapangan', kantor: 'kantor', ruang_ganti: 'ruang_ganti', tribun: 'tribun', lapangan_rival: 'lapangan_rival' };
 const NAMA_LOK = { kantor: 'KANTOR KETUA', ruang_ganti: 'RUANG GANTI', tribun: 'TRIBUN', lapangan_rival: 'LAPANGAN BINTANG SEBELAH', lapangan: 'STADION YONOHA' };
 function baris(b) {
@@ -184,7 +184,7 @@ const ep = {
     judul: slotAkhir.length ? 'AYO GABUNG!' : 'GABUNG ULTRAS!', posisi: slotAkhir.length ? slotAkhir.map(s => (POSISI[s] || s).toUpperCase()) : ['KOMEN "ULTRAS"'],
     tombol: vote ? `KOMEN: ${hurufVote}` : 'FOLLOW + KOMEN: DAFTAR',
     baris2: 'Follow @ai_bareng_el biar nggak ketinggalan',
-    status: `Skuad ${skuadAkhir.length}/${target(skuadAkhir.length)}` +(hari != null ? ` · uji coba ${hari} hari lagi` : '')
+    status: `Skuad ${skuadAkhir.length}/${target(skuadAkhir.length)}` +(hari != null && hari > 0 ? ` · uji coba ${hari} hari lagi` : '')
   },
   caption: R.caption
 };

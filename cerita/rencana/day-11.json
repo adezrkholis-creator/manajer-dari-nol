@@ -1,0 +1,45 @@
+{
+  "day": 11,
+  "judul": "Comeback",
+  "ringkas": "Turun minum: Rudi, mantan kapten Yonoha, membocorkan kelemahan kiper Bintang Sebelah (tiang dekat). Voting penonton: Amir masuk. Amir cetak gol 2-2 di tiang dekat, Jay menang 3-2 di menit 90+2 dari umpan Dapeng. Sponsor aman. Rudi minta kembali ke Yonoha.",
+  "jawab_sebelumnya": "Yang mengetuk pintu ruang ganti adalah Rudi, mantan kapten Yonoha. Voting strategi babak 2: B (Masukkan Amir) menang. Saran taktik @daffazzh dipakai Jack.",
+  "pemain_lolos": [],
+  "beat": [
+    { "jenis": "cold_open", "lokasi": "lapangan", "narasi": "Menit sembilan puluh plus dua. Skor dua dua. Satu tendangan terakhir!" },
+    { "jenis": "ngobrol", "lokasi": "ruang_ganti", "dialog": [
+      { "oleh": "rudi", "teks": "Aku Rudi, dulu kapten Yonoha. Kiper mereka lemah di tiang dekat." },
+      { "oleh": "jack", "teks": "Kenapa kamu bantu kami?" },
+      { "oleh": "rudi", "teks": "Karena hatiku masih di sini, Jack." } ] },
+    { "jenis": "komentar", "users": ["ax_last_line", "daffazzh"], "narasi": "Kalian pilih B: Amir masuk. Dan taktik dari Dapeng... kita pakai!" },
+    { "jenis": "laga", "adegan": "kickoff", "skor": [1, 2], "menit": "46'", "narasi": "Babak kedua. Amir masuk gantikan Putz. Tempo dinaikkan!" },
+    { "jenis": "laga", "adegan": "golKita", "pemain": "amirdaffa27", "skor": [2, 2], "menit": "58'", "narasi": "Amir! Tiang dekat, persis bocoran Rudi! Dua dua!" },
+    { "jenis": "laga", "adegan": "serang", "skor": [2, 2], "menit": "77'", "narasi": "Bintang Sebelah menekan habis-habisan. Ando jatuh bangun jaga gawang!" },
+    { "jenis": "laga", "adegan": "golKita", "pemain": "elmermuhandis_", "skor": [3, 2], "menit": "90+2'", "narasi": "Umpan matang Dapeng... Jay! TIGA DUA! Yonoha MENANG!" },
+    { "jenis": "info", "warna": "hijau", "judul": "SPONSOR AMAN!", "sub": "Kerupuk Makar Jaya tetap bersama Yonoha", "isi": [["Skor akhir", "Yonoha 3 - 2 Bintang"], ["Dana sponsor", "+ Rp 10 juta"], ["Gol", "Tikus, Amir, Jay"]], "narasi": "Sponsor kerupuk aman. Sepuluh juta masuk kas!" },
+    { "jenis": "ngobrol", "lokasi": "lapangan", "dialog": [
+      { "oleh": "darman", "teks": "Ini belum selesai, Jack." },
+      { "oleh": "jack", "teks": "Kerupuknya aman, Coach." } ] },
+    { "jenis": "voting", "pertanyaan": "Rudi mau balik ke Yonoha?", "opsi": [
+      { "huruf": "A", "teks": "Terima, jadi kapten" },
+      { "huruf": "B", "teks": "Tolak, dia pernah pergi" },
+      { "huruf": "C", "teks": "Terima, tapi cadangan" } ],
+      "narasi": "Rudi minta balik ke Yonoha. Kalian yang putuskan!" },
+    { "jenis": "bersambung", "teaser": "Surat dari liga datang malam itu...", "narasi": "Malam itu, Waskito menerima surat dari liga. Isinya... bikin Jack terdiam." }
+  ],
+  "voting_baru": { "pertanyaan": "Rudi mau balik ke Yonoha?", "opsi": [ { "huruf": "A", "teks": "Terima, jadi kapten" }, { "huruf": "B", "teks": "Tolak, dia pernah pergi" }, { "huruf": "C", "teks": "Terima, tapi cadangan" } ] },
+  "benang_terbuka": [
+    "Yonoha MENANG 3-2 vs Bintang Sebelah (gol tikus 31', Amir 58', Jay 90+2'). Sponsor kerupuk aman, kas +Rp 10 juta.",
+    "Rudi (mantan kapten Yonoha, sekarang di Bintang Sebelah) membocorkan kelemahan kiper lawan dan minta kembali: voting A terima jadi kapten / B tolak / C terima sebagai cadangan.",
+    "Coach Darman: 'Ini belum selesai, Jack.'",
+    "Surat dari liga datang malam itu: isinya belum diungkap.",
+    "Kapten sementara Siso; voting kapten (Jay/Adel/Ando) belum diumumkan."
+  ],
+  "rencana_dekat": [
+    "DAY 12: isi surat liga (mis. jadwal laga resmi pertama Liga Dagelan Divisi 5 / syarat pendaftaran) + hasil voting Rudi.",
+    "Umumkan kapten tetap."
+  ],
+  "riwayat": "DAY 11: Babak 2 uji coba: Rudi (mantan kapten) bocorkan tiang dekat, Amir masuk (voting B) cetak 2-2, Jay 3-2 menit 90+2 dari umpan Dapeng. Yonoha MENANG, sponsor aman. Rudi minta balik; surat liga datang.",
+  "caption": "COMEBACK! YONOHA MENANG 3-2! 🔥🐀 Turun minum, pintu ruang ganti diketuk RUDI — mantan kapten Yonoha — yang bocorin kelemahan kiper Bintang Sebelah: tiang dekat. Kalian pilih B, AMIR MASUK... dan Amir cetak gol tiang dekat 2-2! Menit 90+2, umpan matang Dapeng, JAY 3-2! Sponsor kerupuk AMAN 💸\n\nTapi sekarang Rudi minta balik ke Yonoha. Komen A (Terima jadi kapten), B (Tolak), atau C (Terima, tapi cadangan)!\nMau jadi ULTRAS? Komen ULTRAS!\n\n#ManajerDariNol #SepakBola #CeritaFiksi",
+  "hook_teks": ["90+2'. SKOR 2-2.", "SATU TENDANGAN TERAKHIR!"],
+  "model": "manual (Claude)"
+}

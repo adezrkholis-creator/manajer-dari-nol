@@ -1,15 +1,14 @@
 {
-  "day_terakhir": 10,
+  "day_terakhir": 11,
   "babak": 1,
   "divisi": "Divisi 5",
-  "kas": 4750000,
-  "hari_menuju_ujicoba": 0,
+  "kas": 14750000,
+  "hari_menuju_ujicoba": null,
   "laga_berikutnya": {
-    "lawan": "Bintang Sebelah FC",
-    "jenis": "uji coba",
-    "day": 10,
-    "status": "TURUN MINUM 1-2. Babak 2 di DAY 11, hasil akhir WAJIB Yonoha menang 3-2 (keputusan owner).",
-    "starting_xi": "Ando; Ikzz, Miftakh, Iiamelzy, Siso(C); Bagus, Adel, Dapeng; Putz, Jay, Rizky"
+    "lawan": null,
+    "jenis": "belum ada",
+    "day": null,
+    "status": "Uji coba vs Bintang Sebelah SELESAI: Yonoha MENANG 3-2 (tikus 31, Amir 58, Jay 90+2)."
   },
   "skuad": [
     {
@@ -201,29 +200,30 @@
   },
   "seragam_tandang": null,
   "benang_terbuka": [
-    "Uji coba vs Bintang Sebelah: TURUN MINUM 1-2 (gol: mantan pemain 18', gol tikus 31', 44').",
-    "Mantan pemain Yonoha mengetuk pintu ruang ganti saat turun minum: mau apa?",
-    "Voting strategi babak 2 (A serang total, B masukkan Amir, C bertahan-balik cepat).",
-    "Kapten sementara Siso; voting kapten (Jay/Adel/Ando) belum diumumkan.",
-    "Sponsor Kerupuk Makar Jaya Rp10 jt ditarik kalau kalah."
+    "Yonoha MENANG 3-2 vs Bintang Sebelah (gol tikus 31', Amir 58', Jay 90+2'). Sponsor kerupuk aman, kas +Rp 10 juta.",
+    "Rudi (mantan kapten Yonoha, sekarang di Bintang Sebelah) membocorkan kelemahan kiper lawan dan minta kembali: voting A terima jadi kapten / B tolak / C terima sebagai cadangan.",
+    "Coach Darman: 'Ini belum selesai, Jack.'",
+    "Surat dari liga datang malam itu: isinya belum diungkap.",
+    "Kapten sementara Siso; voting kapten (Jay/Adel/Ando) belum diumumkan."
   ],
   "rencana_dekat": [
-    "DAY 11: babak kedua. HASIL AKHIR WAJIB Yonoha MENANG 3-2 (keputusan owner): comeback dramatis, sponsor aman."
+    "DAY 12: isi surat liga (mis. jadwal laga resmi pertama Liga Dagelan Divisi 5 / syarat pendaftaran) + hasil voting Rudi.",
+    "Umumkan kapten tetap."
   ],
   "voting_berjalan": {
-    "pertanyaan": "Strategi babak kedua?",
+    "pertanyaan": "Rudi mau balik ke Yonoha?",
     "opsi": [
       {
         "huruf": "A",
-        "teks": "Serang total"
+        "teks": "Terima, jadi kapten"
       },
       {
         "huruf": "B",
-        "teks": "Masukkan Amir"
+        "teks": "Tolak, dia pernah pergi"
       },
       {
         "huruf": "C",
-        "teks": "Bertahan, balik cepat"
+        "teks": "Terima, tapi cadangan"
       }
     ]
   },
@@ -237,7 +237,8 @@
     "DAY 7: DAY 7: Latihan pertama 17 pemain, tiga sayap kiri rebutan posisi, kas menipis, mobil hitam misterius datang.",
     "DAY 8: DAY 8: Jersey Hijau Tani (nomor putih) menang voting; Revan, Amir, Gung + 5 pendaftar baru jadi pemain, skuad 25/30; voting starter sayap kiri.",
     "DAY 9: DAY 9: Sponsor Kerupuk Makar Jaya Rp 10 juta dengan syarat menang lawan Bintang Sebelah; latihan penalti; voting kapten; telepon tengah malam dari Coach Darman.",
-    "DAY 10: Babak 1 uji coba vs Bintang Sebelah: starting XI (kapten sementara Siso), 0-1 oleh mantan pemain, gol tikus 1-1, 1-2 menjelang turun minum; mantan pemain Yonoha mengetuk ruang ganti."
+    "DAY 10: Babak 1 uji coba vs Bintang Sebelah: starting XI (kapten sementara Siso), 0-1 oleh mantan pemain, gol tikus 1-1, 1-2 menjelang turun minum; mantan pemain Yonoha mengetuk ruang ganti.",
+    "DAY 11: DAY 11: Babak 2 uji coba: Rudi (mantan kapten) bocorkan tiang dekat, Amir masuk (voting B) cetak 2-2, Jay 3-2 menit 90+2 dari umpan Dapeng. Yonoha MENANG, sponsor aman. Rudi minta balik; surat liga datang."
   ],
   "sponsor": {
     "nama": "Kerupuk Makar Jaya",
